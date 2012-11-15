@@ -1,0 +1,23 @@
+body 		{background-color:#141414; margin:0; padding:0; }
+
+/* Consider using LESS or similar CSS framework for storing colour variables... */
+
+#header-container 	{background-color:#8bd1c3;}
+#nav 				{float:left;}
+#testarea 			{float:left;}
+.clear				{clear:both;}
+#statusbar 			{background-color:#A4A4A4;}
+#footer 			{background-color:#000;}
+
+#aside				{display:none;} /* remove asides later if not used. This keeps it from taking space too (visibility if hidden but still space taking).
+
+
+/* Header*/
+#header-container p, ul, li	{background-color:#8bd1c3;}
+
+/* Statusbar */
+#statustext	{font-size:0.8em; color:gray;}
+
+/* footer */
+#footerlist 	{}
+#footerlist li	{display:inline; list-style-type:none; padding-right:20px;}

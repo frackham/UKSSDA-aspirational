@@ -1,0 +1,49 @@
+application: fr-testapp
+version: 13
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /stylesheet
+  static_dir: stylesheet
+  
+- url: /css
+  static_dir: css
+
+- url: /img
+  static_dir: img
+
+- url: /fontface
+  static_dir: fontface
+  
+- url: /js
+  static_dir: js
+  
+- url: /js/vendor
+  static_dir: js/vendor
+
+- url: /js/fr
+  static_dir: js/fr
+    
+- url: /js/vendor/jqplotplugins
+  static_dir: js/vendor/jqplotplugins
+
+- url: /staticpages
+  static_dir: staticpages
+
+- url: .*
+  script: main.app
+
+  
+libraries:
+- name: webapp2
+  version: "2.5.1"
+- name: jinja2
+  version: latest
+- name: PIL
+  version: latest

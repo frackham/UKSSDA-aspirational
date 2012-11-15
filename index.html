@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<head>
+    <title> {{ header_title }} </title>
+    <meta charset="utf-8" http-equiv="encoding">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> <!-- Will not validate, see here for why: http://blog.yjl.im/2011/01/bad-value-x-ua-compatible-for-attribute.html -->
+    <meta name="description" content="Demonstration application for UK Educational analysis.">
+    <meta name="viewport" content="width=device-width">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"> 
+    <!--
+    <link rel="stylesheet" href="css/normalize.min.css">
+    
+    <link rel="stylesheet" href="/stylesheet/style.css" /> -->
+    <link rel="stylesheet" href="css/jquery.jqplot.min.css" />
+    <link rel="stylesheet" href="css/layout_B.css" type="text/css" />
+    <!-- <link rel="stylesheet" href="css/fontface.css" type="text/css" /> -->
+    <link rel="stylesheet" href="css/googlewebfont.css" type="text/css" />
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+    <!--<link href='http://fonts.googleapis.com/css?family=Titillium+Web|Economica|Source+Code+Pro|Exo|Quicksand|Marvel|Open+Sans|Raleway|Pontano+Sans|Josefin+Sans|Antic|Lekton|Abel|Oxygen|Basic|Advent+Pro|Jura|News+Cycle|Bubbler+One|Nobile|Maven+Pro|Belleza' rel='stylesheet' type='text/css'> -->
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web|Exo|Quicksand|Pontano+Sans|Josefin+Sans|Antic|Oxygen|Basic|Jura|Bubbler+One|Belleza' rel='stylesheet' type='text/css'>
+    
+    <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+    
+    <script>
+    WebFontConfig = { google: {     families: [ 'Titillium Web', 'Exo', 'Quicksand', 'Pontano Sans', 'Josefin Sans', 'Antic', 'Oxygen', 'Basic', 'Jura', 'Bubbler One', 'Belleza' ]  }};
+    </script>
+    
+</head>
+<body>
+<div id="pagewrapper">
+  <!--[if lt IE 7]>
+      <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+      <script src="excanvas.js"></script>
+      <script>alert('excanvas in use')</script>
+  <![endif]-->
+  <div id="header-container">
+      <header class="wrapper clearfix">
+          {{ app_title }}
+          <nav id="nav-options">
+              <ul>
+                  <li id="global-tour"><a href="#">Tour</a></li>
+                  <li id="global-help"><a href="#">Help</a></li>
+                  <li id="global-settings"><a href="#">Settings</a></li>
+                  <li id="global-login_logout"><a href="#"> {{ url_linktext }} </a></li>
+              </ul>
+          </nav>
+          <p id="headerstatus">Anonymised Mode</p>
+      </header>
+  </div>
+  
+  <div id="middlewrapper">    
+    <div id="nav-wrapper">
+      <nav id="nav-primary">
+          <ul>
+          	<!-- TODO: POPULATE in Jinja2  ... (for item in userNavItems) -->
+              <li>{{ user_name }}  </li>
+          	  <li><a href="#">Admin</a>
+              	<ul>
+              		<li class="primarynav" id="admin-schooldetails">    <a href="#">School Details</a></li>
+              		<li class="primarynav" id="admin-datasetexplorer">  <a href="#">Dataset Explorer</a></li> <!-- Visual view of datasets. Add datasets from here (including descriptive only datasets). -->
+              		<li class="primarynav" id="admin-datasetvalidation"><a href="#">Dataset Validation(?)</a></li>
+              		<li class="primarynav" id="admin-usersetup">        <a href="#">User Setup</a></li>
+              		<li class="primarynav" id="admin-flushdatastore">   <a href="#">Flush Data Store</a></li>
+              	</ul>	
+              </li>
+              
+              <li id="buffernav"><a href="#">- - - - -</a></li>
+              <li><a href="#">School</a>
+              	<ul>
+              		<li class="primarynav" id="school-context"><a href="#">School Context</a></li>
+              		<li class="primarynav" id="school-temp">   <a href="#">Other Analyses</a></li>
+              	</ul>	
+              </li>
+              <li><a href="#">Students</a>
+              	<ul>
+              		<li class="primarynav" id="students-summary"><a href="#">Students Summary</a></li>
+              		<li class="primarynav" id="students-temp">   <a href="#">Other Analyses</a></li>
+              	</ul>	
+              </li>
+              <li><a href="#">Attendance</a>
+              	<ul>
+              		<li class="primarynav" id="attendance-summary">             <a href="#">Attendance Summary</a></li>
+              		<li class="primarynav" id="attendance-groups">              <a href="#">Attendance within Groups</a></li>
+              		<li class="primarynav" id="attendance-attainmentthresholds"><a href="#">Attendance against Thresholds</a></li>
+              		<li class="primarynav" id="attendance-temp">                <a href="#">Other Analyses</a></li>
+              	</ul>	
+              </li>
+              <li><a href="#">Behaviour</a>
+              	<ul>
+              		<li class="primarynav" id="behaviour-summary"><a href="#">Behaviour Summary</a></li>
+              		<li class="primarynav" id="behaviour-temp">   <a href="#">Other Behaviour Analyses</a></li>
+              	</ul>	
+              </li>
+              <li><a href="#">Assessment</a>
+              	<ul>
+              		<li class="primarynav" id="assessment-summary"><a href="#">Assessment Summary</a></li>
+              		<li class="primarynav" id="assessment-temp">   <a href="#">Other Assessment Analyses</a></li>
+              	</ul>	
+              </li>
+              <li><a href="#">Curriculum</a>
+              	<ul>
+              		<li class="primarynav" id="curriculum-summary"><a href="#">Curriculum Summary</a></li>
+              		<li class="primarynav" id="curriculum-temp">   <a href="#">Other Curriculum Analyses</a></li>
+              	</ul>	
+              </li>
+           <li><a href="#">Developer</a>
+              	<ul>
+                	<li class="primarynav" id="dev-listschools">            <a href="#">School List</a></li>
+                	<li class="primarynav" id="dev-ajaxtest">               <a href="#">Ajaxtest</a></li>
+                	<li class="primarynav" id="dev-loadteststrut">          <a href="#">Load test strut</a></li>
+                	<li class="primarynav" id="dev-qanparse">               <a href="#">QAN parse</a></li>
+                	<li class="primarynav" id="dev-edubasescrape">          <a href="#">Edubase scrape</a></li>
+                	<li class="primarynav" id="dev-addschool">              <a href="#">Add School</a></li>
+                	<li class="primarynav" id="dev-addstudenttoschool">     <a href="#">Add Student to (Fixed) School</a></li>
+                	<li class="primarynav" id="dev-listallstudents">        <a href="#">Show Students of Schools</a></li>
+                	<li class="primarynav" id="dev-analysisloaderdemo">     <a href="#">Analysis Loader Demo</a></li>
+              	</ul>	
+              </li>
+              <li><a href="#">Extension Demos</a>
+              	<ul>
+                	<li class="primarynav" id="extension-location"><a href="#">Location</a></li>
+                	<li class="primarynav" id="extension-news">    <a href="#">News</a></li>
+                	<li class="primarynav" id="extension-ofsted">  <a href="#">OFSTED</a></li>
+              	</ul>	
+              </li>
+              <li><a href="#">Fragments in Progress</a>
+              	<ul>
+                	<li class="primarynav" id="fragment-studentcount"><a href="#">Count(Students)</a></li>
+                	<li class="primarynav" id="fragment-schoolcount"><a href="#">Count(School)</a></li>
+                	<li class="primarynav" id="fragment-schoollist"><a href="#">List(School)</a></li>
+              	</ul>	
+              </li> 
+              <li id="documents"><a href="#">Documents</a></li>
+          </ul>
+      </nav>
+    </div>
+    <div id="mainwrapper"> 
+      <div id="debug">
+        <div class="debugmessage"><p>User is {{user_name}} </p></div>
+      </div>
+      <div id="loader"><img src="/img/temp_hourglass.gif" alt="Loading..."/></div>
+      <div id="notices">
+        <!-- User notices (e.g. are loaded here. Can be 0+ subdivs.-->
+      </div>
+      <div id="maincontent">
+        <!-- Main content is loaded here. -->
+        
+        <!-- temp content, all here to be removed. -->
+        <div id="chart1"></div>
+        
+      </div>
+    </div>
+  </div> <!-- end of middle section -->  
+  
+  <footer id="footer-container">
+    <ul id="footerlist">
+     <li><a href="/staticpages/aboutme.html" target="_blank">Fraser Rackham - K1065630</a></li>
+     <li><a href="mailto:k1065630@kingston.ac.uk">Mail</a></li>
+     <li><a href="#">Kingston University</a></li>
+     <li><a href="#">Google App Engine</a></li>
+     <li><a href="#">HTML 5 Boilerplate	</a></li>
+    </ul>
+    <div id="developerlinks"> <!-- TODO: Hide in dev mode -->
+      <ul id="devlist_1">
+       <li><a href="#">Data for Schools Admin</a></li>
+       <li><a href="https://appengine.google.com/" target="_blank">App Engine Login (MUST USE CORRECT LOGIN EMAIL!)</a></li>
+       <li><a href="https://developers.google.com/appengine/" target="_blank">App Engine Developers Home</a></li>
+       {{ livelink }}
+       <li><a href="https://appengine.google.com/dashboard?app_id=fr-testapp" target="_blank">Live App (Dashboard)</a></li>
+       <li><a href="https://developers.google.com/appengine/" target="_blank">GApps Docs</a></li>
+      </ul>
+      <ul id="devlist_2">
+       <li><a href="http://docs.jquery.com/" target="_blank">jQuery Docs</a></li>
+       <li><a href="http://api.jqueryui.com" target="_blank">jQueryUI Docs</a></li>
+       <li><a href="http://www.jqplot.com/docs/files/usage-txt.html" target="_blank">jqPlot Docs</a></li>
+      </ul>
+    </div>
+  </footer>
+</div> <!-- end of pagewrapper-->
+
+  <!-- scripts and fallback to local -->
+  <script src="js/fr/init.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+  <script>window.jQuery.ui || document.write('<script src="js/vendor/jquery-ui.min.js"><\/script>')</script>
+  <script src="//cdn.jsdelivr.net/jqplot/1.0.4/jquery.jqplot.min.js"></script>
+  <script>window.jQuery.jqplot || document.write('<script src="js/vendor/jquery.jqplot.min.js"><\/script>')</script>
+  <script src="//ajax.googleapis.com/ajax/libs/webfont/1.0.31/webfont.js"></script> <!-- Partial fix for FOUT (Flash of unstyled text). https://developers.google.com/speed/libraries/devguide#webfont -->
+  <!-- end scripts and fallback to local -->  
+
+  
+  <script src="//cdn.jsdelivr.net/jqplot/1.0.4/plugins/jqplot.canvasTextRenderer.min.js"></script>
+  <!-- TEMPORARY: These should be loaded dependent on the plot...possible dynamically? Or do we need an aggregated library? -->
+
+  
+    <!--
+  <script src="js/vendor/jqplotplugins/jqplot.canvasTextRenderer.min.js"></script>
+ -->
+  <script src="js/vendor/jqplotplugins/jqplot.canvasAxisLabelRenderer.min.js"></script>
+  <script src="js/vendor/jqplotplugins/jqplot.canvasAxisTickRenderer.min.js"></script>
+  <script src="js/vendor/jqplotplugins/jqplot.dateAxisRenderer.min.js"></script>
+  <script src="js/vendor/jqplotplugins/jqplot.pointLabels.min.js"></script>
+  <script src="js/vendor/jqplotplugins/jqplot.highlighter.min.js"></script>
+  <script src="js/vendor/jqplotplugins/jqplot.canvasOverlay.min.js"></script>
+  <script src="js/vendor/jqplotplugins/jqplot.trendline.min.js"></script>
+
+       
+  
+  
+      
+    <script type="text/javascript">// <![CDATA[	
+		  $(document).ready(function() {
+		    //alert(':/');	
+		    var bDebug = false;
+		    init_app(bDebug);	 
+		    //alert(':)');	
+		  });
+
+		// ]]></script>
+     
+		<!-- 
+		
+		$.ajax({
+					  url: "/developer/schoollist",
+					  context: document.body
+					})
+					  .done(function() { 
+			  			//$('#maincontent').innerHTML("done");
+			  			alert('Success!');})
+					  .fail(function() { alert("error"); })
+    				  .always(function() { alert("complete"); });;
+		
+		
+		-->
+</body>
+</html>

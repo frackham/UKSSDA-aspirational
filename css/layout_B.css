@@ -1,0 +1,159 @@
+/*
+middlewrapper
+ nav-wrapper
+ main
+  debug
+  loader
+  notices
+  maincontent
+ 
+ 
+footer-container
+ footerlist
+ devlist
+ 
+*/
+
+body {
+    /* Used  to build gradient: http://ie.microsoft.com/testdrive/graphics/cssgradientbackgroundmaker/default.html */
+   /* IE10 Consumer Preview */ 
+    background-image: -ms-radial-gradient(left bottom, ellipse farthest-side, #050321 0%, #0A0A0A 55.00000000000001%, #0A0A0A 87.5%, #0A0A0A 100%);
+    
+    /* Mozilla Firefox */ 
+    background-image: -moz-radial-gradient(left bottom, ellipse farthest-side, #050321 0%, #0A0A0A 55.00000000000001%, #0A0A0A 87.5%, #0A0A0A 100%);
+    
+    /* Opera */ 
+    background-image: -o-radial-gradient(left bottom, ellipse farthest-side, #050321 0%, #0A0A0A 55.00000000000001%, #0A0A0A 87.5%, #0A0A0A 100%);
+    
+    /* Webkit (Safari/Chrome 10) */ 
+    background-image: -webkit-gradient(radial, left bottom, 0, left bottom, 973, color-stop(0, #050321), color-stop(0.55, #0A0A0A), color-stop(0.875, #0A0A0A), color-stop(1, #0A0A0A));
+    
+    /* Webkit (Chrome 11+) */ 
+    background-image: -webkit-radial-gradient(left bottom, ellipse farthest-side, #050321 0%, #0A0A0A 55.00000000000001%, #0A0A0A 87.5%, #0A0A0A 100%);
+    
+    /* W3C Markup, IE10 Release Preview */ 
+    background-image: radial-gradient(ellipse farthest-side at left bottom, #050321 0%, #0A0A0A 55.00000000000001%, #0A0A0A 87.5%, #0A0A0A 100%);
+}
+
+#pagewrapper {
+    padding:0;
+    margin:0;
+    /* 
+    background-color: #222;
+    color: #EEE;
+    */
+    
+}
+
+/* Header
+-----------------------------------------------------------------------------*/
+.title        {font-size:1.1em; letter-spacing:3px; font-variant:small-caps;}
+#livetitle    {color: #AA6666;}
+#localtitle   {color: #6666AA;}
+
+#header-container {
+	height: 10%;
+	/*background: #FFE680;*/
+	color: white;
+}
+
+#nav-options {
+  position:absolute;
+  right: 2%;
+  /*width: 45%;*/
+  top: 5%;
+}
+#nav-options ul {
+  width:300px; min-width:250px;  
+}
+#nav-options ul li {
+  list-style-type:none; 
+  display:inline;
+  padding: 1%;
+}
+#nav-options ul li a        { text-decoration:none;  }
+#nav-options ul li a:hover  { text-decoration:underline; }
+
+
+#headerstatus {text-align:center; z-index:40; position:absolute; right:14%; top:10%; font-size:0.9em; /*font-family:monospace;*/ color:green;}
+
+/* Middle
+-----------------------------------------------------------------------------*/
+#middlewrapper {
+	border-left: 20% solid #B5E3FF;
+	height: 1%;
+	position: relative;
+	width: 80%;
+}
+#middlewrapper:after {
+	content: '.';
+	display: block;
+	clear: both;
+	visibility: hidden;
+	height: 0;
+}
+#mainwrapper {
+	width: 100%;
+	float: left;
+	overflow: hidden;
+	margin-right: -100%;
+	padding-left: 4%;
+	background-color:#0A0A0A;	//v dark grey. matched to background of gradient.
+}
+#maincontent {
+	padding: 0 20px;
+	/*background-color: #336633;/* */ 	
+	color: #a0a0a0;
+}
+
+
+#debug {
+ background-color:red;
+ display:none; /* */ 
+}
+#loader {
+ /*background-color:gray; */
+ position:absolute;
+ z-index:100;
+ display:none; /* */
+}
+#notices {
+ background-color:yellow; 
+}
+
+/* Sidebar Left
+-----------------------------------------------------------------------------*/
+#nav-wrapper {
+	float: left;
+	width: 20%;
+	position: relative;
+	background: #B5E3FF;
+	/*left: -20%;*/
+	z-index:999;
+}
+.primarynav   { position:relative; min-width:200px !important ; }
+.primarynav a { color:red; }//Targets the second layer of navigation.
+
+
+.ui-menu      { z-index:999; }
+.ui-menu-item { font-size:0.8em;} //Adds to existing ui-menu class CSS loaded from CDN.
+
+/* Footer
+-----------------------------------------------------------------------------*/
+#footer-container {
+	height: 5%;
+	background: #333333;
+}
+
+#footer-container ul {
+  
+}
+
+#footer-container ul li {
+  list-style-type:none; 
+  display:inline;
+  padding: 1%;
+
+}
+#footer-container ul li a        { color:red; text-decoration:none;  }
+#footer-container ul li a:hover  { text-decoration:underline; }

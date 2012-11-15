@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link type="text/css" rel="stylesheet" href="/stylesheet/style.css" /> 
+ <!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css"> -->
+ <!-- TO add to template:
+ CDN links to jQuery and jquery UI (probably).
+Header, footer, nav divs.
+
+ -->
+ <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+ <script type="text/javascript" src="//code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+ <script type="text/javascript">// <![CDATA[
+  $(document).ready(function() {
+    if (jQuery) {  
+		//alert('jQuery is loaded!');  
+	}  
+	if (jQuery.ui) {   
+		// UI loaded 
+		alert('jQueryUI is loaded!');  
+		$( "#navmenu" ).menu();
+		$( "#testarea" ).accordion();
+	} 
+  });
+// ]]></script>
+</head>
+
+  <body>
+    <div id="header">
+     <h2 id="appheadertitle">Ed Analysis App</h2>
+    </div>
+    
+  	<div id="nav">
+  	 <ul id="navmenu">
+  	  <li><a href="#">Admin</a></li>
+  	  <li><a href="#">School</a></li>
+  	  <li><a href="#">Attendance</a></li>
+  	  <li><a href="#">Behaviour</a></li>
+  	  <li><a href="#">Subject Attainmen</a>t</li>
+  	  <li><a href="#">Subject Progress</a></li>
+  	 </ul>
+  	</div>
+  
+    <div id="testarea">
+	    {% for greeting in greetings %}
+	      <h3>
+	      {% if greeting.author %}
+	        <b>{{ greeting.author }}</b> wrote:
+	      {% else %}
+	        An anonymous person wrote:
+	      {% endif %}
+	      </h3>
+	      <blockquote>{{ greeting.content|escape }}</blockquote>
+	      
+	    {% endfor %}
+	
+	    <form action="/sign" method="post">
+	      <div><textarea name="content" rows="3" cols="80"></textarea></div>
+	      <div><input type="submit" value="Sign Guestbook"></div>
+	    </form>
+	
+	    <a href="{{ url }}">{{ url_linktext }}</a>
+	</div>
+	<div class="clear"></div>
+	<div id="statusbar"><p id="statustext">Ed analysis app, v0.1</p>
+	</div>
+	<div id="footer">
+		<ul id="footerlist">
+	  	  <li><a href="#">Fraser Rackham</a></li>
+	  	  <li><a href="#">Kingston University</a></li>
+	  	  <li><a href="#">Google App Engine</a></li>
+		</ul>
+	</div>
+	
+  </body>
+</html>
