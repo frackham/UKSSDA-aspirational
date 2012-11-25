@@ -23,6 +23,7 @@ import jinja2
 import os
 from developer import *
 from fragmentrequester import *
+from system import *
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -134,7 +135,7 @@ app = webapp2.WSGIApplication([
       webapp2.Route('/<:(admin|assessment|school|student|behaviour|curriculum|attendance|dev|extensions|fragment)>/<:[a-z]*>', handler=GlobalRequestHandler, name='analysis'),      
       webapp2.Route('/<:dev>/<:addschool>', handler=GlobalRequestHandler, name = 'addschool'),
       ], config=config)
-
+System = EdSystem 
 
 
 def main():

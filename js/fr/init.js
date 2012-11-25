@@ -1,17 +1,16 @@
-
+"use strict"; // See http://stackoverflow.com/questions/1335851/what-does-use-strict-do-in-javascript-and-what-is-the-reasoning-behind-it 
 		
 
 			
 function init_app(bDebugMode)  {
   if (bDebugMode) { alert("!!!init!!!"); };
-
   
   	
 		    
 		    
 		  if (jQuery) {  
 				if (bDebugMode) { alert('jQuery is loaded!');   };
-			  jsonstudents = [{"id":"1","name":"Bob","ncyear":"7"},{"id":"2","name":"Brian","ncyear":"9"},{"id":"3","name":"Betty","ncyear":"7"},{"id":"4","name":"Jane","ncyear":"8"},{"id":"5","name":"James","ncyear":"9"},{"id":"6","name":"Jim","ncyear":"10"},{"id":"7","name":"Chris","ncyear":"11"},{"id":"8","name":"Keiran","ncyear":"11"},{"id":"9","name":"Karen","ncyear":"10"},{"id":"10","name":"Jethro","ncyear":"9"}];	
+			  var jsonstudents = [{"id":"1","name":"Bob","ncyear":"7"},{"id":"2","name":"Brian","ncyear":"9"},{"id":"3","name":"Betty","ncyear":"7"},{"id":"4","name":"Jane","ncyear":"8"},{"id":"5","name":"James","ncyear":"9"},{"id":"6","name":"Jim","ncyear":"10"},{"id":"7","name":"Chris","ncyear":"11"},{"id":"8","name":"Keiran","ncyear":"11"},{"id":"9","name":"Karen","ncyear":"10"},{"id":"10","name":"Jethro","ncyear":"9"}];	
 				if (bDebugMode) { alert(jsonstudents); };
 				//for stud in jsonstudents {
   			//  alert(stud);	
