@@ -106,7 +106,7 @@ function init_app(bDebugMode)  {
 				//alert('clicked on ' + currentItem);
 				currentSection = currentItem.split("-")[0];
 				currentSpecific = currentItem.split("-")[1];
-				currentGetURI = '/' + currentSection + '/' + currentSpecific;
+				currentGetURI = '/' + currentSection + '/' + currentSpecific; 
 				if (bDebugMode) { alert(currentGetURI); };
 				
 				//Add Google Analytics virtual pageview here.
