@@ -2,7 +2,7 @@
 		
 
 			
-function init_app(bDebugMode = false)  {
+function init_app(bDebugMode)  {
   if (bDebugMode) { alert("!!!init!!!"); };
 
   

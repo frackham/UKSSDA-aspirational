@@ -15,10 +15,22 @@
     <!-- <link rel="stylesheet" href="css/fontface.css" type="text/css" /> -->
     <link rel="stylesheet" href="css/googlewebfont.css" type="text/css" />
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
-    <!--<link href='http://fonts.googleapis.com/css?family=Titillium+Web|Economica|Source+Code+Pro|Exo|Quicksand|Marvel|Open+Sans|Raleway|Pontano+Sans|Josefin+Sans|Antic|Lekton|Abel|Oxygen|Basic|Advent+Pro|Jura|News+Cycle|Bubbler+One|Nobile|Maven+Pro|Belleza' rel='stylesheet' type='text/css'> -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web|Exo|Quicksand|Pontano+Sans|Josefin+Sans|Antic|Oxygen|Basic|Jura|Bubbler+One|Belleza' rel='stylesheet' type='text/css'>
     
     <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+    
+    <!-- Google Analytics. Asynchronously loaded (see docs for details) -->
+    <script type="text/javascript">    
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-36571174-1']);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+  </script>
     
     <script>
     WebFontConfig = { google: {     families: [ 'Titillium Web', 'Exo', 'Quicksand', 'Pontano Sans', 'Josefin Sans', 'Antic', 'Oxygen', 'Basic', 'Jura', 'Bubbler One', 'Belleza' ]  }};
@@ -210,7 +222,7 @@
     <script type="text/javascript">// <![CDATA[	
 		  $(document).ready(function() {
 		    //alert(':/');	
-		    var bDebug = false;
+		    var bDebug = true;
 		    init_app(bDebug);	 
 		    //alert(':)');	
 		  });

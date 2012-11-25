@@ -56,6 +56,10 @@ class Student(db.Model):
   studentYear = db.IntegerProperty(default=0)
   
   
+class feedback():
+  """ to useas class storing feedback fro  users  """
+  pass
+ 
   
 #TODO: NEXT STEP: How to put in the school? What is the key for? How to retrieve?
 def guestbook_key(guestbook_name=None):
