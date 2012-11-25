@@ -108,9 +108,12 @@ function init_app(bDebugMode)  {
 				currentSpecific = currentItem.split("-")[1];
 				currentGetURI = '/' + currentSection + '/' + currentSpecific;
 				if (bDebugMode) { alert(currentGetURI); };
+				
+				//Add Google Analytics virtual pageview here.
+				
 				//Will become: (where '/developer/schoollist' --> split of currentItem.
 				$.get(currentGetURI, function(data) {
-				  $('#maincontent').html(data);
+				  $('#maincontent').html(data); //Google Analytics event tracking should be within the item itself.
 				});
 				$('#loader').hide();
 				
