@@ -22,7 +22,7 @@ import datetime
 import csv, json
 import difflib
 
-
+#BUG: Does not pick up 'TODO' items where square brackets immediately follow colon (e.g. TODO:[e] Blah... ). 
 TODOITEMSCLOSED = 0
 DATESTAMP = datetime.datetime.now() # Output: 2010-10-27 19:29:48.401560
 COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.

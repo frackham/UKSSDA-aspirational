@@ -70,3 +70,23 @@
 
 2012-11-25 23:01:32.845000
 
+
+2012-11-26 20:55:50.329000
+
+
+2012-11-26 20:57:41.027000
++  #TODO: [e] add fields: assessmentType [estimates, targets, results, current-working, current-possible(?).
+
+
+2012-11-26 21:02:22.804000
++ #TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses
++  #TODO: [i] Use ReferenceProperty for one to many relationship. https://developers.google.com/appengine/articles/modeling
++  #TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.
++  #TODO: [e] add attendance, classes (arr)
++  #TODO: [e] add summary assessment values for proof.
++  #TODO: [d] add proper assessment.
++  #TODO: [d] add other attendance values.
++  #TODO: [e] add classes (arr)
+-  #TODO: NEXT STEP: How to put in the school? What is the key for? How to retrieve?
++  #TODO: [i] NEXT STEP: How to put in the school? What is the key for? How to retrieve?
+

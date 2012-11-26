@@ -1,7 +1,16 @@
   dal_test.py
    --104 - #TODO: Change name of function, incorrect!
   edu_objects.py
-   --63 - #TODO: NEXT STEP: How to put in the school? What is the key for? How to retrieve?
+   --9 - #TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses
+   --12 - #TODO: [i] Use ReferenceProperty for one to many relationship. https://developers.google.com/appengine/articles/modeling
+   --21 - #TODO: [e] add fields: assessmentType [estimates, targets, results, current-working, current-possible(?).
+   --29 - #TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.
+   --44 - #TODO: [e] add attendance, classes (arr)
+   --45 - #TODO: [e] add summary assessment values for proof.
+   --46 - #TODO: [d] add proper assessment.
+   --47 - #TODO: [d] add other attendance values.
+   --54 - #TODO: [e] add classes (arr)
+   --74 - #TODO: [i] NEXT STEP: How to put in the school? What is the key for? How to retrieve?
   index.html
    --66 - <!-- TODO: POPULATE in Jinja2  ... (for item in userNavItems) -->
    --173 - <div id="developerlinks"> <!-- TODO: Hide in dev mode -->
