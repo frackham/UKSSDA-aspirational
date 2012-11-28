@@ -1,3 +1,5 @@
+  404.html
+   --152 - <!-- #TODO: [d] Update 404 -->
   dal_test.py
    --104 - #TODO: Change name of function, incorrect!
   edu_objects.py
@@ -12,25 +14,27 @@
    --54 - #TODO: [e] add classes (arr)
    --74 - #TODO: [i] NEXT STEP: How to put in the school? What is the key for? How to retrieve?
   index.html
-   --66 - <!-- TODO: POPULATE in Jinja2  ... (for item in userNavItems) -->
-   --173 - <div id="developerlinks"> <!-- TODO: Hide in dev mode -->
+   --67 - <!-- #TODO: [d] POPULATE in Jinja2  ... (for item in userNavItems) -->
+   --174 - <div id="developerlinks"> <!-- #TODO: [d] Hide in live mode -->
   system.py
-   --5 - #TODO: Check status of unit test strut here?
-   --28 - #TODO: Add owner, referenceURI, prerequisites[],
-   --51 - #TODO: Prerequisite metrics.
+   --12 - #TODO: [e] Check status of unit test strut here?
+   --14 - self.version = "alpha" #TODO: [d] Get version number here.
+   --16 - self.passedUnitTests = False #TODO: [d] Get version number here.
+   --48 - #TODO: [c] Add owner, referenceURI, prerequisites[], (more next lines-->)
+   --72 - #TODO: [e] Prerequisite metrics.
   testdata.py
    --4 - #TODO: Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
-  codeanalysis.py
-   --2 - # TODO: [d]see page 8 of python data vis.
-   --3 - # TODO: [e]Write file size metrics.
-   --4 - # TODO: [e]Write file created metrics.
-   --5 - # TODO: [e]Write file updated metrics.
-   --6 - # TODO: [d]Write class count metrics.
-   --7 - # TODO: [d]Write function count metrics.
-   --8 - # TODO: [d]Write class list of file.
-   --9 - # TODO: [d]Write function list of file.
-   --10 - # TODO: [e]match unit test files to class files, and count tests. also get functions/properties without tests.
-   --11 - # TODO: [i]Get functions/classes that do not have docstrings.
+  codeanalysis - Copy (2).py
+   --2 - # TODO: [d] see page 8 of python data vis.
+   --3 - # TODO: [e] Write file size metrics.
+   --4 - # TODO: [e] Write file created metrics.
+   --5 - # TODO: [e] Write file updated metrics.
+   --6 - # TODO: [d] Write class count metrics.
+   --7 - # TODO: [d] Write function count metrics.
+   --8 - # TODO: [d] Write class list of file.
+   --9 - # TODO: [d] Write function list of file.
+   --10 - # TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.
+   --11 - # TODO: [i] Get functions/classes that do not have docstrings.
    --12 - # TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)
    --13 - # TODO: [i] Assume idealistic if no tag.
    --14 - # TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)
@@ -40,27 +44,82 @@
    --18 - # TODO: [i] Use http://docs.python.org/library/timeit.html#module-timeit to time how long unit tests take/how long it takes to import modules.
    --28 - COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.
    --29 - LOCATIONSTAMP = "" #TODO: [i] Add location stamp (using what library?).
-   --85 - #TODO: Add exception here for sLine that doesn't meet LoC matching pattern. What about docstrings, as currently flagged as code?
-   --124 - #TODO: [e]IMPORT here.
+   --85 - #TODO: [i] Add exception here for sLine that doesn't meet LoC matching pattern. What about docstrings, as currently flagged as code?
+   --124 - #TODO: [e] IMPORT here.
+   --173 - #(24) Other tagging: [other] #TODO: [d] append tag to list of additional tags. Means can get a list of specific todo related to [unittests], for example.
+   --269 - print (" TODO Items:           " + str(todoCount))
+   --275 - #TODO: [i] For each 'other' tag item, print count?
+   --276 - #TODO: [d] Display other tag list.
+   --281 - print (" TODO ITEMS as of " + str(DATESTAMP))
+   --283 - #if line.strip()[0:2] == "..": #TODO: [d] change to option of true/false of showing only file and not path breaks this.
+   --286 - print (line), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+   --293 - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+   --299 - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+   --305 - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+   --311 - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+   --322 - #TODO: [d]Check against http://stackoverflow.com/questions/2666863/list-to-csv-in-python
+   --352 - #TODO: [i] Fix HMTL render.
+   --385 - #HACK: This works, but it means that we can't see where the TODO came from.
+   --397 - #TODO: [d] Remove all these debug strings.
+   --434 - #TODO: [i] Add call to PDF write here. Would like colour coding for categories (e.g replace [c] with RED [c]).
+   --455 - #TODO: [i] I only needed to duplicate handleResults because it wasn't broken down enough. Refactor these.
+   --572 - #TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.
+   --572 - #TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.
+   --651 - #TODO: Change the path addition to only append if not already in path?
+   --673 - fileIgnoreList = [""] #TODO: ignore codeanalysis.py &    imported non-project files (Add at later date. This file should be done fairly early in project (before lit review finished)).
+   --721 - #TODO: [e]Write to PDF.
+  codeanalysis.py
+   --2 - # TODO: [d] see page 8 of python data vis.
+   --3 - # TODO: [e] Write file size metrics.
+   --4 - # TODO: [e] Write file created metrics.
+   --5 - # TODO: [e] Write file updated metrics.
+   --6 - # TODO: [d] Write class count metrics.
+   --7 - # TODO: [d] Write function count metrics.
+   --8 - # TODO: [d] Write class list of file.
+   --9 - # TODO: [d] Write function list of file.
+   --10 - # TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.
+   --11 - # TODO: [i] Get functions/classes that do not have docstrings.
+   --12 - # TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)
+   --13 - # TODO: [i] Assume idealistic if no tag.
+   --14 - # TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)
+   --15 - # TODO: [d] Check for 'conflicted copy' in title of file, and write as a system level bug with list of conflicted versions. [i] Get a diff of changes.
+   --16 - # TODO: [i] Decide how to handle multitagged TODOs (currently counts against all?).
+   --17 - # TODO: [d] Include results of unit tests (perhaps last unit test run outputs a text file and this reads that, rather than run unit test suite?).
+   --18 - # TODO: [i] Use http://docs.python.org/library/timeit.html#module-timeit to time how long unit tests take/how long it takes to import modules.
+   --28 - COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.
+   --29 - LOCATIONSTAMP = "" #TODO: [i] Add location stamp (using what library?).
+   --85 - #TODO: [i] Add exception here for sLine that doesn't meet LoC matching pattern. What about docstrings, as currently flagged as code?
+   --124 - #TODO: [e] IMPORT here.
    --173 - #(24) Other tagging: [other] #TODO: [d] append tag to list of additional tags. Means can get a list of specific todo related to [unittests], for example.
    --267 - print (" TODO Items:           " + str(todoCount))
-   --273 - #TODO: [i]For each 'other' tag item, print count?
-   --274 - #TODO: [d]Display other tag list.
+   --273 - #TODO: [i] For each 'other' tag item, print count?
+   --274 - #TODO: [d] Display other tag list.
    --279 - print (" TODO ITEMS as of " + str(DATESTAMP))
-   --281 - #if line.strip()[0:2] == "..": #TODO: [d]change to option of true/false of showing only file and not path breaks this.
-   --284 - print (line), #TODO: [i]Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
-   --291 - print (lineB), #TODO: [i]Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
-   --297 - print (lineB), #TODO: [i]Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
-   --303 - print (lineB), #TODO: [i]Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
-   --309 - print (lineB), #TODO: [i]Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+   --281 - #if line.strip()[0:2] == "..": #TODO: [d] change to option of true/false of showing only file and not path breaks this.
+   --284 - print (line), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+   --291 - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+   --297 - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+   --303 - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+   --309 - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
    --317 - #TODO: [d]Check against http://stackoverflow.com/questions/2666863/list-to-csv-in-python
-   --337 - #TODO: [i] Fix HMTL render.
-   --370 - #HACK: This works, but it means that we can't see where the TODO came from.
-   --382 - #TODO: [d] Remove all these debug strings.
-   --419 - #TODO: [i] Add call to PDF write here. Would like colour coding for categories (e.g replace [c] with RED [c]).
-   --440 - #TODO: [i] I only needed to duplicate handleResults because it wasn't broken down enough. Refactor these.
-   --518 - #TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.
-   --518 - #TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.
-   --595 - #TODO: Change the path addition to only append if not already in path?
-   --616 - fileIgnoreList = [""] #TODO: ignore codeanalysis.py &    imported non-project files (Add at later date. This file should be done fairly early in project (before lit review finished)).
-   --657 - #TODO: [e]Write to PDF.
+   --339 - #TODO: [i] Fix HMTL render.
+   --405 - #HACK: This works, but it means that we can't see where the TODO came from.
+   --417 - #TODO: [d] Remove all these debug strings.
+   --454 - #TODO: [i] Add call to PDF write here. Would like colour coding for categories (e.g replace [c] with RED [c]).
+   --475 - #TODO: [i] I only needed to duplicate handleResults because it wasn't broken down enough. Refactor these.
+   --561 - #TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.
+   --561 - #TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.
+   --640 - #TODO: Change the path addition to only append if not already in path?
+   --662 - fileIgnoreList = ["codeanalysis.html"] #TODO: ignore imported non-project files (Add at later date. This file should be done fairly early in project (before lit review finished)).
+   --705 - #TODO: [e]Write to PDF.
+  precommit.py
+   --2 - #TODO: [c] Make executable.
+   --3 - #TODO: [e] Run codeanalysis.
+   --4 - #TODO: [i] Probably move codeanalysis in here.
+  predeploy.py
+   --1 - #TODO: [c] Make executable.
+   --2 - #TODO: [e] Load test strut and check unit tests.
+   --3 - #TODO: [e] Run code analysis.
+   --4 - #TODO: [i] Make change to app.yaml?
+   --5 - #TODO: [e] Make local backup.
+   --7 - #TODO: [i] Explore some performance testing. Possible to use http://jspro.com/apis/profiling-page-loads-with-the-navigation-timing-api/ OR http://jspro.com/apis/discovering-the-high-resolution-time-api/ ? Would need to do postdeploy, probably.

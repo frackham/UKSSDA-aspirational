@@ -215,6 +215,8 @@ def handleResults(bDoAggregate, resultsList):
     desirableList = []
     idealisticList = []
 
+    print("RESULTS: " +str(len(resultsList)))
+    raw_input()
     for item in resultsList: #Remember that these are -1 from position in list above.
         lineCount += item[1]
         wordCount += item[2]
@@ -309,14 +311,27 @@ def handleResults(bDoAggregate, resultsList):
             print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
 
     else:
+
+        print("x!")
+        raw_input()
         entry = [DATESTAMP, COMPUTERSTAMP, LOCATIONSTAMP, lineCount, wordCount,
                  todoCount, bugCount, hackCount, LoCCode, LoCComment, LoCWhitespace, LoCOther,
                  tagCritical, tagEssential, tagDesirable, tagIdealistic,
                  TODOITEMSCLOSED]
         #HACK: [i]'entry' values mapping to columns is not consecutive. e.g. hackCount = no, LocCode != no + 1.
         #TODO: [d]Check against http://stackoverflow.com/questions/2666863/list-to-csv-in-python
-        #BUG: [c]Currently appending CSV row record to existing entry. Does it need a manual newline character adding? 
-        fileObject = csv.writer(open('code_record.csv','a'),delimiter=',')
+        #BUG: [c]Currently appending CSV row record to existing entry. Does it need a manual newline character adding?
+        #Possible fix, now using http://bugs.python.org/issue7198 .
+
+        """
+        f = open('file.txt', 'r+')
+        f.seek(-2, 2) # last character in file
+        if f.read(2) == '\n\n':
+           f.seek(-1, 1) # wow, we really did find a newline! rewind again!
+        f.write('orange')
+        f.close()
+        """
+        fileObject = csv.writer(open('code_record.csv','ab'),delimiter=',')
         fileObject.writerow(entry)
         
     
@@ -329,50 +344,15 @@ def writeResultsRecord(resultsList):
     Note that the order is important here - need to store the todo before comparing it to 'currentTODO', which is the PREVIOUS todo list.
     """
     sThisTODO = handleResults_Additional(resultsList, "TODO List")
-    renderHTMLLists(resultsList)
-    print("!")
-    #raw_input()
     compareTODOLists(sThisTODO) 
     storeCurrentTODOList(sThisTODO) #This also updates the number of items closed since last time.   
     handleResults(False, resultsList)
+
     #Render to HTML.
     #TODO: [i] Fix HMTL render.
     #jsondata = csvtojson(open( 'code_record.csv', 'r' ))
     #renderHTMLanalysis(jsondata)
     pass
-
-def renderHTMLLists(resultsList):
-    """ """
-    
-    """essentials = handleResults_Additional(resultsList, "Essential List")
-    print(PROJECTROOTPATH)
-    htmlpath = os.path.join(PROJECTROOTPATH, "codeanalysisrender", "codeanalysis.html")
-    f = open(htmlpath, 'w') #Overwrite existing codeanalysis.              
-    f.write("<!DOCTYPE html>\n")         
-    f.write("<html>\n")         
-    f.write("<head>\n")
-    f.write(" <link rel=\"stylesheet\" type=\"text/css\" href=\"codeanalysis.css\" />\n")
-    f.write("</head>\n")        
-    f.write("<body>\n")
-    #input()
-    #do x6 (bug, critical, essential, desirable, hack, idealistic).
-    
-    f.write("<div id=\"essentials\">\n")
-    count=0
-    for line in essentials:
-        sLine = "" + line #HACK: [c] Seems to be writing back the stripping to the list.
-        sLine.lstrip(" ") 
-        if sLine[0:2] == "--":
-            f.write("<p class=\"essential\">" + sLine + "</p>\n")
-        else:
-            f.write("<p class=\"essential source\">" + sLine + "</p>\n")
-    f.write("</div>\n")
-
-    f.write("</body>\n")
-    f.write("</html>")
-    f.close()"""
-    print("Done")
-    
     
 def compareTODOLists(sThisTODO):
     """
@@ -417,11 +397,11 @@ def compareTODOLists(sThisTODO):
     #TODO: [d] Remove all these debug strings.
     print("A:")
     print(str(type(a)))
-    print(a)
+    #print(a)
     print("\n")
     print("B:")
     print(str(type(b)))
-    print(b)
+    #print(b)
     print("DIFF:")
 
     #print(s2)
@@ -431,7 +411,7 @@ def compareTODOLists(sThisTODO):
     #DEBUG:
     print("\n\n")
     print("DIFFS IN TODO")
-    print(s2)
+    #print(s2)
     print("\n")
     updateTODOChangelog(s2) 
     return s2
@@ -556,6 +536,37 @@ def csvtojson(csvfile):
     out = json.dumps( [ row for row in reader ] )
     return out
 
+def renderHTMLToDoLists(results):
+    essentials = handleResults_Additional(results, "Essential List")
+    print(PROJECTROOTPATH)
+    htmlpath = os.path.join(PROJECTROOTPATH, "codeanalysisrender", "codeanalysis.html")
+    f = open(htmlpath, 'w') #Overwrite existing codeanalysis.              
+    f.write("<!DOCTYPE html>\n")         
+    f.write("<html>\n")         
+    f.write("<head>\n")
+    f.write(" <link rel=\"stylesheet\" type=\"text/css\" href=\"codeanalysis.css\" />\n")
+    f.write("</head>\n")        
+    f.write("<body>\n")
+    #input()
+    #do x6 (bug, critical, essential, desirable, hack, idealistic).
+    
+    f.write("<div id=\"essentials\">\n")
+    count=0
+    for line in essentials:
+        sLine = "" + line #HACK: [c] Seems to be writing back the stripping to the list.
+        sLine.lstrip(" ") 
+        if sLine[0:2] == "--":
+            f.write("<p class=\"essential\">" + sLine + "</p>\n")
+        else:
+            f.write("<p class=\"essential source\">" + sLine + "</p>\n")
+    f.write("</div>\n")
+
+    f.write("</body>\n")
+    f.write("</html>")
+    f.close()
+    print("Done")
+    
+
 def renderHTMLanalysis(jsondataset):
     """renders time series comparison of code analysis"""
     #TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.
@@ -654,12 +665,12 @@ if __name__ == "__main__":
     print(sys.path)
 
     results=[]
-    folderIgnoreList = [os.path.join("..", "js", "vendor"),
+    folderIgnoreList = [os.path.join("..", "codeanalysis"),
+                        os.path.join("..", "js", "vendor"),
                         os.path.join("..", "_bak"),
                         os.path.join("..", "backup"),
-                        os.path.join("..", "img"),
-                        os.path.join("..", "codeanalysis", "codeanalysisrender")]
-    fileIgnoreList = ["codeanalysis.html"] #TODO: ignore imported non-project files (Add at later date. This file should be done fairly early in project (before lit review finished)).
+                        os.path.join("..", "img")]
+    fileIgnoreList = [""] #TODO: ignore codeanalysis.py &    imported non-project files (Add at later date. This file should be done fairly early in project (before lit review finished)).
     for root, dirs, files in os.walk(".."):
         #print (root, dirs, files) #debug. uncomment to show paths in interactive mode.
         #print("DIR:" + str(dir(dirs)))
@@ -677,14 +688,12 @@ if __name__ == "__main__":
                             #print("'" + thisdir + "' is in '" + folder +"'") 
                             bfolderIgnore = True
                     if thisfile in fileIgnoreList:
-                        print("FILE IGNORE LIST: FILE IGNORED: " + thisfile)
-                        #raw_input()
+                        #print("FILE IGNORE LIST: FILE IGNORED: " + thisfile)
                         #print("\n\n")
                         pass
                     elif bfolderIgnore:
-                        print("FOLDER IGNORE LIST: FILE IGNORED: " + thisfile)
-                        #raw_input()
-                        print("\n\n")
+                        #print("FOLDER IGNORE LIST: FILE IGNORED: " + thisfile)
+                        #print("\n\n")
                         pass
                     else:
                         #print("DIR of '" + file + "' is '" + thisdir)
@@ -699,13 +708,20 @@ if __name__ == "__main__":
     #print (results)
     sys.path = RESETPATH
     os.chdir(RESETCWD)
+    #print("11!")
+    raw_input()
     aggregateResults(results)
+    #print("12!")
+    raw_input()
     writeResultsRecord(results)
-    
+    #print("13!")
+    raw_input()
+    renderHTMLToDoLists(results)
+    #print("14!")
     #TODO: [e]Write to PDF.
-
+    raw_input()
 
     #Cleanup
     sys.path = RESETPATH
     os.chdir(RESETCWD)
-    #input() #HACK: [e]Added so that results can be read when run from console. Not needed in interactive mode (or if we've run this solely to update the code analysis record).
+    #raw_input() #HACK: [e]Added so that results can be read when run from console. Not needed in interactive mode (or if we've run this solely to update the code analysis record).

@@ -1,0 +1,13 @@
+*             {}
+body          {font-size:0.8em; line-height:0.8em;}
+
+#essentials   {}
+
+
+.source       {font-size:0.9em;}
+              
+.bug          {color:red;}
+.critical     {color:red;}
+.essential    {color:black;}
+.desirable    {color:#333;}
+.idealistic   {color:#666;}

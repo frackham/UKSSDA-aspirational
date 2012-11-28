@@ -56,6 +56,7 @@
               </ul>
           </nav>
           <p id="headerstatus">Anonymised Mode</p>
+          <!-- #BUG: Status header (#headerstatus) displays inconsistently across browsers.  -->
       </header>
   </div>
   
@@ -63,7 +64,7 @@
     <div id="nav-wrapper">
       <nav id="nav-primary">
           <ul>
-          	<!-- TODO: POPULATE in Jinja2  ... (for item in userNavItems) -->
+          	<!-- #TODO: [d] POPULATE in Jinja2  ... (for item in userNavItems) -->
               <li>{{ user_name }}  </li>
           	  <li><a href="#">Admin</a>
               	<ul>
@@ -170,10 +171,10 @@
      <li><a href="#">Kingston University</a></li>
      <li><a href="#">Google App Engine</a></li>
     </ul>
-    <div id="developerlinks"> <!-- TODO: Hide in dev mode -->
+    <div id="developerlinks"> <!-- #TODO: [d] Hide in live mode -->
       <ul id="devlist_1">
        <li><a href="#">Data for Schools Admin</a></li>
-       <li><a href="https://appengine.google.com/" target="_blank">App Engine Login (MUST USE CORRECT LOGIN EMAIL!)</a></li>
+       <li><a href="https://appengine.google.com/" target="_blank">App Engine Login (MUST USE CORRECT LOGIN EMAIL!)</a></li> <!-- #HACK: [d] Remove the reminder in live mode (more like remove all?). -->
        <li><a href="https://developers.google.com/appengine/" target="_blank">App Engine Developers Home</a></li>
        {{ livelink }}
        <li><a href="https://appengine.google.com/dashboard?app_id=fr-testapp" target="_blank">Live App (Dashboard)</a></li>

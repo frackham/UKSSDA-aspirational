@@ -90,3 +90,330 @@
 -  #TODO: NEXT STEP: How to put in the school? What is the key for? How to retrieve?
 +  #TODO: [i] NEXT STEP: How to put in the school? What is the key for? How to retrieve?
 
+
+2012-11-28 20:06:35.263000
++ l
++ - <!-- #TODO: [d] Update 404 -->
+- #TODO: Check status of unit test strut here?
++  #TODO: [e] Check status of unit test strut here?
++  self.version = "alpha" #TODO: [d] Get version number here.
++  self.passedUnitTests = False #TODO: [d] Get version number here.
+-  #TODO: Add owner, referenceURI, prerequisites[],
++  #TODO: [c] Add owner, referenceURI, prerequisites[], (more next lines-->)
+-  #TODO: Prerequisite metrics.
++  #TODO: [e] Prerequisite metrics.
+- # TODO: [d]see page 8 of python data vis.
++ # TODO: [d] see page 8 of python data vis.
+- # TODO: [e]Write file size metrics.
++ # TODO: [e] Write file size metrics.
+- # TODO: [e]Write file created metrics.
++ # TODO: [e] Write file created metrics.
+- # TODO: [e]Write file updated metrics.
++ # TODO: [e] Write file updated metrics.
+- # TODO: [d]Write class count metrics.
++ # TODO: [d] Write class count metrics.
+- # TODO: [d]Write function count metrics.
++ # TODO: [d] Write function count metrics.
+- # TODO: [d]Write class list of file.
++ # TODO: [d] Write class list of file.
+- # TODO: [d]Write function list of file.
++ # TODO: [d] Write function list of file.
+-  # TODO: [e]match unit test files to class files, and count tests. also get functions/properties without tests.
++  # TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.
+-  # TODO: [i]Get functions/classes that do not have docstrings.
++  # TODO: [i] Get functions/classes that do not have docstrings.
+-  #TODO: Add exception here for sLine that doesn't meet LoC matching pattern. What about docstrings, as currently flagged as code?
++  #TODO: [i] Add exception here for sLine that doesn't meet LoC matching pattern. What about docstrings, as currently flagged as code?
+- - #TODO: [e]IMPORT here.
++ - #TODO: [e] IMPORT here.
+- - #TODO: [i]For each 'other' tag item, print count?
++ - #TODO: [i] For each 'other' tag item, print count?
+- - #TODO: [d]Display other tag list.
++ - #TODO: [d] Display other tag list.
+- - #if line.strip()[0:2] == "..": #TODO: [d]change to option of true/false of showing only file and not path breaks this.
++ - #if line.strip()[0:2] == "..": #TODO: [d] change to option of true/false of showing only file and not path breaks this.
+- - print (line), #TODO: [i]Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
++ - print (line), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+- - print (lineB), #TODO: [i]Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
++ - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+- - print (lineB), #TODO: [i]Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
++ - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+- - print (lineB), #TODO: [i]Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
++ - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+- - print (lineB), #TODO: [i]Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
++ - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
++ it.py
++ #TODO: [c] Make executable.
++ #TODO: [e] Run codeanalysis.
++ #TODO: [i] Probably move codeanalysis in here.
++ oy.py
++ #TODO: [c] Make executable.
++ #TODO: [e] Load test strut and check unit tests.
++ #TODO: [e] Run code analysis.
++ #TODO: [i] Make change to app.yaml?
++ #TODO: [e] Make local backup.
++ #TODO: [i] Explore some performance testing. Possible to use http://jspro.com/apis/profiling-page-loads-with-the-navigation-timing-api/ OR http://jspro.com/apis/discovering-the-high-resolution-time-api/ ? Would need to do postdeploy, probably.
+
+
+2012-11-28 20:08:23.069000
+
+
+2012-11-28 20:09:34.721000
+
+
+2012-11-28 20:10:32.790000
+
+
+2012-11-28 20:12:06.389000
+
+
+2012-11-28 20:19:35.589000
+
+
+2012-11-28 20:25:23.753000
+
+
+2012-11-28 20:28:18.429000
++ lysis.html
++ <!DOCTYPE html><html><head> <link type=text/css href=codeanalysis.css /></head><body><div id=essentials><p class=essential>   --#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p><p class=essential>   --#TODO: [e] add fields: assessmentType [estimates, targets, results, current-working, current-possible(?).</p><p class=essential>   --#TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.</p><p class=essential>   --#TODO: [e] add attendance, classes (arr)</p><p class=essential>   --#TODO: [e] add summary assessment values for proof.</p><p class=essential>   --#TODO: [e] add classes (arr)</p><p class=essential>  system.py</p><p class=essential>   --#TODO: [e] Check status of unit test strut here?</p><p class=essential>   --#TODO: [e] Prerequisite metrics.</p><p class=essential>  codeanalysis.py</p><p class=essential>   --# TODO: [e] Write file size metrics.</p><p class=essential>   --# TODO: [e] Write file created metrics.</p><p class=essential>   --# TODO: [e] Write file updated metrics.</p><p class=essential>   --# TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.</p><p class=essential>   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p><p class=essential>   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p><p class=essential>   --# TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)</p><p class=essential>   --COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.</p><p class=essential>   --#TODO: [e] IMPORT here.</p><p class=essential>   --#(16) Essential: [e]</p><p class=essential>   --#(17) Essential: [e] List</p><p class=essential>   --#TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.</p><p class=essential>   --#TODO: [e]Write to PDF.</p><p class=essential>   --#input() #HACK: [e]Added so that results can be read when run from console. Not needed in interactive mode (or if we've run this solely to update the code analysis record).</p><p class=essential>  codeanalysis.html</p><p class=essential>   ----#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p><p class=essential>  precommit.py</p><p class=essential>   --#TODO: [e] Run codeanalysis.</p><p class=essential>  predeploy.py</p><p class=essential>   --#TODO: [e] Load test strut and check unit tests.</p><p class=essential>   --#TODO: [e] Run code analysis.</p><p class=essential>   --#TODO: [e] Make local backup.</p>
++ <!DOCTYPE html><html><head> <link type=text/css href=codeanalysis.css /></head><body><div id=essentials><p class=essential>   --#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p><p class=essential>   --#TODO: [e] add fields: assessmentType [estimates, targets, results, current-working, current-possible(?).</p><p class=essential>   --#TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.</p><p class=essential>   --#TODO: [e] add attendance, classes (arr)</p><p class=essential>   --#TODO: [e] add summary assessment values for proof.</p><p class=essential>   --#TODO: [e] add classes (arr)</p><p class=essential>  system.py</p><p class=essential>   --#TODO: [e] Check status of unit test strut here?</p><p class=essential>   --#TODO: [e] Prerequisite metrics.</p><p class=essential>  codeanalysis.py</p><p class=essential>   --# TODO: [e] Write file size metrics.</p><p class=essential>   --# TODO: [e] Write file created metrics.</p><p class=essential>   --# TODO: [e] Write file updated metrics.</p><p class=essential>   --# TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.</p><p class=essential>   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p><p class=essential>   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p><p class=essential>   --# TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)</p><p class=essential>   --COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.</p><p class=essential>   --#TODO: [e] IMPORT here.</p><p class=essential>   --#(16) Essential: [e]</p><p class=essential>   --#(17) Essential: [e] List</p><p class=essential>   --#TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.</p><p class=essential>   --#TODO: [e]Write to PDF.</p><p class=essential>   --#input() #HACK: [e]Added so that results can be read when run from console. Not needed in interactive mode (or if we've run this solely to update the code analysis record).</p><p class=essential>  codeanalysis.html</p><p class=essential>   ----#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p><p class=essential>  precommit.py</p><p class=essential>   --#TODO: [e] Run codeanalysis.</p><p class=essential>  predeploy.py</p><p class=essential>   --#TODO: [e] Load test strut and check unit tests.</p><p class=essential>   --#TODO: [e] Run code analysis.</p><p class=essential>   --#TODO: [e] Make local backup.</p>
++ <!DOCTYPE html><html><head> <link type=text/css href=codeanalysis.css /></head><body><div id=essentials><p class=essential>   --#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p><p class=essential>   --#TODO: [e] add fields: assessmentType [estimates, targets, results, current-working, current-possible(?).</p><p class=essential>   --#TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.</p><p class=essential>   --#TODO: [e] add attendance, classes (arr)</p><p class=essential>   --#TODO: [e] add summary assessment values for proof.</p><p class=essential>   --#TODO: [e] add classes (arr)</p><p class=essential>  system.py</p><p class=essential>   --#TODO: [e] Check status of unit test strut here?</p><p class=essential>   --#TODO: [e] Prerequisite metrics.</p><p class=essential>  codeanalysis.py</p><p class=essential>   --# TODO: [e] Write file size metrics.</p><p class=essential>   --# TODO: [e] Write file created metrics.</p><p class=essential>   --# TODO: [e] Write file updated metrics.</p><p class=essential>   --# TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.</p><p class=essential>   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p><p class=essential>   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p><p class=essential>   --# TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)</p><p class=essential>   --COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.</p><p class=essential>   --#TODO: [e] IMPORT here.</p><p class=essential>   --#(16) Essential: [e]</p><p class=essential>   --#(17) Essential: [e] List</p><p class=essential>   --#TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.</p><p class=essential>   --#TODO: [e]Write to PDF.</p><p class=essential>   --#input() #HACK: [e]Added so that results can be read when run from console. Not needed in interactive mode (or if we've run this solely to update the code analysis record).</p><p class=essential>  codeanalysis.html</p><p class=essential>   ----#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p><p class=essential>  precommit.py</p><p class=essential>   --#TODO: [e] Run codeanalysis.</p><p class=essential>  predeploy.py</p><p class=essential>   --#TODO: [e] Load test strut and check unit tests.</p><p class=essential>   --#TODO: [e] Run code analysis.</p><p class=essential>   --#TODO: [e] Make local backup.</p>
++ <!DOCTYPE html><html><head> <link type=text/css href=codeanalysis.css /></head><body><div id=essentials><p class=essential>   --#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p><p class=essential>   --#TODO: [e] add fields: assessmentType [estimates, targets, results, current-working, current-possible(?).</p><p class=essential>   --#TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.</p><p class=essential>   --#TODO: [e] add attendance, classes (arr)</p><p class=essential>   --#TODO: [e] add summary assessment values for proof.</p><p class=essential>   --#TODO: [e] add classes (arr)</p><p class=essential>  system.py</p><p class=essential>   --#TODO: [e] Check status of unit test strut here?</p><p class=essential>   --#TODO: [e] Prerequisite metrics.</p><p class=essential>  codeanalysis.py</p><p class=essential>   --# TODO: [e] Write file size metrics.</p><p class=essential>   --# TODO: [e] Write file created metrics.</p><p class=essential>   --# TODO: [e] Write file updated metrics.</p><p class=essential>   --# TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.</p><p class=essential>   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p><p class=essential>   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p><p class=essential>   --# TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)</p><p class=essential>   --COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.</p><p class=essential>   --#TODO: [e] IMPORT here.</p><p class=essential>   --#(16) Essential: [e]</p><p class=essential>   --#(17) Essential: [e] List</p><p class=essential>   --#TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.</p><p class=essential>   --#TODO: [e]Write to PDF.</p><p class=essential>   --#input() #HACK: [e]Added so that results can be read when run from console. Not needed in interactive mode (or if we've run this solely to update the code analysis record).</p><p class=essential>  codeanalysis.html</p><p class=essential>   ----#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p><p class=essential>  precommit.py</p><p class=essential>   --#TODO: [e] Run codeanalysis.</p><p class=essential>  predeploy.py</p><p class=essential>   --#TODO: [e] Load test strut and check unit tests.</p><p class=essential>   --#TODO: [e] Run code analysis.</p><p class=essential>   --#TODO: [e] Make local backup.</p>
++ <!DOCTYPE html><html><head> <link type=text/css href=codeanalysis.css /></head><body><div id=essentials><p class=essential>   --#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p><p class=essential>   --#TODO: [e] add fields: assessmentType [estimates, targets, results, current-working, current-possible(?).</p><p class=essential>   --#TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.</p><p class=essential>   --#TODO: [e] add attendance, classes (arr)</p><p class=essential>   --#TODO: [e] add summary assessment values for proof.</p><p class=essential>   --#TODO: [e] add classes (arr)</p><p class=essential>  system.py</p><p class=essential>   --#TODO: [e] Check status of unit test strut here?</p><p class=essential>   --#TODO: [e] Prerequisite metrics.</p><p class=essential>  codeanalysis.py</p><p class=essential>   --# TODO: [e] Write file size metrics.</p><p class=essential>   --# TODO: [e] Write file created metrics.</p><p class=essential>   --# TODO: [e] Write file updated metrics.</p><p class=essential>   --# TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.</p><p class=essential>   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p><p class=essential>   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p><p class=essential>   --# TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)</p><p class=essential>   --COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.</p><p class=essential>   --#TODO: [e] IMPORT here.</p><p class=essential>   --#(16) Essential: [e]</p><p class=essential>   --#(17) Essential: [e] List</p><p class=essential>   --#TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.</p><p class=essential>   --#TODO: [e]Write to PDF.</p><p class=essential>   --#input() #HACK: [e]Added so that results can be read when run from console. Not needed in interactive mode (or if we've run this solely to update the code analysis record).</p><p class=essential>  codeanalysis.html</p><p class=essential>   ----#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p><p class=essential>  precommit.py</p><p class=essential>   --#TODO: [e] Run codeanalysis.</p><p class=essential>  predeploy.py</p><p class=essential>   --#TODO: [e] Load test strut and check unit tests.</p><p class=essential>   --#TODO: [e] Run code analysis.</p><p class=essential>   --#TODO: [e] Make local backup.</p>
++ <!DOCTYPE html><html><head> <link type=text/css href=codeanalysis.css /></head><body><div id=essentials><p class=essential>   --#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p><p class=essential>   --#TODO: [e] add fields: assessmentType [estimates, targets, results, current-working, current-possible(?).</p><p class=essential>   --#TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.</p><p class=essential>   --#TODO: [e] add attendance, classes (arr)</p><p class=essential>   --#TODO: [e] add summary assessment values for proof.</p><p class=essential>   --#TODO: [e] add classes (arr)</p><p class=essential>  system.py</p><p class=essential>   --#TODO: [e] Check status of unit test strut here?</p><p class=essential>   --#TODO: [e] Prerequisite metrics.</p><p class=essential>  codeanalysis.py</p><p class=essential>   --# TODO: [e] Write file size metrics.</p><p class=essential>   --# TODO: [e] Write file created metrics.</p><p class=essential>   --# TODO: [e] Write file updated metrics.</p><p class=essential>   --# TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.</p><p class=essential>   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p><p class=essential>   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p><p class=essential>   --# TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)</p><p class=essential>   --COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.</p><p class=essential>   --#TODO: [e] IMPORT here.</p><p class=essential>   --#(16) Essential: [e]</p><p class=essential>   --#(17) Essential: [e] List</p><p class=essential>   --#TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.</p><p class=essential>   --#TODO: [e]Write to PDF.</p><p class=essential>   --#input() #HACK: [e]Added so that results can be read when run from console. Not needed in interactive mode (or if we've run this solely to update the code analysis record).</p><p class=essential>  codeanalysis.html</p><p class=essential>   ----#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p><p class=essential>  precommit.py</p><p class=essential>   --#TODO: [e] Run codeanalysis.</p><p class=essential>  predeploy.py</p><p class=essential>   --#TODO: [e] Load test strut and check unit tests.</p><p class=essential>   --#TODO: [e] Run code analysis.</p><p class=essential>   --#TODO: [e] Make local backup.</p>
++ <!DOCTYPE html><html><head> <link type=text/css href=codeanalysis.css /></head><body><div id=essentials><p class=essential>   --#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p><p class=essential>   --#TODO: [e] add fields: assessmentType [estimates, targets, results, current-working, current-possible(?).</p><p class=essential>   --#TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.</p><p class=essential>   --#TODO: [e] add attendance, classes (arr)</p><p class=essential>   --#TODO: [e] add summary assessment values for proof.</p><p class=essential>   --#TODO: [e] add classes (arr)</p><p class=essential>  system.py</p><p class=essential>   --#TODO: [e] Check status of unit test strut here?</p><p class=essential>   --#TODO: [e] Prerequisite metrics.</p><p class=essential>  codeanalysis.py</p><p class=essential>   --# TODO: [e] Write file size metrics.</p><p class=essential>   --# TODO: [e] Write file created metrics.</p><p class=essential>   --# TODO: [e] Write file updated metrics.</p><p class=essential>   --# TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.</p><p class=essential>   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p><p class=essential>   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p><p class=essential>   --# TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)</p><p class=essential>   --COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.</p><p class=essential>   --#TODO: [e] IMPORT here.</p><p class=essential>   --#(16) Essential: [e]</p><p class=essential>   --#(17) Essential: [e] List</p><p class=essential>   --#TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.</p><p class=essential>   --#TODO: [e]Write to PDF.</p><p class=essential>   --#input() #HACK: [e]Added so that results can be read when run from console. Not needed in interactive mode (or if we've run this solely to update the code analysis record).</p><p class=essential>  codeanalysis.html</p><p class=essential>   ----#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p><p class=essential>  precommit.py</p><p class=essential>   --#TODO: [e] Run codeanalysis.</p><p class=essential>  predeploy.py</p><p class=essential>   --#TODO: [e] Load test strut and check unit tests.</p><p class=essential>   --#TODO: [e] Run code analysis.</p><p class=essential>   --#TODO: [e] Make local backup.</p>
++ <!DOCTYPE html><html><head> <link type=text/css href=codeanalysis.css /></head><body><div id=essentials><p class=essential>   --#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p><p class=essential>   --#TODO: [e] add fields: assessmentType [estimates, targets, results, current-working, current-possible(?).</p><p class=essential>   --#TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.</p><p class=essential>   --#TODO: [e] add attendance, classes (arr)</p><p class=essential>   --#TODO: [e] add summary assessment values for proof.</p><p class=essential>   --#TODO: [e] add classes (arr)</p><p class=essential>  system.py</p><p class=essential>   --#TODO: [e] Check status of unit test strut here?</p><p class=essential>   --#TODO: [e] Prerequisite metrics.</p><p class=essential>  codeanalysis.py</p><p class=essential>   --# TODO: [e] Write file size metrics.</p><p class=essential>   --# TODO: [e] Write file created metrics.</p><p class=essential>   --# TODO: [e] Write file updated metrics.</p><p class=essential>   --# TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.</p><p class=essential>   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p><p class=essential>   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p><p class=essential>   --# TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)</p><p class=essential>   --COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.</p><p class=essential>   --#TODO: [e] IMPORT here.</p><p class=essential>   --#(16) Essential: [e]</p><p class=essential>   --#(17) Essential: [e] List</p><p class=essential>   --#TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.</p><p class=essential>   --#TODO: [e]Write to PDF.</p><p class=essential>   --#input() #HACK: [e]Added so that results can be read when run from console. Not needed in interactive mode (or if we've run this solely to update the code analysis record).</p><p class=essential>  codeanalysis.html</p><p class=essential>   ----#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p><p class=essential>  precommit.py</p><p class=essential>   --#TODO: [e] Run codeanalysis.</p><p class=essential>  predeploy.py</p><p class=essential>   --#TODO: [e] Load test strut and check unit tests.</p><p class=essential>   --#TODO: [e] Run code analysis.</p><p class=essential>   --#TODO: [e] Make local backup.</p>
++ <!DOCTYPE html><html><head> <link type=text/css href=codeanalysis.css /></head><body><div id=essentials><p class=essential>   --#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p><p class=essential>   --#TODO: [e] add fields: assessmentType [estimates, targets, results, current-working, current-possible(?).</p><p class=essential>   --#TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.</p><p class=essential>   --#TODO: [e] add attendance, classes (arr)</p><p class=essential>   --#TODO: [e] add summary assessment values for proof.</p><p class=essential>   --#TODO: [e] add classes (arr)</p><p class=essential>  system.py</p><p class=essential>   --#TODO: [e] Check status of unit test strut here?</p><p class=essential>   --#TODO: [e] Prerequisite metrics.</p><p class=essential>  codeanalysis.py</p><p class=essential>   --# TODO: [e] Write file size metrics.</p><p class=essential>   --# TODO: [e] Write file created metrics.</p><p class=essential>   --# TODO: [e] Write file updated metrics.</p><p class=essential>   --# TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.</p><p class=essential>   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p><p class=essential>   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p><p class=essential>   --# TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)</p><p class=essential>   --COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.</p><p class=essential>   --#TODO: [e] IMPORT here.</p><p class=essential>   --#(16) Essential: [e]</p><p class=essential>   --#(17) Essential: [e] List</p><p class=essential>   --#TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.</p><p class=essential>   --#TODO: [e]Write to PDF.</p><p class=essential>   --#input() #HACK: [e]Added so that results can be read when run from console. Not needed in interactive mode (or if we've run this solely to update the code analysis record).</p><p class=essential>  codeanalysis.html</p><p class=essential>   ----#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p><p class=essential>  precommit.py</p><p class=essential>   --#TODO: [e] Run codeanalysis.</p><p class=essential>  predeploy.py</p><p class=essential>   --#TODO: [e] Load test strut and check unit tests.</p><p class=essential>   --#TODO: [e] Run code analysis.</p><p class=essential>   --#TODO: [e] Make local backup.</p>
+
+
+2012-11-28 21:11:32.809000
+- l
+- - <!-- #TODO: [d] Update 404 -->
+- t.py
+- - #TODO: Change name of function, incorrect!
+- ects.py
+- #TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses
+-  #TODO: [i] Use ReferenceProperty for one to many relationship. https://developers.google.com/appengine/articles/modeling
+-  #TODO: [e] add fields: assessmentType [estimates, targets, results, current-working, current-possible(?).
+-  #TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.
+-  #TODO: [e] add attendance, classes (arr)
+-  #TODO: [e] add summary assessment values for proof.
+-  #TODO: [d] add proper assessment.
+-  #TODO: [d] add other attendance values.
+-  #TODO: [e] add classes (arr)
+-  #TODO: [i] NEXT STEP: How to put in the school? What is the key for? How to retrieve?
+- tml
+-  <!-- TODO: POPULATE in Jinja2  ... (for item in userNavItems) -->
+- - <div id="developerlinks"> <!-- TODO: Hide in dev mode -->
+- py
+-  #TODO: [e] Check status of unit test strut here?
+-  self.version = "alpha" #TODO: [d] Get version number here.
+-  self.passedUnitTests = False #TODO: [d] Get version number here.
+-  #TODO: [c] Add owner, referenceURI, prerequisites[], (more next lines-->)
+-  #TODO: [e] Prerequisite metrics.
+- a.py
+- #TODO: Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
+- lysis.py
+- # TODO: [d] see page 8 of python data vis.
+- # TODO: [e] Write file size metrics.
+- # TODO: [e] Write file created metrics.
+- # TODO: [e] Write file updated metrics.
+- # TODO: [d] Write class count metrics.
+- # TODO: [d] Write function count metrics.
+- # TODO: [d] Write class list of file.
+- # TODO: [d] Write function list of file.
+-  # TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.
+-  # TODO: [i] Get functions/classes that do not have docstrings.
+-  # TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)
+-  # TODO: [i] Assume idealistic if no tag.
+-  # TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)
+-  # TODO: [d] Check for 'conflicted copy' in title of file, and write as a system level bug with list of conflicted versions. [i] Get a diff of changes.
+-  # TODO: [i] Decide how to handle multitagged TODOs (currently counts against all?).
+-  # TODO: [d] Include results of unit tests (perhaps last unit test run outputs a text file and this reads that, rather than run unit test suite?).
+-  # TODO: [i] Use http://docs.python.org/library/timeit.html#module-timeit to time how long unit tests take/how long it takes to import modules.
+-  COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.
+-  LOCATIONSTAMP = "" #TODO: [i] Add location stamp (using what library?).
+-  #TODO: [i] Add exception here for sLine that doesn't meet LoC matching pattern. What about docstrings, as currently flagged as code?
+- - #TODO: [e] IMPORT here.
+- - #(24) Other tagging: [other] #TODO: [d] append tag to list of additional tags. Means can get a list of specific todo related to [unittests], for example.
+- - print (" TODO Items:           " + str(todoCount))
+- - #TODO: [i] For each 'other' tag item, print count?
+- - #TODO: [d] Display other tag list.
+- - print (" TODO ITEMS as of " + str(DATESTAMP))
+- - #if line.strip()[0:2] == "..": #TODO: [d] change to option of true/false of showing only file and not path breaks this.
+- - print (line), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+- - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+- - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+- - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+- - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+- - #TODO: [d]Check against http://stackoverflow.com/questions/2666863/list-to-csv-in-python
+- - #TODO: [i] Fix HMTL render.
+- - #HACK: This works, but it means that we can't see where the TODO came from.
+- - #TODO: [d] Remove all these debug strings.
+- - #TODO: [i] Add call to PDF write here. Would like colour coding for categories (e.g replace [c] with RED [c]).
+- - #TODO: [i] I only needed to duplicate handleResults because it wasn't broken down enough. Refactor these.
+- - #TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.
+- - #TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.
+- - #TODO: Change the path addition to only append if not already in path?
+- - fileIgnoreList = [""] #TODO: ignore codeanalysis.py &    imported non-project files (Add at later date. This file should be done fairly early in project (before lit review finished)).
+- - #TODO: [e]Write to PDF.
+- it.py
+- #TODO: [c] Make executable.
+- #TODO: [e] Run codeanalysis.
+- #TODO: [i] Probably move codeanalysis in here.
+- oy.py
+- #TODO: [c] Make executable.
+- #TODO: [e] Load test strut and check unit tests.
+- #TODO: [e] Run code analysis.
+- #TODO: [i] Make change to app.yaml?
+- #TODO: [e] Make local backup.
+- #TODO: [i] Explore some performance testing. Possible to use http://jspro.com/apis/profiling-page-loads-with-the-navigation-timing-api/ OR http://jspro.com/apis/discovering-the-high-resolution-time-api/ ? Would need to do postdeploy, probably.
+
+
+2012-11-28 21:12:11.254000
++ l
++ - <!-- #TODO: [d] Update 404 -->
++ t.py
++ - #TODO: Change name of function, incorrect!
++ ects.py
++ #TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses
++  #TODO: [i] Use ReferenceProperty for one to many relationship. https://developers.google.com/appengine/articles/modeling
++  #TODO: [e] add fields: assessmentType [estimates, targets, results, current-working, current-possible(?).
++  #TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.
++  #TODO: [e] add attendance, classes (arr)
++  #TODO: [e] add summary assessment values for proof.
++  #TODO: [d] add proper assessment.
++  #TODO: [d] add other attendance values.
++  #TODO: [e] add classes (arr)
++  #TODO: [i] NEXT STEP: How to put in the school? What is the key for? How to retrieve?
++ tml
++  <!-- TODO: POPULATE in Jinja2  ... (for item in userNavItems) -->
++ - <div id="developerlinks"> <!-- TODO: Hide in dev mode -->
++ py
++  #TODO: [e] Check status of unit test strut here?
++  self.version = "alpha" #TODO: [d] Get version number here.
++  self.passedUnitTests = False #TODO: [d] Get version number here.
++  #TODO: [c] Add owner, referenceURI, prerequisites[], (more next lines-->)
++  #TODO: [e] Prerequisite metrics.
++ a.py
++ #TODO: Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
++ lysis.py
++ # TODO: [d] see page 8 of python data vis.
++ # TODO: [e] Write file size metrics.
++ # TODO: [e] Write file created metrics.
++ # TODO: [e] Write file updated metrics.
++ # TODO: [d] Write class count metrics.
++ # TODO: [d] Write function count metrics.
++ # TODO: [d] Write class list of file.
++ # TODO: [d] Write function list of file.
++  # TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.
++  # TODO: [i] Get functions/classes that do not have docstrings.
++  # TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)
++  # TODO: [i] Assume idealistic if no tag.
++  # TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)
++  # TODO: [d] Check for 'conflicted copy' in title of file, and write as a system level bug with list of conflicted versions. [i] Get a diff of changes.
++  # TODO: [i] Decide how to handle multitagged TODOs (currently counts against all?).
++  # TODO: [d] Include results of unit tests (perhaps last unit test run outputs a text file and this reads that, rather than run unit test suite?).
++  # TODO: [i] Use http://docs.python.org/library/timeit.html#module-timeit to time how long unit tests take/how long it takes to import modules.
++  COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.
++  LOCATIONSTAMP = "" #TODO: [i] Add location stamp (using what library?).
++  #TODO: [i] Add exception here for sLine that doesn't meet LoC matching pattern. What about docstrings, as currently flagged as code?
++ - #TODO: [e] IMPORT here.
++ - #(24) Other tagging: [other] #TODO: [d] append tag to list of additional tags. Means can get a list of specific todo related to [unittests], for example.
++ - print (" TODO Items:           " + str(todoCount))
++ - #TODO: [i] For each 'other' tag item, print count?
++ - #TODO: [d] Display other tag list.
++ - print (" TODO ITEMS as of " + str(DATESTAMP))
++ - #if line.strip()[0:2] == "..": #TODO: [d] change to option of true/false of showing only file and not path breaks this.
++ - print (line), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
++ - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
++ - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
++ - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
++ - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
++ - #TODO: [d]Check against http://stackoverflow.com/questions/2666863/list-to-csv-in-python
++ - #TODO: [i] Fix HMTL render.
++ - #HACK: This works, but it means that we can't see where the TODO came from.
++ - #TODO: [d] Remove all these debug strings.
++ - #TODO: [i] Add call to PDF write here. Would like colour coding for categories (e.g replace [c] with RED [c]).
++ - #TODO: [i] I only needed to duplicate handleResults because it wasn't broken down enough. Refactor these.
++ - #TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.
++ - #TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.
++ - #TODO: Change the path addition to only append if not already in path?
++ - fileIgnoreList = [""] #TODO: ignore codeanalysis.py &    imported non-project files (Add at later date. This file should be done fairly early in project (before lit review finished)).
++ - #TODO: [e]Write to PDF.
++ it.py
++ #TODO: [c] Make executable.
++ #TODO: [e] Run codeanalysis.
++ #TODO: [i] Probably move codeanalysis in here.
++ oy.py
++ #TODO: [c] Make executable.
++ #TODO: [e] Load test strut and check unit tests.
++ #TODO: [e] Run code analysis.
++ #TODO: [i] Make change to app.yaml?
++ #TODO: [e] Make local backup.
++ #TODO: [i] Explore some performance testing. Possible to use http://jspro.com/apis/profiling-page-loads-with-the-navigation-timing-api/ OR http://jspro.com/apis/discovering-the-high-resolution-time-api/ ? Would need to do postdeploy, probably.
+
+
+2012-11-28 21:12:52.364000
+
+
+
+
+2012-11-28 22:33:01.635000
+-  <!-- TODO: POPULATE in Jinja2  ... (for item in userNavItems) -->
++  <!-- #TODO: [d] POPULATE in Jinja2  ... (for item in userNavItems) -->
+- - <div id="developerlinks"> <!-- TODO: Hide in dev mode -->
++ - <div id="developerlinks"> <!-- #TODO: [d] Hide in live mode -->
+- lysis.py
++ lysis - Copy (2).py
++ lysis.py
++ # TODO: [d] see page 8 of python data vis.
++ # TODO: [e] Write file size metrics.
++ # TODO: [e] Write file created metrics.
++ # TODO: [e] Write file updated metrics.
++ # TODO: [d] Write class count metrics.
++ # TODO: [d] Write function count metrics.
++ # TODO: [d] Write class list of file.
++ # TODO: [d] Write function list of file.
++  # TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.
++  # TODO: [i] Get functions/classes that do not have docstrings.
++  # TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)
++  # TODO: [i] Assume idealistic if no tag.
++  # TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)
++  # TODO: [d] Check for 'conflicted copy' in title of file, and write as a system level bug with list of conflicted versions. [i] Get a diff of changes.
++  # TODO: [i] Decide how to handle multitagged TODOs (currently counts against all?).
++  # TODO: [d] Include results of unit tests (perhaps last unit test run outputs a text file and this reads that, rather than run unit test suite?).
++  # TODO: [i] Use http://docs.python.org/library/timeit.html#module-timeit to time how long unit tests take/how long it takes to import modules.
++  COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.
++  LOCATIONSTAMP = "" #TODO: [i] Add location stamp (using what library?).
++  #TODO: [i] Add exception here for sLine that doesn't meet LoC matching pattern. What about docstrings, as currently flagged as code?
++ - #TODO: [e] IMPORT here.
++ - #(24) Other tagging: [other] #TODO: [d] append tag to list of additional tags. Means can get a list of specific todo related to [unittests], for example.
++ - print (" TODO Items:           " + str(todoCount))
++ - #TODO: [i] For each 'other' tag item, print count?
++ - #TODO: [d] Display other tag list.
++ - print (" TODO ITEMS as of " + str(DATESTAMP))
++ - #if line.strip()[0:2] == "..": #TODO: [d] change to option of true/false of showing only file and not path breaks this.
++ - print (line), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
++ - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
++ - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
++ - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
++ - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
++ - #TODO: [d]Check against http://stackoverflow.com/questions/2666863/list-to-csv-in-python
++ - #TODO: [i] Fix HMTL render.
++ - #HACK: This works, but it means that we can't see where the TODO came from.
++ - #TODO: [d] Remove all these debug strings.
++ - #TODO: [i] Add call to PDF write here. Would like colour coding for categories (e.g replace [c] with RED [c]).
++ - #TODO: [i] I only needed to duplicate handleResults because it wasn't broken down enough. Refactor these.
++ - #TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.
++ - #TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.
++ - #TODO: Change the path addition to only append if not already in path?
++ - fileIgnoreList = ["codeanalysis.html"] #TODO: ignore imported non-project files (Add at later date. This file should be done fairly early in project (before lit review finished)).
++ - #TODO: [e]Write to PDF.
+
+
+2012-11-28 22:34:39.639000
+
+
+2012-11-28 22:36:16.805000
+

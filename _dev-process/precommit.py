@@ -1,4 +1,4 @@
-#HACK: Exists because Github for Windows can't execute precommit hooks :/ .
+#HACK: [i] Exists because Github for Windows can't execute precommit hooks :/ .
 #TODO: [c] Make executable.
 #TODO: [e] Run codeanalysis.
 #TODO: [i] Probably move codeanalysis in here.
