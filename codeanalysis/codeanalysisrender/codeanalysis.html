@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" type="text/css" href="codeanalysis.css" />
+</head>
+<body>
+<div id="Bugwrapper">
+<br//><h2>Bug</h2>
+<p class="Bug source">index.html</p>
+<p class="Bug">--<!-- #BUG: Status header (#headerstatus) displays inconsistently across browsers.  --></p>
+<p class="Bug source">codeanalysis - Copy (2).py</p>
+<p class="Bug">--#BUG: Does not pick up 'TODO' items where square brackets immediately follow colon (e.g. TODO:[e] Blah... ).</p>
+<p class="Bug">--print (" BUG Items:            " + str(bugCount))</p>
+<p class="Bug">--#BUG: [c]Currently appending CSV row record to existing entry. Does it need a manual newline character adding?</p>
+<p class="Bug">--#BUG: [c]Resolve pypdf import issues.</p>
+<p class="Bug source">codeanalysis.py</p>
+<p class="Bug">--#BUG: Does not pick up 'TODO' items where square brackets immediately follow colon (e.g. TODO:[e] Blah... ).</p>
+<p class="Bug">--print (" BUG Items:            " + str(bugCount))</p>
+<p class="Bug">--#BUG: [c]Currently appending CSV row record to existing entry. Does it need a manual newline character adding? THINK FIXED. BINARY MODE!</p>
+<p class="Bug">--#BUG: [c]Resolve pypdf import issues.</p>
+</div>
+<div id="Criticalwrapper">
+<br//><h2>Critical</h2>
+<p class="Critical source">system.py</p>
+<p class="Critical">--#TODO: [c] Add owner, referenceURI, prerequisites[], (more next lines-->)</p>
+<p class="Critical source">codeanalysis - Copy (2).py</p>
+<p class="Critical">--# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p>
+<p class="Critical">--#(14) Critical: [c] Count</p>
+<p class="Critical">--#(15) Critical: [c] List</p>
+<p class="Critical">--#BUG: [c]Currently appending CSV row record to existing entry. Does it need a manual newline character adding?</p>
+<p class="Critical">--#TODO: [i] Add call to PDF write here. Would like colour coding for categories (e.g replace [c] with RED [c]).</p>
+<p class="Critical">--#TODO: [i] Add call to PDF write here. Would like colour coding for categories (e.g replace [c] with RED [c]).</p>
+<p class="Critical">--sLine = "" + line #HACK: [c] Seems to be writing back the stripping to the list.</p>
+<p class="Critical">--#BUG: [c]Resolve pypdf import issues.</p>
+<p class="Critical source">codeanalysis.py</p>
+<p class="Critical">--# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p>
+<p class="Critical">--#(14) Critical: [c] Count</p>
+<p class="Critical">--#(15) Critical: [c] List</p>
+<p class="Critical">--#BUG: [c]Currently appending CSV row record to existing entry. Does it need a manual newline character adding? THINK FIXED. BINARY MODE!</p>
+<p class="Critical">--sLine = "" + line #HACK: [c] Seems to be writing back the stripping to the list.</p>
+<p class="Critical">--#TODO: [i] Add call to PDF write here. Would like colour coding for categories (e.g replace [c] with RED [c]).</p>
+<p class="Critical">--#TODO: [i] Add call to PDF write here. Would like colour coding for categories (e.g replace [c] with RED [c]).</p>
+<p class="Critical">--#BUG: [c]Resolve pypdf import issues.</p>
+<p class="Critical source">precommit.py</p>
+<p class="Critical">--#TODO: [c] Make executable.</p>
+<p class="Critical source">predeploy.py</p>
+<p class="Critical">--#TODO: [c] Make executable.</p>
+</div>
+<div id="Essentialwrapper">
+<br//><h2>Essential</h2>
+<p class="Essential source">edu_objects.py</p>
+<p class="Essential">--#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p>
+<p class="Essential">--#TODO: [e] add fields: assessmentType [estimates, targets, results, current-working, current-possible(?).</p>
+<p class="Essential">--#TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.</p>
+<p class="Essential">--#TODO: [e] add attendance, classes (arr)</p>
+<p class="Essential">--#TODO: [e] add summary assessment values for proof.</p>
+<p class="Essential">--#TODO: [e] add classes (arr)</p>
+<p class="Essential source">system.py</p>
+<p class="Essential">--#TODO: [e] Check status of unit test strut here?</p>
+<p class="Essential">--#TODO: [e] Prerequisite metrics.</p>
+<p class="Essential source">codeanalysis - Copy (2).py</p>
+<p class="Essential">--# TODO: [e] Write file size metrics.</p>
+<p class="Essential">--# TODO: [e] Write file created metrics.</p>
+<p class="Essential">--# TODO: [e] Write file updated metrics.</p>
+<p class="Essential">--# TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.</p>
+<p class="Essential">--# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p>
+<p class="Essential">--# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p>
+<p class="Essential">--# TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)</p>
+<p class="Essential">--COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.</p>
+<p class="Essential">--#TODO: [e] IMPORT here.</p>
+<p class="Essential">--#(16) Essential: [e]</p>
+<p class="Essential">--#(17) Essential: [e] List</p>
+<p class="Essential">--#TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.</p>
+<p class="Essential">--#TODO: [e]Write to PDF.</p>
+<p class="Essential">--#raw_input() #HACK: [e]Added so that results can be read when run from console. Not needed in interactive mode (or if we've run this solely to update the code analysis record).</p>
+<p class="Essential source">codeanalysis.py</p>
+<p class="Essential">--# TODO: [e] Write file size metrics.</p>
+<p class="Essential">--# TODO: [e] Write file created metrics.</p>
+<p class="Essential">--# TODO: [e] Write file updated metrics.</p>
+<p class="Essential">--# TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.</p>
+<p class="Essential">--# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p>
+<p class="Essential">--# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p>
+<p class="Essential">--# TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)</p>
+<p class="Essential">--COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.</p>
+<p class="Essential">--#TODO: [e] IMPORT here.</p>
+<p class="Essential">--#(16) Essential: [e]</p>
+<p class="Essential">--#(17) Essential: [e] List</p>
+<p class="Essential">--#TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.</p>
+<p class="Essential">--#TODO: [e]Write to PDF.</p>
+<p class="Essential">--#input() #HACK: [e]Added so that results can be read when run from console. Not needed in interactive mode (or if we've run this solely to update the code analysis record).</p>
+<p class="Essential source">precommit.py</p>
+<p class="Essential">--#TODO: [e] Run codeanalysis.</p>
+<p class="Essential source">predeploy.py</p>
+<p class="Essential">--#TODO: [e] Load test strut and check unit tests.</p>
+<p class="Essential">--#TODO: [e] Run code analysis.</p>
+<p class="Essential">--#TODO: [e] Make local backup.</p>
+</div>
+<div id="Desirablewrapper">
+<br//><h2>Desirable</h2>
+<p class="Desirable source">404.html</p>
+<p class="Desirable">--<!-- #TODO: [d] Update 404 --></p>
+<p class="Desirable source">edu_objects.py</p>
+<p class="Desirable">--#TODO: [d] add proper assessment.</p>
+<p class="Desirable">--#TODO: [d] add other attendance values.</p>
+<p class="Desirable source">index.html</p>
+<p class="Desirable">--<!-- #TODO: [d] POPULATE in Jinja2  ... (for item in userNavItems) --></p>
+<p class="Desirable">--<div id="developerlinks"> <!-- #TODO: [d] Hide in live mode --></p>
+<p class="Desirable">--<li><a href="https://appengine.google.com/" target="_blank">App Engine Login (MUST USE CORRECT LOGIN EMAIL!)</a></li> <!-- #HACK: [d] Remove the reminder in live mode (more like remove all?). --></p>
+<p class="Desirable source">system.py</p>
+<p class="Desirable">--#TODO [d] Add singleton behaviour (not really an issue if never redefined...).</p>
+<p class="Desirable">--self.version = "alpha" #TODO: [d] Get version number here.</p>
+<p class="Desirable">--self.passedUnitTests = False #TODO: [d] Get version number here.</p>
+<p class="Desirable source">codeanalysis - Copy (2).py</p>
+<p class="Desirable">--# TODO: [d] see page 8 of python data vis.</p>
+<p class="Desirable">--# TODO: [d] Write class count metrics.</p>
+<p class="Desirable">--# TODO: [d] Write function count metrics.</p>
+<p class="Desirable">--# TODO: [d] Write class list of file.</p>
+<p class="Desirable">--# TODO: [d] Write function list of file.</p>
+<p class="Desirable">--# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p>
+<p class="Desirable">--# TODO: [d] Check for 'conflicted copy' in title of file, and write as a system level bug with list of conflicted versions. [i] Get a diff of changes.</p>
+<p class="Desirable">--# TODO: [d] Include results of unit tests (perhaps last unit test run outputs a text file and this reads that, rather than run unit test suite?).</p>
+<p class="Desirable">--#(18) Desirable: [d]</p>
+<p class="Desirable">--#(19) Desirable: [d] List</p>
+<p class="Desirable">--#(24) Other tagging: [other] #TODO: [d] append tag to list of additional tags. Means can get a list of specific todo related to [unittests], for example.</p>
+<p class="Desirable">--#TODO: [d] Display other tag list.</p>
+<p class="Desirable">--#if line.strip()[0:2] == "..": #TODO: [d] change to option of true/false of showing only file and not path breaks this.</p>
+<p class="Desirable">--#TODO: [d]Check against http://stackoverflow.com/questions/2666863/list-to-csv-in-python</p>
+<p class="Desirable">--#TODO: [d] Remove all these debug strings.</p>
+<p class="Desirable source">codeanalysis.py</p>
+<p class="Desirable">--# TODO: [d] see page 8 of python data vis.</p>
+<p class="Desirable">--# TODO: [d] Write class count metrics.</p>
+<p class="Desirable">--# TODO: [d] Write function count metrics.</p>
+<p class="Desirable">--# TODO: [d] Write class list of file.</p>
+<p class="Desirable">--# TODO: [d] Write function list of file.</p>
+<p class="Desirable">--# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p>
+<p class="Desirable">--# TODO: [d] Check for 'conflicted copy' in title of file, and write as a system level bug with list of conflicted versions. [i] Get a diff of changes.</p>
+<p class="Desirable">--# TODO: [d] Include results of unit tests (perhaps last unit test run outputs a text file and this reads that, rather than run unit test suite?).</p>
+<p class="Desirable">--#(18) Desirable: [d]</p>
+<p class="Desirable">--#(19) Desirable: [d] List</p>
+<p class="Desirable">--#(24) Other tagging: [other] #TODO: [d] append tag to list of additional tags. Means can get a list of specific todo related to [unittests], for example.</p>
+<p class="Desirable">--#TODO: [d] Display other tag list.</p>
+<p class="Desirable">--#if line.strip()[0:2] == "..": #TODO: [d] change to option of true/false of showing only file and not path breaks this.</p>
+<p class="Desirable">--#TODO: [d]Check against http://stackoverflow.com/questions/2666863/list-to-csv-in-python</p>
+<p class="Desirable">--#TODO: [d] Remove all these debug strings.</p>
+</div>
+<div id="Hackwrapper">
+<br//><h2>Hack</h2>
+<p class="Hack source">index.html</p>
+<p class="Hack">--<li><a href="https://appengine.google.com/" target="_blank">App Engine Login (MUST USE CORRECT LOGIN EMAIL!)</a></li> <!-- #HACK: [d] Remove the reminder in live mode (more like remove all?). --></p>
+<p class="Hack source">codeanalysis - Copy (2).py</p>
+<p class="Hack">--#HACK: [i] Note the open() calls. This is probably quite inefficient, but shouldn't be an issue until/unless the project gets very big.</p>
+<p class="Hack">--PROJECTROOTPATH = rootpath #HACK: lazy.</p>
+<p class="Hack">--nLoCCode = 0 #HACK: Will include docstrings in lines of code.</p>
+<p class="Hack">--elif tagCheck[0:1] == "[" : #HACK: [i]May not work with strings such as '[tagname]textimmediatelyfollowing'.</p>
+<p class="Hack">--todoList.append("  " + os.path.basename(item[0])) #HACK: [i] Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--criticalList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--essentialList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--desirableList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--idealisticList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--#HACK: [i]Quick and dirty. If bDoAggregate, then print out the details, else you're writing a record to the log. This whole module should be refactored as a class, but pretty low priority.</p>
+<p class="Hack">--print (" HACK Items:           " + str(hackCount))</p>
+<p class="Hack">--#HACK: [i]'entry' values mapping to columns is not consecutive. e.g. hackCount = no, LocCode != no + 1.</p>
+<p class="Hack">--#HACK: This works, but it means that we can't see where the TODO came from.</p>
+<p class="Hack">--todoList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--criticalList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--essentialList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--desirableList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--idealisticList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--sLine = "" + line #HACK: [c] Seems to be writing back the stripping to the list.</p>
+<p class="Hack">--#raw_input() #HACK: [e]Added so that results can be read when run from console. Not needed in interactive mode (or if we've run this solely to update the code analysis record).</p>
+<p class="Hack source">codeanalysis.py</p>
+<p class="Hack">--#HACK: [i] Note the open() calls. This is probably quite inefficient, but shouldn't be an issue until/unless the project gets very big.</p>
+<p class="Hack">--PROJECTROOTPATH = rootpath #HACK: lazy.</p>
+<p class="Hack">--nLoCCode = 0 #HACK: Will include docstrings in lines of code.</p>
+<p class="Hack">--elif tagCheck[0:1] == "[" : #HACK: [i]May not work with strings such as '[tagname]textimmediatelyfollowing'.</p>
+<p class="Hack">--todoList.append("  " + os.path.basename(item[0])) #HACK: [i] Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--bugList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--hackList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--criticalList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--essentialList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--desirableList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--idealisticList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--#HACK: [i]Quick and dirty. If bDoAggregate, then print out the details, else you're writing a record to the log. This whole module should be refactored as a class, but pretty low priority.</p>
+<p class="Hack">--print (" HACK Items:           " + str(hackCount))</p>
+<p class="Hack">--#HACK: [i]'entry' values mapping to columns is not consecutive. e.g. hackCount = no, LocCode != no + 1.</p>
+<p class="Hack">--sLine = "" + line #HACK: [c] Seems to be writing back the stripping to the list.</p>
+<p class="Hack">--#HACK: This works, but it means that we can't see where the TODO came from.</p>
+<p class="Hack">--todoList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--bugList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--hackList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--criticalList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--essentialList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--desirableList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--idealisticList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.</p>
+<p class="Hack">--#input() #HACK: [e]Added so that results can be read when run from console. Not needed in interactive mode (or if we've run this solely to update the code analysis record).</p>
+<p class="Hack source">precommit.py</p>
+<p class="Hack">--#HACK: [i] Exists because Github for Windows can't execute precommit hooks :/ .</p>
+</div>
+</body>
+</html>

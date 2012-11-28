@@ -1,13 +1,14 @@
-*             {}
-body          {font-size:0.8em; line-height:0.8em;}
+*             {font-size:0.9em; line-height:0.8em;}
+body          {}
 
-#essentials   {}
+#essentials   {border: solid gray 1px;}
 
 
-.source       {font-size:0.9em;}
+.source       {font-size:1.1em;}
               
-.bug          {color:red;}
-.critical     {color:red;}
-.essential    {color:black;}
-.desirable    {color:#333;}
-.idealistic   {color:#666;}
+.Bug          {color:red;}
+.Critical     {color:red;}
+.Essential    {color:black;}
+.Desirable    {color:#333;}
+.Idealistic   {color:#666;}
+.Hack   {color:#666;}

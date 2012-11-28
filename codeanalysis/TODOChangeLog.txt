@@ -417,3 +417,65 @@
 
 2012-11-28 22:36:16.805000
 
+
+2012-11-28 22:40:24.496000
+
+
+2012-11-28 22:42:48.075000
++ lysis.html
++  <p class="essential source">   --# TODO: [e] Write file size metrics.</p>
++  <p class="essential source">   --# TODO: [e] Write file created metrics.</p>
++  <p class="essential source">   --# TODO: [e] Write file updated metrics.</p>
++  <p class="essential source">   --# TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.</p>
++  <p class="essential source">   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p>
++  <p class="essential source">   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p>
++  <p class="essential source">   --# TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)</p>
++  <p class="essential source">   --COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.</p>
++  <p class="essential source">   --#TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.</p>
++  <p class="essential source">   --# TODO: [e] Write file size metrics.</p>
++  <p class="essential source">   --# TODO: [e] Write file created metrics.</p>
++  <p class="essential source">   --# TODO: [e] Write file updated metrics.</p>
++  <p class="essential source">   --# TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.</p>
++  <p class="essential source">   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p>
++  <p class="essential source">   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p>
++  <p class="essential source">   --# TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)</p>
++  <p class="essential source">   --COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.</p>
++  <p class="essential source">   --#TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.</p>
+
+
+2012-11-28 22:50:27.117000
+- lysis.html
+-  <p class="essential source">   --# TODO: [e] Write file size metrics.</p>
+-  <p class="essential source">   --# TODO: [e] Write file created metrics.</p>
+-  <p class="essential source">   --# TODO: [e] Write file updated metrics.</p>
+-  <p class="essential source">   --# TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.</p>
+-  <p class="essential source">   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p>
+-  <p class="essential source">   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p>
+-  <p class="essential source">   --# TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)</p>
+-  <p class="essential source">   --COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.</p>
+-  <p class="essential source">   --#TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.</p>
+-  <p class="essential source">   --# TODO: [e] Write file size metrics.</p>
+-  <p class="essential source">   --# TODO: [e] Write file created metrics.</p>
+-  <p class="essential source">   --# TODO: [e] Write file updated metrics.</p>
+-  <p class="essential source">   --# TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.</p>
+-  <p class="essential source">   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p>
+-  <p class="essential source">   --# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)</p>
+-  <p class="essential source">   --# TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)</p>
+-  <p class="essential source">   --COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.</p>
+-  <p class="essential source">   --#TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.</p>
+
+
+2012-11-28 22:53:53.701000
+
+
+2012-11-28 22:55:01.432000
+
+
+2012-11-28 23:16:37.621000
+
+
+2012-11-28 23:17:56.300000
+
+
+2012-11-28 23:20:46.054000
+

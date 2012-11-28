@@ -168,6 +168,8 @@ def ca_analysepython(rootpath, currentfile, resultsList):
     currentFileDataList.append(tIdealisticCount)
     #(21) Idealistic: [i] List
     currentFileDataList.append(tIdealisticLines)
+    
+    """
     #(22) No importance level: [blank] #TODO:[d]In list, this goes above idealistic. May need regex for [<any characters>] pattern.
     #currentFileDataList.append(nLoCOther)
     #(24) Other tagging: [other] #TODO: [d] append tag to list of additional tags. Means can get a list of specific todo related to [unittests], for example.
@@ -175,7 +177,7 @@ def ca_analysepython(rootpath, currentfile, resultsList):
 
     #(20) Module import (class count), class list?, .... dir()
     #currentFileDataList.append(nLoCOther)
-    
+    """
 
     
     
@@ -225,7 +227,15 @@ def handleResults(bDoAggregate, resultsList):
             for todo in item[4]:
                 todoList.append("   --" + todo)
         bugCount += item[5]
+        if len(item[6]) > 0:
+            bugList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.
+            for bugitem in item[6]:
+                bugList.append("   --" + bugitem)
         hackCount += item[7]
+        if len(item[8]) > 0:
+            hackList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.
+            for hackitem in item[8]:
+                hackList.append("   --" + hackitem)
         LoCCode += item[9]
         LoCComment += item[10]
         LoCWhitespace += item[11]
@@ -311,12 +321,12 @@ def handleResults(bDoAggregate, resultsList):
     else:
         entry = [DATESTAMP, COMPUTERSTAMP, LOCATIONSTAMP, lineCount, wordCount,
                  todoCount, bugCount, hackCount, LoCCode, LoCComment, LoCWhitespace, LoCOther,
-                 tagCritical, tagEssential, tagDesirable, tagIdealistic,
+                 tagCritical, tagEssential, tagDesirable, tagIdealistic, 
                  TODOITEMSCLOSED]
         #HACK: [i]'entry' values mapping to columns is not consecutive. e.g. hackCount = no, LocCode != no + 1.
         #TODO: [d]Check against http://stackoverflow.com/questions/2666863/list-to-csv-in-python
-        #BUG: [c]Currently appending CSV row record to existing entry. Does it need a manual newline character adding? 
-        fileObject = csv.writer(open('code_record.csv','a'),delimiter=',')
+        #BUG: [c]Currently appending CSV row record to existing entry. Does it need a manual newline character adding? THINK FIXED. BINARY MODE!        
+        fileObject = csv.writer(open('code_record.csv','ab'),delimiter=',')
         fileObject.writerow(entry)
         
     
@@ -341,10 +351,20 @@ def writeResultsRecord(resultsList):
     #renderHTMLanalysis(jsondata)
     pass
 
+def PySwitch1(x):
+    return {
+        1: "Bug",
+        2: "Critical",
+        3: "Essential",
+        4: "Desirable",
+        5: "Hack",
+        6: "Idealistic",
+    }[x]
+
 def renderHTMLLists(resultsList):
     """ """
     
-    """essentials = handleResults_Additional(resultsList, "Essential List")
+    # = handleResults_Additional(resultsList, "Essential List")
     print(PROJECTROOTPATH)
     htmlpath = os.path.join(PROJECTROOTPATH, "codeanalysisrender", "codeanalysis.html")
     f = open(htmlpath, 'w') #Overwrite existing codeanalysis.              
@@ -356,21 +376,25 @@ def renderHTMLLists(resultsList):
     f.write("<body>\n")
     #input()
     #do x6 (bug, critical, essential, desirable, hack, idealistic).
-    
-    f.write("<div id=\"essentials\">\n")
-    count=0
-    for line in essentials:
-        sLine = "" + line #HACK: [c] Seems to be writing back the stripping to the list.
-        sLine.lstrip(" ") 
-        if sLine[0:2] == "--":
-            f.write("<p class=\"essential\">" + sLine + "</p>\n")
-        else:
-            f.write("<p class=\"essential source\">" + sLine + "</p>\n")
-    f.write("</div>\n")
+    for i in range(1, 6):
+        sName = PySwitch1(i)
+        itemlist = handleResults_Additional(resultsList, sName + " List")                 
+        f.write("<div id=\"" + sName + "wrapper\">\n")
+        f.write("<br//><h2>" + sName +"</h2>\n")
+        
+        count=0
+        for line in itemlist:
+            sLine = "" + line #HACK: [c] Seems to be writing back the stripping to the list.
+            sLine=sLine.lstrip() 
+            if sLine[0:2] == "--":
+                f.write("<p class=\"" + sName + "\">" + sLine + "</p>\n")
+            else:
+                f.write("<p class=\"" + sName + " source\">" + sLine + "</p>\n")
+        f.write("</div>\n")
 
     f.write("</body>\n")
     f.write("</html>")
-    f.close()"""
+    f.close()
     print("Done")
     
     
@@ -509,7 +533,15 @@ def handleResults_Additional(resultsList, sReturnType = "TODO List"):
             for todo in item[4]:
                 todoList.append("   --" + todo)
         bugCount += item[5]
+        if len(item[6]) > 0:
+            bugList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.
+            for bugitem in item[6]:
+                bugList.append("   --" + bugitem)
         hackCount += item[7]
+        if len(item[8]) > 0:
+            hackList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.
+            for hackitem in item[8]:
+                hackList.append("   --" + hackitem)
         LoCCode += item[9]
         LoCComment += item[10]
         LoCWhitespace += item[11]
@@ -546,6 +578,11 @@ def handleResults_Additional(resultsList, sReturnType = "TODO List"):
         sReturn = desirableList
     elif sReturnType == "Idealistic List":
         sReturn = idealisticList
+    elif sReturnType == "Bug List":
+        sReturn = bugList
+    elif sReturnType == "Hack List":
+        sReturn = hackList
+    
     else:
         return "Failed handleResults_Additional, unrecognised sReturnType"
         exit
@@ -669,20 +706,22 @@ if __name__ == "__main__":
             for file in files:
                 bfolderIgnore = False
                 thisfile = os.path.join(root, file)
+                thisfilename = os.path.basename(file)
                 thisdir = os.path.dirname(thisfile)
                 #print(thisdir)
                 if (thisfile.endswith(".py")) or (thisfile.endswith(".html")) or (thisfile.endswith(".css")):
                     for folder in folderIgnoreList:
                         if folder in thisdir:
-                            #print("'" + thisdir + "' is in '" + folder +"'") 
+                            print("'" + thisdir + "' is in '" + folder +"'") 
+                            #raw_input()
                             bfolderIgnore = True
-                    if thisfile in fileIgnoreList:
+                    if thisfilename in fileIgnoreList:
                         print("FILE IGNORE LIST: FILE IGNORED: " + thisfile)
                         #raw_input()
                         #print("\n\n")
                         pass
                     elif bfolderIgnore:
-                        print("FOLDER IGNORE LIST: FILE IGNORED: " + thisfile)
+                        print("FOLDER IGNORE LIST: *FILE* IGNORED: " + thisfile)
                         #raw_input()
                         print("\n\n")
                         pass

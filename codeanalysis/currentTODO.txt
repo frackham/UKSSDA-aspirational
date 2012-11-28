@@ -90,28 +90,28 @@
    --29 - LOCATIONSTAMP = "" #TODO: [i] Add location stamp (using what library?).
    --85 - #TODO: [i] Add exception here for sLine that doesn't meet LoC matching pattern. What about docstrings, as currently flagged as code?
    --124 - #TODO: [e] IMPORT here.
-   --173 - #(24) Other tagging: [other] #TODO: [d] append tag to list of additional tags. Means can get a list of specific todo related to [unittests], for example.
-   --267 - print (" TODO Items:           " + str(todoCount))
-   --273 - #TODO: [i] For each 'other' tag item, print count?
-   --274 - #TODO: [d] Display other tag list.
-   --279 - print (" TODO ITEMS as of " + str(DATESTAMP))
-   --281 - #if line.strip()[0:2] == "..": #TODO: [d] change to option of true/false of showing only file and not path breaks this.
-   --284 - print (line), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
-   --291 - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
-   --297 - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
-   --303 - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
-   --309 - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
-   --317 - #TODO: [d]Check against http://stackoverflow.com/questions/2666863/list-to-csv-in-python
-   --339 - #TODO: [i] Fix HMTL render.
-   --405 - #HACK: This works, but it means that we can't see where the TODO came from.
-   --417 - #TODO: [d] Remove all these debug strings.
-   --454 - #TODO: [i] Add call to PDF write here. Would like colour coding for categories (e.g replace [c] with RED [c]).
-   --475 - #TODO: [i] I only needed to duplicate handleResults because it wasn't broken down enough. Refactor these.
-   --561 - #TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.
-   --561 - #TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.
-   --640 - #TODO: Change the path addition to only append if not already in path?
-   --662 - fileIgnoreList = ["codeanalysis.html"] #TODO: ignore imported non-project files (Add at later date. This file should be done fairly early in project (before lit review finished)).
-   --705 - #TODO: [e]Write to PDF.
+   --175 - #(24) Other tagging: [other] #TODO: [d] append tag to list of additional tags. Means can get a list of specific todo related to [unittests], for example.
+   --277 - print (" TODO Items:           " + str(todoCount))
+   --283 - #TODO: [i] For each 'other' tag item, print count?
+   --284 - #TODO: [d] Display other tag list.
+   --289 - print (" TODO ITEMS as of " + str(DATESTAMP))
+   --291 - #if line.strip()[0:2] == "..": #TODO: [d] change to option of true/false of showing only file and not path breaks this.
+   --294 - print (line), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+   --301 - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+   --307 - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+   --313 - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+   --319 - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+   --327 - #TODO: [d]Check against http://stackoverflow.com/questions/2666863/list-to-csv-in-python
+   --349 - #TODO: [i] Fix HMTL render.
+   --429 - #HACK: This works, but it means that we can't see where the TODO came from.
+   --441 - #TODO: [d] Remove all these debug strings.
+   --478 - #TODO: [i] Add call to PDF write here. Would like colour coding for categories (e.g replace [c] with RED [c]).
+   --499 - #TODO: [i] I only needed to duplicate handleResults because it wasn't broken down enough. Refactor these.
+   --598 - #TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.
+   --598 - #TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.
+   --677 - #TODO: Change the path addition to only append if not already in path?
+   --699 - fileIgnoreList = ["codeanalysis.html"] #TODO: ignore imported non-project files (Add at later date. This file should be done fairly early in project (before lit review finished)).
+   --744 - #TODO: [e]Write to PDF.
   precommit.py
    --2 - #TODO: [c] Make executable.
    --3 - #TODO: [e] Run codeanalysis.
