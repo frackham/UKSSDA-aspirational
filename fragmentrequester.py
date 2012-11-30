@@ -28,6 +28,7 @@ import sys
 sys.path.insert(0, 'reportlab.zip') #enables import of reportlab
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
+from reportlab.lib.pagesizes import letter, A4
 import reportlab
 folderFonts = os.path.dirname(reportlab.__file__) + os.sep + 'fonts'
 
@@ -54,8 +55,9 @@ class ObjectRequestHandler(webapp2.RequestHandler):
     handlerByName = category + "_" + subcategory    
     if handlerByName in globals():
       #self.response.out.write("PDFTEST")
-      text = "TESTMEH"
-      p = canvas.Canvas(self.response.out)
+      text = handlerByName
+      p = canvas.Canvas(self.response.out, pagesize=A4) # try to find some resources through REPORTLAB and then   http://en.wikipedia.org/wiki/Pdf
+
       #p.drawImage('dog.jpg', 150, 400)
       p.drawString(50, 700, 'The text you entered: ' + text)
       #p.setFont('Arial', 16)
