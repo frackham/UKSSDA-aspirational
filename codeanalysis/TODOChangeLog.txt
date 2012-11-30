@@ -479,3 +479,50 @@
 
 2012-11-28 23:20:46.054000
 
+
+2012-11-30 01:22:12.886000
++ # TODO: [d] see page 8 of python data vis.
++ # TODO: [e] Write file size metrics.
++ # TODO: [e] Write file created metrics.
++ # TODO: [e] Write file updated metrics.
++ # TODO: [d] Write class count metrics.
++ # TODO: [d] Write function count metrics.
++ # TODO: [d] Write class list of file.
++ # TODO: [d] Write function list of file.
++  # TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.
++  # TODO: [i] Get functions/classes that do not have docstrings.
++  # TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black)
++  # TODO: [i] Assume idealistic if no tag.
++  # TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)
++  # TODO: [d] Check for 'conflicted copy' in title of file, and write as a system level bug with list of conflicted versions. [i] Get a diff of changes.
++  # TODO: [i] Decide how to handle multitagged TODOs (currently counts against all?).
++  # TODO: [d] Include results of unit tests (perhaps last unit test run outputs a text file and this reads that, rather than run unit test suite?).
++  # TODO: [i] Use http://docs.python.org/library/timeit.html#module-timeit to time how long unit tests take/how long it takes to import modules.
++  COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.
++  LOCATIONSTAMP = "" #TODO: [i] Add location stamp (using what library?).
++  #TODO: [i] Add exception here for sLine that doesn't meet LoC matching pattern. What about docstrings, as currently flagged as code?
++ - #TODO: [e] IMPORT here.
++ - #(24) Other tagging: [other] #TODO: [d] append tag to list of additional tags. Means can get a list of specific todo related to [unittests], for example.
++ - print (" TODO Items:           " + str(todoCount))
++ - #TODO: [i] For each 'other' tag item, print count?
++ - #TODO: [d] Display other tag list.
++ - print (" TODO ITEMS as of " + str(DATESTAMP))
++ - #if line.strip()[0:2] == "..": #TODO: [d] change to option of true/false of showing only file and not path breaks this.
++ - print (line), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
++ - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
++ - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
++ - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
++ - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
++ - #TODO: [d]Check against http://stackoverflow.com/questions/2666863/list-to-csv-in-python
++ - #TODO: [i] Fix HMTL render.
++ - #HACK: This works, but it means that we can't see where the TODO came from.
++ - #TODO: [d] Remove all these debug strings.
++ - #TODO: [i] Add call to PDF write here. Would like colour coding for categories (e.g replace [c] with RED [c]).
++ - #TODO: [i] I only needed to duplicate handleResults because it wasn't broken down enough. Refactor these.
++ - #TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.
++ - #TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.
++ - #TODO: Change the path addition to only append if not already in path?
++ - fileIgnoreList = [""] #TODO: ignore codeanalysis.py &    imported non-project files (Add at later date. This file should be done fairly early in project (before lit review finished)).
++ - #TODO: [e]Write to PDF.
++ lysis - Copy.py
+
