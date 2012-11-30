@@ -9,23 +9,27 @@
 # TODO: [d] Write function list of file.
 # TODO: [e] match unit test files to class files, and count tests. also get functions/properties without tests.
 # TODO: [i] Get functions/classes that do not have docstrings.
-# TODO: [e] output to do list to pdf. [i] ideally colour code to make easier ([i]idealistic = grey, [c]critical = amber (bugs are red!), [e]essential = green, [d]desirable = black) 
 # TODO: [i] Assume idealistic if no tag.
 # TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)
 # TODO: [d] Check for 'conflicted copy' in title of file, and write as a system level bug with list of conflicted versions. [i] Get a diff of changes.
-# TODO: [i] Decide how to handle multitagged TODOs (currently counts against all?).
 # TODO: [d] Include results of unit tests (perhaps last unit test run outputs a text file and this reads that, rather than run unit test suite?).
 # TODO: [i] Use http://docs.python.org/library/timeit.html#module-timeit to time how long unit tests take/how long it takes to import modules.
+# BUG: [i] In CSV record, items closed always = 0.
 import os, sys
 import socket
 import datetime
 import csv, json
 import difflib
+import cgi #TODO [i] Import only things needed. I'm only using cgi.escape() from the cgi library. [performance] .
+import inspect
+import imp
+from compiler import parse, walk
+from compiler.visitor import ASTVisitor
 
-#BUG: Does not pick up 'TODO' items where square brackets immediately follow colon (e.g. TODO:[e] Blah... ). 
+#BUG: Does not pick up 'TODO' items where square brackets immediately follow colon (e.g. TODO:(e) using [] ). 
 TODOITEMSCLOSED = 0
 DATESTAMP = datetime.datetime.now() # Output: 2010-10-27 19:29:48.401560
-COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [e]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.
+COMPUTERSTAMP = socket.gethostname() #os.environ['COMPUTERNAME'] #TODO: [i]Check against http://stackoverflow.com/questions/799767/getting-name-of-windows-computer-running-python-script if doesn't work across systems.
 LOCATIONSTAMP = "" #TODO: [i] Add location stamp (using what library?).
 PROJECTROOTPATH = ""
 
@@ -85,9 +89,12 @@ def ca_analysepython(rootpath, currentfile, resultsList):
             #TODO: [i] Add exception here for sLine that doesn't meet LoC matching pattern. What about docstrings, as currently flagged as code?
             
         bNoTag = True
+        bIgnore = False
         for word in line.split():
             wCount += 1  
-            if word == "TODO:" or word == "#TODO:" or word == "TODO":
+            if word.strip() == "[notrack]" or bIgnore == True:
+                bIgnore = True
+            elif word == "TODO:" or word == "#TODO:" or word == "TODO":
                 wTodoCount += 1
                 lTodoLines.append(str(nLineCounter) + " - " + line.strip())
             elif word == "BUG:" or word == "#BUG:" or word == "BUG":
@@ -114,20 +121,57 @@ def ca_analysepython(rootpath, currentfile, resultsList):
                 tIdealisticCount += 1
                 tIdealisticLines.append(line.strip())
                 bNoTag = False
-            elif tagCheck[0:1] == "[" : #HACK: [i]May not work with strings such as '[tagname]textimmediatelyfollowing'.
+            elif tagCheck[0:1] == "[" : #HACK: [i]May not work with strings such as '(tagname)textimmediatelyfollowing'.
                 tOtherTagCount += 1
                 tOtherTagLines.append(line.strip())
                 tOtherTags.append(word)
                 bNoTag = False
         if bNoTag == True:
             tNoTagCount += 1
-        #TODO: [e] IMPORT here.
-        #doOnce(eval("import " + sFilePath), "A"))
-        #doOnce(exec("import " + sFilePath), "B"))
-        #all the checks for classes and parts of code go here (and most likely, unit tests).
 
-            
+        #all the checks for classes and parts of code go here (and most likely, unit tests).
+      #sFilePath
+      #def load_plugin_file(self, pathname):
+      #  '''Return plugin classes in a plugin file.'''
+    pathname = sFilePath
+    print(sFilePath)
+    name, ext = os.path.splitext(os.path.basename(pathname))
+    print(name, ext)
+    plugins = []
+    if ext != ".py":
+        pass
+    else:
+        """
+        f = open(pathname, 'r')
+        module = imp.load_module(name, f, pathname, 
+                               ('.py', 'r', imp.PY_SOURCE))
+        f.close()
         
+        for dummy, member in inspect.getmembers(module, inspect.isclass):
+            if issubclass(member, Plugin):
+              p = member(*self.plugin_arguments,
+                         **self.plugin_keyword_arguments)
+              if self.compatible_version(p.required_application_version):
+                  plugins.append(p)
+        """
+        f = open(sFilePath)
+        textOfPyFile = f.read() #get content of .py file. Note inefficient use of read() to get whole file as string.
+        ast = parse(textOfPyFile)
+        classes = walk(ast, CodeVisitor(), verbose=True)
+        #raw_input()
+
+
+        
+
+                
+                    
+        
+    classes = "" 
+    print("CLASSES")
+    #raw_input()     
+    print(str(classes))
+    #raw_input()
+      
     currentFileDataList.append(wCount)
     #(4) -TODO- Count.
     currentFileDataList.append(wTodoCount) 
@@ -151,28 +195,28 @@ def ca_analysepython(rootpath, currentfile, resultsList):
     #(13) LoC: Other
     currentFileDataList.append(nLoCOther)
     
-    #(14) Critical: [c] Count
+    #(14) Critical: (c) Count
     currentFileDataList.append(tCriticalCount)
-    #(15) Critical: [c] List
+    #(15) Critical: (c) List
     currentFileDataList.append(tCriticalLines)
-    #(16) Essential: [e]
+    #(16) Essential: (e)
     currentFileDataList.append(tEssentialCount)
-    #(17) Essential: [e] List
+    #(17) Essential: (e) List
     currentFileDataList.append(tEssentialLines)
-    #(18) Desirable: [d]
+    #(18) Desirable: (d)
     currentFileDataList.append(tDesirableCount)
-    #(19) Desirable: [d] List
+    #(19) Desirable: (d) List
     currentFileDataList.append(tDesirableLines)
     
-    #(20) Idealistic: [i]
+    #(20) Idealistic: (i)
     currentFileDataList.append(tIdealisticCount)
     #(21) Idealistic: [i] List
     currentFileDataList.append(tIdealisticLines)
     
     """
-    #(22) No importance level: [blank] #TODO:[d]In list, this goes above idealistic. May need regex for [<any characters>] pattern.
+    #(22) No importance level: [blank] #TODO: [d] In list, this goes above idealistic. May need regex for [<any characters>] pattern.
     #currentFileDataList.append(nLoCOther)
-    #(24) Other tagging: [other] #TODO: [d] append tag to list of additional tags. Means can get a list of specific todo related to [unittests], for example.
+    #(24) Other tagging: [other] #TODO: [d] append tag to list of additional tags. Means can get a list of specific todo related to (unittests), for example.
     #currentFileDataList.append(nLoCOther)
 
     #(20) Module import (class count), class list?, .... dir()
@@ -228,12 +272,12 @@ def handleResults(bDoAggregate, resultsList):
                 todoList.append("   --" + todo)
         bugCount += item[5]
         if len(item[6]) > 0:
-            bugList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.
+            bugList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path [notrack].
             for bugitem in item[6]:
                 bugList.append("   --" + bugitem)
         hackCount += item[7]
         if len(item[8]) > 0:
-            hackList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.
+            hackList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path [notrack].
             for hackitem in item[8]:
                 hackList.append("   --" + hackitem)
         LoCCode += item[9]
@@ -242,27 +286,27 @@ def handleResults(bDoAggregate, resultsList):
         LoCOther += item[12]
         tagCritical+= item[13]
         if len(item[14]) > 0:
-            criticalList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.
+            criticalList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path [notrack].
             for crititem in item[14]:
                 criticalList.append("   --" + crititem)
         tagEssential+= item[15]
         if len(item[16]) > 0:
-            essentialList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.
+            essentialList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path [notrack].
             for essitem in item[16]:
                 essentialList.append("   --" + essitem)
         tagDesirable+= item[17]
         if len(item[18]) > 0:
-            desirableList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.
+            desirableList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path [notrack].
             for desirableitem in item[18]:
                 desirableList.append("   --" + desirableitem)
         tagIdealistic+= item[19]
         if len(item[20]) > 0:
-            idealisticList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.
+            idealisticList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path [notrack].
             for idealisticitem in item[20]:
                 idealisticList.append("   --" + idealisticitem)
 
     if bDoAggregate:
-        #HACK: [i]Quick and dirty. If bDoAggregate, then print out the details, else you're writing a record to the log. This whole module should be refactored as a class, but pretty low priority.
+        #HACK: [i] Quick and dirty. If bDoAggregate, then print out the details, else you're writing a record to the log. This whole module should be refactored as a class, but pretty low priority.
         print ("CODE ANALYSIS:")
         print (" Total files:          " + str(len(resultsList)))
         print (" Total lines:          " + str(lineCount))
@@ -281,6 +325,9 @@ def handleResults(bDoAggregate, resultsList):
         print (" ...[i] Idealistic:     " + str(tagIdealistic))
         print (" ...[<other>]:          " + str(0))
         #TODO: [i] For each 'other' tag item, print count?
+        #for i in range(1, otherTagCount):
+        #   
+        
         #TODO: [d] Display other tag list.
         print (" ...[<blank>]:          " + str(0))
         print (" BUG Items:            " + str(bugCount))
@@ -290,21 +337,21 @@ def handleResults(bDoAggregate, resultsList):
         for line in todoList:
             #if line.strip()[0:2] == "..": #TODO: [d] change to option of true/false of showing only file and not path breaks this.
             if line.strip()[-3:] == ".py":
-                print ("\n"), #For readability, insert newline before each new file is named.
+                print ("\n"), 
             print (line), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
         
         print ("\n")
         print (" CRITICAL ITEMS")
         for lineB in criticalList:
             if lineB.strip()[-3:] == ".py":
-                print ("\n"), #For readability, insert newline before each new file is named.
-            print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+                print ("\n"), 
+            print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished [notrack].
         print ("\n")
         print (" ESSENTIAL ITEMS")
         for lineB in essentialList:
             if lineB.strip()[-3:] == ".py":
-                print ("\n"), #For readability, insert newline before each new file is named.
-            print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
+                print ("\n"), 
+            print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished [notrack].
         print ("\n")
         print (" DESIRABLE ITEMS")
         for lineB in desirableList:
@@ -325,7 +372,7 @@ def handleResults(bDoAggregate, resultsList):
                  TODOITEMSCLOSED]
         #HACK: [i]'entry' values mapping to columns is not consecutive. e.g. hackCount = no, LocCode != no + 1.
         #TODO: [d]Check against http://stackoverflow.com/questions/2666863/list-to-csv-in-python
-        #BUG: [c]Currently appending CSV row record to existing entry. Does it need a manual newline character adding? THINK FIXED. BINARY MODE!        
+        #FIXED: [c]Currently appending CSV row record to existing entry. Does it need a manual newline character adding? THINK FIXED. BINARY MODE!        
         fileObject = csv.writer(open('code_record.csv','ab'),delimiter=',')
         fileObject.writerow(entry)
         
@@ -345,13 +392,12 @@ def writeResultsRecord(resultsList):
     compareTODOLists(sThisTODO) 
     storeCurrentTODOList(sThisTODO) #This also updates the number of items closed since last time.   
     handleResults(False, resultsList)
-    #Render to HTML.
-    #TODO: [i] Fix HMTL render.
-    #jsondata = csvtojson(open( 'code_record.csv', 'r' ))
-    #renderHTMLanalysis(jsondata)
     pass
 
 def PySwitch1(x):
+    """
+    Switch for iterating through types of TODO items. [notrack]
+    """
     return {
         1: "Bug",
         2: "Critical",
@@ -364,7 +410,6 @@ def PySwitch1(x):
 def renderHTMLLists(resultsList):
     """ """
     
-    # = handleResults_Additional(resultsList, "Essential List")
     print(PROJECTROOTPATH)
     htmlpath = os.path.join(PROJECTROOTPATH, "codeanalysisrender", "codeanalysis.html")
     f = open(htmlpath, 'w') #Overwrite existing codeanalysis.              
@@ -374,23 +419,23 @@ def renderHTMLLists(resultsList):
     f.write(" <link rel=\"stylesheet\" type=\"text/css\" href=\"codeanalysis.css\" />\n")
     f.write("</head>\n")        
     f.write("<body>\n")
-    #input()
-    #do x6 (bug, critical, essential, desirable, hack, idealistic).
+    #raw_input()
     for i in range(1, 6):
-        sName = PySwitch1(i)
+        sName = PySwitch1(i) #do x6 (bug, critical, essential, desirable, hack, idealistic).
         itemlist = handleResults_Additional(resultsList, sName + " List")                 
-        f.write("<div id=\"" + sName + "wrapper\">\n")
-        f.write("<br//><h2>" + sName +"</h2>\n")
+        f.write(" <div id=\"" + sName + "wrapper\">\n")
+        f.write(" <br/>\n  <h2>" + sName +"</h2>\n")
         
         count=0
         for line in itemlist:
-            sLine = "" + line #HACK: [c] Seems to be writing back the stripping to the list.
+            sLine = "" + line 
             sLine=sLine.lstrip() 
+            sLine = cgi.escape(sLine)  #Makes sure that HTML commented items are shown, and HTM...
             if sLine[0:2] == "--":
-                f.write("<p class=\"" + sName + "\">" + sLine + "</p>\n")
+                f.write("  <p class=\"" + sName + "\">" + sLine + "</p>\n")
             else:
-                f.write("<p class=\"" + sName + " source\">" + sLine + "</p>\n")
-        f.write("</div>\n")
+                f.write("  <p class=\"" + sName + " source\">" + sLine + "</p>\n")
+        f.write(" </div>\n")
 
     f.write("</body>\n")
     f.write("</html>")
@@ -426,7 +471,7 @@ def compareTODOLists(sThisTODO):
     #Ignore first 10 characters, else it's pulling line numbers in.
     a = [w.replace(w[0:9], '') for w in a] 
     b = [w.replace(w[0:9], '') for w in b] 
-    #HACK: This works, but it means that we can't see where the TODO came from.
+    #HACK: [i] This works, but it means that we can't see where the TODO came from.
 
     diff = d.compare(a, b)
     s=diff
@@ -475,7 +520,6 @@ def storeCurrentTODOList(sList):
         f.write(line)
         f.write("\n")
     f.close()
-    #TODO: [i] Add call to PDF write here. Would like colour coding for categories (e.g replace [c] with RED [c]).
 
 def updateTODOChangelog(sList):
     """
@@ -534,12 +578,12 @@ def handleResults_Additional(resultsList, sReturnType = "TODO List"):
                 todoList.append("   --" + todo)
         bugCount += item[5]
         if len(item[6]) > 0:
-            bugList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.
+            bugList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path. [notrack]
             for bugitem in item[6]:
                 bugList.append("   --" + bugitem)
         hackCount += item[7]
         if len(item[8]) > 0:
-            hackList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.
+            hackList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path. [notrack]
             for hackitem in item[8]:
                 hackList.append("   --" + hackitem)
         LoCCode += item[9]
@@ -548,22 +592,22 @@ def handleResults_Additional(resultsList, sReturnType = "TODO List"):
         LoCOther += item[12]
         tagCritical+= item[13]
         if len(item[14]) > 0:
-            criticalList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.
+            criticalList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path. [notrack]
             for crititem in item[14]:
                 criticalList.append("   --" + crititem)
         tagEssential+= item[15]
         if len(item[16]) > 0:
-            essentialList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.
+            essentialList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path. [notrack]
             for essitem in item[16]:
                 essentialList.append("   --" + essitem)
         tagDesirable+= item[17]
         if len(item[18]) > 0:
-            desirableList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.
+            desirableList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path. [notrack]
             for desirableitem in item[18]:
                 desirableList.append("   --" + desirableitem)
         tagIdealistic+= item[19]
         if len(item[20]) > 0:
-            idealisticList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path.
+            idealisticList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path. [notrack]
             for idealisticitem in item[20]:
                 idealisticList.append("   --" + idealisticitem)
 
@@ -595,7 +639,7 @@ def csvtojson(csvfile):
 
 def renderHTMLanalysis(jsondataset):
     """renders time series comparison of code analysis"""
-    #TODO: [e] Use jflot (or current js render library) to plot line comparison of LoC and TODO items.
+    #TODO: [i] Use jqPlot (or current js render library) to plot line comparison of LoC and TODO items.
     print(PROJECTROOTPATH)
     htmlpath = os.path.join(PROJECTROOTPATH, "codeanalysisrender", "codeanalysis.html")
     f = open(htmlpath, 'w') #Overwrite existing codeanalysis.              
@@ -608,7 +652,7 @@ def renderHTMLanalysis(jsondataset):
             lList = []
             lData = line.split(',')
             if len(lData)>0:
-                lList = [lData[5], lData[6]] #Should be timestamp and LOC.
+                lList = [lData[5], lData[6]] #Timestamp and LOC.
                 codeAnalysisDataList.append(lList)
                 count+=1
 
@@ -665,9 +709,17 @@ $(document).ready(function(){
     f.write(sHTML)
     f.close()
 
+class CodeVisitor(ASTVisitor):
+    def visitFunction(self, parsedFunc):
+        print "Function %(name)s at %(lineno)s takes %(argnames)s " \
+              " with code %(code)s" % parsedFunc.__dict__
+
+
+
 #global variables here. include path to dropbox text file where log is appended.
-# should build this function into a unit test suite. every time we di a full check, we also log code review.
-# entry should be time stamp, location if available, computer, DATA. Header should indicate data headers. if new metrics  added, update previous rows?
+# TODO: [d] should build this function into a unit test suite. every time we do a full check, we also log code review.
+# entry should be time stamp, location if available, computer, DATA. Header should indicate data headers.
+# TODO: [i] if new metrics added, update previous rows? Impossible?
 if __name__ == "__main__":
     """Does not run if imported - use to allow importing without running test code."""
 
@@ -697,7 +749,7 @@ if __name__ == "__main__":
                         os.path.join("..", "img"),
                         os.path.join("..", "codeanalysis", "codeanalysisrender")]
     fileIgnoreList = ["codeanalysis.html"] #TODO: ignore imported non-project files (Add at later date. This file should be done fairly early in project (before lit review finished)).
-    for root, dirs, files in os.walk(".."):
+    for root, dirs, files in os.walk("."): #Changed from (..) to (.), so it only walks this project.
         #print (root, dirs, files) #debug. uncomment to show paths in interactive mode.
         #print("DIR:" + str(dir(dirs)))
         #for sDir in dirs:
@@ -708,7 +760,8 @@ if __name__ == "__main__":
                 thisfile = os.path.join(root, file)
                 thisfilename = os.path.basename(file)
                 thisdir = os.path.dirname(thisfile)
-                #print(thisdir)
+                print("File: " + thisfile, "Filename: " + thisfilename, "Dir: " + thisdir)
+                #raw_input()
                 if (thisfile.endswith(".py")) or (thisfile.endswith(".html")) or (thisfile.endswith(".css")):
                     for folder in folderIgnoreList:
                         if folder in thisdir:
@@ -726,11 +779,12 @@ if __name__ == "__main__":
                         print("\n\n")
                         pass
                     else:
-                        #print("DIR of '" + file + "' is '" + thisdir)
+                        print("DIR of '" + file + "' is '" + thisdir)
+                        #raw_input()
                         ca_analysepython(root, file, results)
 
     ##from pyPdf import PdfFileWriter, PdfFileReader
-    #BUG: [c]Resolve pypdf import issues. 
+    #BUG: [c] Resolve pypdf import issues OR find alternative library.
 
 
 

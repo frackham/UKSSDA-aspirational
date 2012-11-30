@@ -1,5 +1,4 @@
-"use strict"; // See http://stackoverflow.com/questions/1335851/what-does-use-strict-do-in-javascript-and-what-is-the-reasoning-behind-it 
-		
+	
 
 			
 function init_app(bDebugMode)  {
@@ -98,25 +97,37 @@ function init_app(bDebugMode)  {
 			//THESE # .click functions NEED GENERALISING INTO A CLASS THAT TAKES A PARAMETER!
 			
 			$('.primarynav').click(function (e) {
+				if (bDebugMode) { alert("Primary Nav object clicked."); };
+  			
 				e.stopPropagation(); //Prevents double call after function from bubbling to li after a.
-				currentItem = $(this).attr("id"); //Note MUST be $(this) for jQuery, and not simply 'this'.
+  			var bIsObjectReturn = false
+  			
+  			currentItem = $(this).attr("id"); //Note MUST be $(this) for jQuery, and not simply 'this'.
+				currentItemClasses = $(this).attr("class");
 				
+				if ($(this).hasClass("objectReturn")){bIsObjectReturn = true }; //Probably best to build in type of object at this point?
 				
 				//Temp:
 				//alert('clicked on ' + currentItem);
 				currentSection = currentItem.split("-")[0];
 				currentSpecific = currentItem.split("-")[1];
-				currentGetURI = '/' + currentSection + '/' + currentSpecific; 
-				if (bDebugMode) { alert(currentGetURI); };
+				currentGetURI = '/' + currentSection + '/' + currentSpecific; //Where '/developer/schoollist' --> split of currentItem.
+				if (bDebugMode) { alert("" + currentGetURI); };
 				
-				//Add Google Analytics virtual pageview here.
+				//TODO: [d] Add Google Analytics *virtual pageview* here.
 				
-				//Will become: (where '/developer/schoollist' --> split of currentItem.
-				$.get(currentGetURI, function(data) {
-				  $('#maincontent').html(data); //Google Analytics event tracking should be within the item itself.
-				});
-				$('#loader').hide();
-				
+				if (bIsObjectReturn === false) {
+  				$.get(currentGetURI, function(data) {
+    				$('#maincontent').html(data); //Google Analytics event tracking should be within the item itself.
+    				
+  				});
+  				$('#loader').hide();
+        } else {
+         //Return the object.
+         //TODO: [e] This is just by redirecting?
+          if (bDebugMode) { alert("Redirecting to object.."); };
+          window.location.href = currentGetURI;
+        };				
 			});
 			
 		    

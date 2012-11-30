@@ -1,14 +1,19 @@
 *             {font-size:0.9em; line-height:0.8em;}
 body          {}
+h2            {font-size:1.1em;}
 
-#essentials   {border: solid gray 1px;}
 
+#Bugwrapper         {border: solid gray 1px;}        
+#Criticalwrapper    {border: solid gray 1px;}   
+#Essentialwrapper   {border: solid gray 1px;}  
+#Desirablewrapper   {border: solid gray 1px;}  
+#Idealisticwrapper  {border: solid gray 1px;} 
+#Hackwrapper         {border: solid gray 1px;}     
 
-.source       {font-size:1.1em;}
-              
+.source       {text-decoration:underline;}              
 .Bug          {color:red;}
 .Critical     {color:red;}
 .Essential    {color:black;}
 .Desirable    {color:#333;}
 .Idealistic   {color:#666;}
-.Hack   {color:#666;}
+.Hack         {color:#666;}

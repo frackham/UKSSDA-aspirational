@@ -132,8 +132,9 @@ app = webapp2.WSGIApplication([
       webapp2.Route('/', handler=MainPage, name = ''),
       webapp2.Route('/dev/ajaxtest', handler=DevSchoolList, name = 'DevSchoolList'),
       webapp2.Route('/dev/crudtest', handler=CRUDTest_GDS, name = 'CRUDTest_GDS'),
-      webapp2.Route('/<:(admin|assessment|school|student|behaviour|curriculum|attendance|dev|extensions|fragment)>/<:[a-z]*>', handler=GlobalRequestHandler, name='analysis'),      
-      webapp2.Route('/<:dev>/<:addschool>', handler=GlobalRequestHandler, name = 'addschool'),
+      webapp2.Route('/<:(dev)>/<:(pdftest)>', handler=ObjectRequestHandler, name = 'objectrequest'),
+      webapp2.Route('/<:(admin|assessment|school|student|behaviour|curriculum|attendance|dev|extensions|fragment)>/<:[a-z]*>', handler=HTMLRequestHandler, name='analysis'),      
+      webapp2.Route('/<:dev>/<:addschool>', handler=HTMLRequestHandler, name = 'addschool'),
       ], config=config)
 System = EdSystem 
 

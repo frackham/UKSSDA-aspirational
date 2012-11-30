@@ -14,7 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import cgi
 import logging
 import datetime
@@ -23,6 +22,14 @@ import urllib
 import webapp2
 import os
 import jinja2
+#import wsgiref.handlers
+import sys
+
+sys.path.insert(0, 'reportlab.zip') #enables import of reportlab
+from reportlab.pdfgen import canvas
+from reportlab.pdfbase import pdfmetrics
+import reportlab
+folderFonts = os.path.dirname(reportlab.__file__) + os.sep + 'fonts'
 
 import unittest
 from google.appengine.ext import testbed
@@ -39,9 +46,30 @@ jinja_environment = jinja2.Environment(
 
 
 
+class ObjectRequestHandler(webapp2.RequestHandler):
+  def post(self):
+    self.response.out.write("!!post!!")
+  def get(self, category, subcategory):
+    logging.info("Page request: ObjectRequestHandler:" + category + ":" + subcategory)
+    handlerByName = category + "_" + subcategory    
+    if handlerByName in globals():
+      #self.response.out.write("PDFTEST")
+      text = "TESTMEH"
+      p = canvas.Canvas(self.response.out)
+      #p.drawImage('dog.jpg', 150, 400)
+      p.drawString(50, 700, 'The text you entered: ' + text)
+      #p.setFont('Arial', 16)
+      #p.drawString(50, 600, 'DarkGarden font loaded from reportlab.zip')
+      p.showPage()
 
+      self.response.headers['Content-Type'] = 'application/pdf'
+      self.response.headers['Content-Disposition'] = 'attachment; filename=testpdf.pdf' #Added attachment content-disposition as per Jokob Nielsen's usability recommendation. http://www.useit.com/alertbox/open_new_windows.html 
+
+      p.save()
+    else:
+      self.response.out.write("Object Handler (" + handlerByName + ") not yet defined. Come back later!")
     
-class GlobalRequestHandler(webapp2.RequestHandler):
+class HTMLRequestHandler(webapp2.RequestHandler):
   def post(self):
     self.response.out.write("!!post!!")
   def get(self, category, subcategory):
@@ -52,10 +80,22 @@ class GlobalRequestHandler(webapp2.RequestHandler):
     handlerByName = category + "_" + subcategory    
     #self.response.out.write(str(globals()))
     if handlerByName in globals():
+      #TODO: [e] Only works if returning a string.
       #Debug mode.
-      methodToCall = globals()[handlerByName]()
-      self.response.out.write(methodToCall)
-      #Live mode
+      methodToCall = globals()[handlerByName]() #Returns a string.
+      
+      #HACK: use first 5 chars to determine response...
+      if methodToCall[0:5] == "PDF!!":
+        #self.response.out.write("PDFTEST")
+        self.response.headers['Content-Type'] = 'application/pdf'
+        p = canvas.Canvas(self.response.out)
+        p.drawString(100, 750, "Hey, it's easy!.")
+        p.showPage()
+        p.save()
+      else:
+        self.response.out.write(methodToCall)
+      
+       #Live mode
       """try: 
         methodToCall = globals()[handlerByName]()
         self.response.out.write(methodToCall)
@@ -139,10 +179,12 @@ def dev_loadteststrut():
 
 def dev_addstudenttoschool():
   return "dev_addstudenttoschool CALLED!"   
-  dev_showstudents
 
 def dev_listallstudents():
   return DALReturnAllStudents()
+  
+def dev_pdftest():
+  return "PDF!!"
 
 def fragment_schoollist():
   return demo_DALDataStoreQuery()  

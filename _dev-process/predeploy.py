@@ -1,4 +1,5 @@
-#TODO: [c] Make executable.
+#!/usr/bin/env python
+
 #TODO: [e] Load test strut and check unit tests.
 #TODO: [e] Run code analysis.
 #TODO: [i] Make change to app.yaml?

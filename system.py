@@ -16,8 +16,8 @@ class EdSystem():
     self.passedUnitTests = False #TODO: [d] Get version number here.
     pass
   def __str__(self):
-    return "Education analysis system. Version " & str(self.version) & 
-           ". Created by Fraser Rackham (2012). This project can be forked from the Github repository at "
+    return ("Education analysis system. Version " + str(self.version) + 
+           ". Created by Fraser Rackham (2012). This project can be forked from the Github repository at " +
            str(self.githublink))
     
     
