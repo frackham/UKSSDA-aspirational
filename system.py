@@ -13,7 +13,7 @@ class EdSystem():
     self.metrics=[]
     self.version = "alpha" #TODO: [d] Get version number here.
     self.githublink = ""
-    self.passedUnitTests = False #TODO: [d] Get version number here.
+    self.passedUnitTests = False #TODO: [d] Get most recent unit test outcomes (from dev_unittestoutcomes() ).
     pass
   def __str__(self):
     return ("Education analysis system. Version " + str(self.version) + 

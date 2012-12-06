@@ -27,11 +27,12 @@ class Dataset(db.Model):
   
 class DatasetSource(db.Model):
   """ Indicates the source of the data for a specific data area for a given dataset. """
-  dataset = db.Dataset #TODO: [c] This is the parent dataset. Each dataset will have multiple datasetsources. This MUST be a reference property.
+  dataset = db.ReferenceProperty(Dataset, verbose_name="Parent Dataset", collection_name='dataSources') 
   domainArea = db.StringProperty(default='Not set')  #TODO: [e] DatasetSource.domainareas are Assessment, Behaviour, Attendance, Staff, Premises etc.
   sourceType = db.StringProperty(default='Not set')  #TODO: [e] sourcetype is either "new" (new dataset source file...stored as string object in this object?), "inherit", "peryear (where we'll need to define these per year (targetYear != All).
-  #inheritSource = db.Dataset  #TODO: [e] Inherit dataset. Is this nullable, or should it be the parent dataset as default?
-  #fileSource = file #TODO: [d] Ideally, keep data with the dataset. Thus export of dataset = 'for each dataset source, save to file'.
+  inheritSource = db.ReferenceProperty(Dataset, verbose_name="Inheriting-From Dataset", collection_name='sourcesThatInherit')  #TODO: [e] Inherit dataset. Is this nullable, or should it be the parent dataset as default? See https://developers.google.com/appengine/articles/modeling 
+  #fileSource = file #TODO: [d] Ideally, keep data with the dataset. Thus export of dataset = 'for each dataset source, save to file'. See https://developers.google.com/appengine/docs/python/blobstore/blobinfoclass
+  #TODO: [c] A DatasetSource can only inherit from EITHER inheritSource OR fileSource. Filesource should take priority. When either is changed, entity should be verified.
   targetYear = db.DateTimeProperty() #TODO: [e] target 
   sourceYear = db.DateTimeProperty() #TODO: [e] Usually empty, but exists so that you can inherit Y7 data at start of Y8.
 

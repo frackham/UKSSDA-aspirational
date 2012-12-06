@@ -14,7 +14,11 @@ function init_app(bDebugMode)  {
 				//for stud in jsonstudents {
   			//  alert(stud);	
 				//}
-			}  
+			}  else {
+  		  console.log("jQuery not loaded.");	
+  		  if (bDebugMode) { alert('jQuery not loaded!'); }; 
+			}
+			
 			if (jQuery.ui) {   
 				// UI loaded 
 				if (bDebugMode) { alert('jQueryUI is loaded!');   };
@@ -32,6 +36,9 @@ function init_app(bDebugMode)  {
           collision: "none"
         });
 				
+			} else {
+  		  console.log("jQueryUI not loaded.");	
+  		  if (bDebugMode) { alert('jQueryUI not loaded!'); }; 
 			}
 
 
@@ -86,13 +93,14 @@ function init_app(bDebugMode)  {
 			else {
   			//Alternative rendering here.
 				if (bDebugMode) { alert('JQPlot is not loaded!'); }; 
-  			//console.log("JQPlot not loaded");
+  			console.log("JQPlot not loaded.");
   			}
 			
 			if (typeof window.CanvasRenderingContext2D == 'undefined' && typeof G_vmlCanvasManager == 'undefined') {
          if (bDebugMode) { alert("ExCanvas not loaded!"); };
       } else {
-         if (bDebugMode) { alert("ExCanvas loaded!"); };  
+        console.log("ExCanvas not loaded."); 
+        if (bDebugMode) { alert("ExCanvas loaded!"); };  
       }
 			//THESE # .click functions NEED GENERALISING INTO A CLASS THAT TAKES A PARAMETER!
 			
