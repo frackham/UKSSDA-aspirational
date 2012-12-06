@@ -55,20 +55,23 @@ class ObjectRequestHandler(webapp2.RequestHandler):
     logging.info("Page request: ObjectRequestHandler:" + category + ":" + subcategory)
     handlerByName = category + "_" + subcategory    
     if handlerByName in globals():
+      #TODO: [e] The whole of this if branch needs moving out into a separate object handler - ideally, we should be able to get the type of handler required from the handlerName (or passed as other argument).
       #self.response.out.write("PDFTEST")
       text = handlerByName
       p = canvas.Canvas(self.response.out, pagesize=A4) # try to find some resources through REPORTLAB and then   http://en.wikipedia.org/wiki/Pdf
-
-      #p.drawImage('dog.jpg', 150, 400)
+      #p.drawImage('dog.jpg', 150, 400) #TODO: [d] This is how you return an image dynamically. See reportlab documentation.
       p.drawString(50, 700, 'The text you entered: ' + text)
       #p.setFont('Arial', 16)
       #p.drawString(50, 600, 'DarkGarden font loaded from reportlab.zip')
       p.showPage()
-
       self.response.headers['Content-Type'] = 'application/pdf'
       self.response.headers['Content-Disposition'] = 'attachment; filename=testpdf.pdf' #Added attachment content-disposition as per Jokob Nielsen's usability recommendation. http://www.useit.com/alertbox/open_new_windows.html 
-
       p.save()
+      #Up to here needs pulling out. All of it assumes a PDF object.
+      
+      #KEEP THESE TWO COMMENTS.
+      #TODO: [e] Add test of object *returned by handler function*, in order to return it using the right methods of self.response().
+      #Objecthandler itself only takes an object request, gets the *object* from the function, and returns it *appropriately as according to the object type*.
     else:
       self.response.out.write("Object Handler (" + handlerByName + ") not yet defined. Come back later!")
     
@@ -189,6 +192,9 @@ def dev_listallstudents():
 def dev_pdftest():
   return "PDF!!"
 
+def dev_unittestoutcomes():
+  return "UNIT TEST TEXT FILE HERE"
+  
 def fragment_schoollist():
   return demo_DALDataStoreQuery()  
 
