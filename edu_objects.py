@@ -11,49 +11,52 @@ from google.appengine.api import users
 
 #TODO: [i] Use ReferenceProperty for one to many relationship. https://developers.google.com/appengine/articles/modeling
 
+#TODO: [d] Look at whether properties should be ProperCase instead of camelCase, so that calls are like Dataset.Name() instead of Dataset.name().
+
 class Dataset(db.Model):
   """Models an individual School entry with appropriate property."""
   dateAdded = db.DateTimeProperty(auto_now_add=True)
   dateUpdated = db.DateTimeProperty(auto_now=True)
-  dateOfReference = db.DateTimeProperty()# Indicates the date that the dataset refers to. This is what shows on the timeline!
-  datasetShortName = db.StringProperty(default='Unnamed Dataset')
-  datasetDescription = db.StringProperty(default='No description added for this dataset.',multiline=True)
-  datasetStatus = db.StringProperty(default='placeholder') #TODO: [e] Manage lifecycle of dataset from non-existent (impossible by definition), to placeholder, to minimal, to incomplete, to complete.
+  dateOfReference = db.DateTimeProperty(auto_now_add=True)# Indicates the date that the dataset refers to. This is what shows on the timeline! #TODO: [e] Default dataset dateofreference is now(). Using auto_now_add=True for the moment.
+  shortName = db.StringProperty(default='Unnamed Dataset')
+  description = db.StringProperty(default='No description added for this dataset.',multiline=True)
+  status = db.StringProperty(default='Placeholder') #TODO: [e] Manage lifecycle of dataset from non-existent (impossible by definition), to placeholder (default), to minimal, to incomplete, to complete.
   #TODO: [e] add fields: assessmentType [estimates, targets, results, current-working, current-possible(?).
-  datasetTags = db.StringProperty(default='placeholder') #TODO: [d] Tags would be single line comma separated. Does that make it parseable or not? Ber in mind that few datasets though, mainly internally used.
-  datasetLog = db.StringProperty(default='placeholder') #TODO: [e] Does History/Log need to be an additional object (would be under OO paradigm) , or is it ok as a long string object that will be handled separately later? Probably would use this on other objects (e.g. School), so maybe...
+  tags = db.StringProperty(default='') #TODO: [d] Tags would be single line comma separated. Does that make it parseable or not? Ber in mind that few datasets though, mainly internally used.
+  log = db.StringProperty(default='') #TODO: [e] Does History/Log need to be an additional object (would be under OO paradigm) , or is it ok as a long string object that will be handled separately later? Probably would use this on other objects (e.g. School), so maybe...
   
 class DatasetSource(db.Model):
   """ Indicates the source of the data for a specific data area for a given dataset. """
-  dataset = db.Dataset # TODO: [c] This is the parent dataset. Each dataset will have multiple datasetsources
-  domainArea = string  # TODO: [e] DatasetSource.domainareas are Assessment, Behaviour, Attendance, Staff, Premises etc.
-  sourceType string  #TODO: [e] sourcetype is either "new" (new dataset source file...stored as string object in this object?), "inherit", "peryear (where we'll need to define these per year (targetYear != All).
-  inheritSource = db.Dataset  #TODO: [e] Inherit dataset. Is this nullable, or should it be the parent dataset as default?
-  fileSource = file #TODO: [d] Ideally, keep data with the dataset. Thus export of dataset = 'for each dataset source, save to file'.
-  targetYear = string(?) #TODO: [e] 
-  sourceYear = string(?) #TODO: [e] Usually empty, but exists so that you can inherit Y7 data at start of Y8.
+  dataset = db.Dataset #TODO: [c] This is the parent dataset. Each dataset will have multiple datasetsources. This MUST be a reference property.
+  domainArea = db.StringProperty(default='Not set')  #TODO: [e] DatasetSource.domainareas are Assessment, Behaviour, Attendance, Staff, Premises etc.
+  sourceType = db.StringProperty(default='Not set')  #TODO: [e] sourcetype is either "new" (new dataset source file...stored as string object in this object?), "inherit", "peryear (where we'll need to define these per year (targetYear != All).
+  #inheritSource = db.Dataset  #TODO: [e] Inherit dataset. Is this nullable, or should it be the parent dataset as default?
+  #fileSource = file #TODO: [d] Ideally, keep data with the dataset. Thus export of dataset = 'for each dataset source, save to file'.
+  targetYear = db.DateTimeProperty() #TODO: [e] target 
+  sourceYear = db.DateTimeProperty() #TODO: [e] Usually empty, but exists so that you can inherit Y7 data at start of Y8.
 
 class School(db.Model):
   """Models an individual School entry with appropriate property."""
   dateAdded = db.DateTimeProperty(auto_now_add=True)
   dateUpdated = db.DateTimeProperty(auto_now=True)
-  schoolName = db.StringProperty(default='')
-  schoolDescription = db.StringProperty(default='',multiline=True)
+  name = db.StringProperty(default='Empty School Name')
+  description = db.StringProperty(default='Empty School Description.',multiline=True)
   #TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.
-
+  urn = db.IntegerProperty(default=0) #TODO: [e] School URN may need to be different number type (Int long enough?).
+  
 class StudentColl(db.Model):
   """Models an collection of Student entities with appropriate property."""
   dateAdded = db.DateTimeProperty(auto_now_add=True)
   dateUpdated = db.DateTimeProperty(auto_now=True)
-  studentCollName = db.StringProperty(default='')
-  studentCollDescription = db.StringProperty(default='',multiline=True)
+  name = db.StringProperty(default='Unnamed Student Collection')
+  description = db.StringProperty(default='Empty Student Collection Description.',multiline=True)
 
 class Student(db.Model):
   """Models an individual Student entry with appropriate property."""
   dateAdded = db.DateTimeProperty(auto_now_add=True)
   dateUpdated = db.DateTimeProperty(auto_now=True)
-  studentName = db.StringProperty(default='')
-  studentYear = db.IntegerProperty(default=0)
+  name = db.StringProperty(default='')
+  year = db.IntegerProperty(default=0)
   #TODO: [e] add attendance, classes (arr)
   #TODO: [e] add summary assessment values for proof.
   #TODO: [d] add proper assessment.
@@ -63,14 +66,14 @@ class Staff(db.Model):
   """Models an individual Staff entry with appropriate property."""
   dateAdded = db.DateTimeProperty(auto_now_add=True)
   dateUpdated = db.DateTimeProperty(auto_now=True)
-  staffName = db.StringProperty(default='')
+  name = db.StringProperty(default='')
   #TODO: [e] add classes (arr)
 
 class Feedback(db.Model):
   """ To use as class storing feedback from users. """
   dateAdded = db.DateTimeProperty(auto_now_add=True)
   dateUpdated = db.DateTimeProperty(auto_now=True)
-  userID = db.StringProperty(default='') #Check this one. See GApps Reference.
+  ownerUserID = db.StringProperty(default='') #TODO: [d] Check this one. See GApps Reference.
   feedbackContent = db.StringProperty(default='')
   feedbackType = db.StringProperty(default='Annotation') #To allow multiple types of feedback system to co-exist.
   """TODO: [i] Types: 
@@ -80,8 +83,6 @@ class Feedback(db.Model):
        Message ().
        SystemFeedback (Feedback sent through an explicit feedback system).
   """
-  
-  pass
  
   
 #TODO: [i] NEXT STEP: How to put in the school? What is the key for? How to retrieve?

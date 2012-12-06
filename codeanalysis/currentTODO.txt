@@ -5,19 +5,44 @@
   edu_objects.py
    --9 - #TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses
    --12 - #TODO: [i] Use ReferenceProperty for one to many relationship. https://developers.google.com/appengine/articles/modeling
-   --21 - #TODO: [e] add fields: assessmentType [estimates, targets, results, current-working, current-possible(?).
-   --29 - #TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.
-   --44 - #TODO: [e] add attendance, classes (arr)
-   --45 - #TODO: [e] add summary assessment values for proof.
-   --46 - #TODO: [d] add proper assessment.
-   --47 - #TODO: [d] add other attendance values.
-   --54 - #TODO: [e] add classes (arr)
-   --74 - #TODO: [i] NEXT STEP: How to put in the school? What is the key for? How to retrieve?
+   --14 - #TODO: [d] Look at whether properties should be ProperCase instead of camelCase, so that calls are like Dataset.Name() instead of Dataset.name().
+   --20 - dateOfReference = db.DateTimeProperty(auto_now_add=True)# Indicates the date that the dataset refers to. This is what shows on the timeline! #TODO: [e] Default dataset dateofreference is now(). Using auto_now_add=True for the moment.
+   --23 - status = db.StringProperty(default='Placeholder') #TODO: [e] Manage lifecycle of dataset from non-existent (impossible by definition), to placeholder (default), to minimal, to incomplete, to complete.
+   --24 - #TODO: [e] add fields: assessmentType [estimates, targets, results, current-working, current-possible(?).
+   --25 - tags = db.StringProperty(default='') #TODO: [d] Tags would be single line comma separated. Does that make it parseable or not? Ber in mind that few datasets though, mainly internally used.
+   --26 - log = db.StringProperty(default='') #TODO: [e] Does History/Log need to be an additional object (would be under OO paradigm) , or is it ok as a long string object that will be handled separately later? Probably would use this on other objects (e.g. School), so maybe...
+   --30 - dataset = db.Dataset #TODO: [c] This is the parent dataset. Each dataset will have multiple datasetsources. This MUST be a reference property.
+   --31 - domainArea = db.StringProperty(default='Not set')  #TODO: [e] DatasetSource.domainareas are Assessment, Behaviour, Attendance, Staff, Premises etc.
+   --32 - sourceType = db.StringProperty(default='Not set')  #TODO: [e] sourcetype is either "new" (new dataset source file...stored as string object in this object?), "inherit", "peryear (where we'll need to define these per year (targetYear != All).
+   --33 - #inheritSource = db.Dataset  #TODO: [e] Inherit dataset. Is this nullable, or should it be the parent dataset as default?
+   --34 - #fileSource = file #TODO: [d] Ideally, keep data with the dataset. Thus export of dataset = 'for each dataset source, save to file'.
+   --35 - targetYear = db.DateTimeProperty() #TODO: [e] target
+   --36 - sourceYear = db.DateTimeProperty() #TODO: [e] Usually empty, but exists so that you can inherit Y7 data at start of Y8.
+   --44 - #TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.
+   --45 - urn = db.IntegerProperty(default=0) #TODO: [e] School URN may need to be different number type (Int long enough?).
+   --60 - #TODO: [e] add attendance, classes (arr)
+   --61 - #TODO: [e] add summary assessment values for proof.
+   --62 - #TODO: [d] add proper assessment.
+   --63 - #TODO: [d] add other attendance values.
+   --70 - #TODO: [e] add classes (arr)
+   --76 - ownerUserID = db.StringProperty(default='') #TODO: [d] Check this one. See GApps Reference.
+   --88 - #TODO: [i] NEXT STEP: How to put in the school? What is the key for? How to retrieve?
   fragmentrequester.py
-   --85 - #TODO: [e] Only works if returning a string.
+   --58 - #TODO: [e] The whole of this if branch needs moving out into a separate object handler - ideally, we should be able to get the type of handler required from the handlerName (or passed as other argument).
+   --62 - #p.drawImage('dog.jpg', 150, 400) #TODO: [d] This is how you return an image dynamically. See reportlab documentation.
+   --73 - #TODO: [e] Add test of object *returned by handler function*, in order to return it using the right methods of self.response().
+   --89 - #TODO: [e] Only works if returning a string.
   index.html
    --67 - <!-- #TODO: [d] POPULATE in Jinja2  ... (for item in userNavItems) -->
    --173 - <div id="developerlinks"> <!-- #TODO: [d] Hide in live mode -->
+  othertodo.py
+   --4 - #TODO: [d] Explore http://demos.kendoui.com/dataviz/scatter-charts/scatter-line.html as alternative to jqPlot.
+   --5 - #TODO: [d] Explore processing.js as alternative to jqPlot.
+   --6 - #TODO: [e] Move rendering of charts and analysis to separate Python classes and file. NOT edu objects!
+   --9 - #TODO: [d] Add distribute to email (requires email property on staff).
+   --10 - #TODO: [i] Add non-staff distribution contacts (both inherit from superclass or use aggregation).
+   --11 - #TODO: [d] Add single PDF output - where items for same person are in order, with either (a) footer identifying who it is for, or (b) coversheet with list of pages and who it is for.
+   --14 - #TODO: [d] Get tutor group members (iterate through staff and students). Probably one to cache at System or collection level?
   system.py
    --12 - #TODO: [e] Check status of unit test strut here?
    --14 - self.version = "alpha" #TODO: [d] Get version number here.
@@ -26,6 +51,9 @@
    --72 - #TODO: [e] Prerequisite metrics.
   testdata.py
    --4 - #TODO: Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
+  testing.py
+   --11 - #TODO: [i] Make sure that use singular versions of assert tests (assertEqual, NOT assertEquals *S), as these undocumented versions violate single way principle, as per http://stackoverflow.com/a/931011
+   --12 - #TODO: [e] After this, save to .txt file. Will most likely need 'live' tests stored separately, as won't be able to write to a file in the filesystem on GAE.
   codeanalysis.py
    --2 - # TODO: [d] see page 8 of python data vis.
    --3 - # TODO: [e] Write file size metrics.

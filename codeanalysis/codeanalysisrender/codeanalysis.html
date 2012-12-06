@@ -18,6 +18,8 @@
  <div id="Criticalwrapper">
  <br/>
   <h2>Critical</h2>
+  <p class="Critical source">edu_objects.py</p>
+  <p class="Critical">--dataset = db.Dataset #TODO: [c] This is the parent dataset. Each dataset will have multiple datasetsources. This MUST be a reference property.</p>
   <p class="Critical source">system.py</p>
   <p class="Critical">--#TODO: [c] Add owner, referenceURI, prerequisites[], (more next lines--&gt;)</p>
   <p class="Critical source">codeanalysis.py</p>
@@ -29,16 +31,32 @@
   <h2>Essential</h2>
   <p class="Essential source">edu_objects.py</p>
   <p class="Essential">--#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p>
+  <p class="Essential">--dateOfReference = db.DateTimeProperty(auto_now_add=True)# Indicates the date that the dataset refers to. This is what shows on the timeline! #TODO: [e] Default dataset dateofreference is now(). Using auto_now_add=True for the moment.</p>
+  <p class="Essential">--status = db.StringProperty(default='Placeholder') #TODO: [e] Manage lifecycle of dataset from non-existent (impossible by definition), to placeholder (default), to minimal, to incomplete, to complete.</p>
   <p class="Essential">--#TODO: [e] add fields: assessmentType [estimates, targets, results, current-working, current-possible(?).</p>
+  <p class="Essential">--log = db.StringProperty(default='') #TODO: [e] Does History/Log need to be an additional object (would be under OO paradigm) , or is it ok as a long string object that will be handled separately later? Probably would use this on other objects (e.g. School), so maybe...</p>
+  <p class="Essential">--domainArea = db.StringProperty(default='Not set')  #TODO: [e] DatasetSource.domainareas are Assessment, Behaviour, Attendance, Staff, Premises etc.</p>
+  <p class="Essential">--sourceType = db.StringProperty(default='Not set')  #TODO: [e] sourcetype is either "new" (new dataset source file...stored as string object in this object?), "inherit", "peryear (where we'll need to define these per year (targetYear != All).</p>
+  <p class="Essential">--#inheritSource = db.Dataset  #TODO: [e] Inherit dataset. Is this nullable, or should it be the parent dataset as default?</p>
+  <p class="Essential">--targetYear = db.DateTimeProperty() #TODO: [e] target</p>
+  <p class="Essential">--sourceYear = db.DateTimeProperty() #TODO: [e] Usually empty, but exists so that you can inherit Y7 data at start of Y8.</p>
   <p class="Essential">--#TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.</p>
+  <p class="Essential">--urn = db.IntegerProperty(default=0) #TODO: [e] School URN may need to be different number type (Int long enough?).</p>
   <p class="Essential">--#TODO: [e] add attendance, classes (arr)</p>
   <p class="Essential">--#TODO: [e] add summary assessment values for proof.</p>
   <p class="Essential">--#TODO: [e] add classes (arr)</p>
   <p class="Essential source">fragmentrequester.py</p>
+  <p class="Essential">--#TODO: [e] The whole of this if branch needs moving out into a separate object handler - ideally, we should be able to get the type of handler required from the handlerName (or passed as other argument).</p>
+  <p class="Essential">--#TODO: [e] Add test of object *returned by handler function*, in order to return it using the right methods of self.response().</p>
   <p class="Essential">--#TODO: [e] Only works if returning a string.</p>
+  <p class="Essential source">othertodo.py</p>
+  <p class="Essential">--#TODO: [e] Move rendering of charts and analysis to separate Python classes and file. NOT edu objects!</p>
   <p class="Essential source">system.py</p>
   <p class="Essential">--#TODO: [e] Check status of unit test strut here?</p>
   <p class="Essential">--#TODO: [e] Prerequisite metrics.</p>
+  <p class="Essential source">testing.py</p>
+  <p class="Essential">--assertEqual(a, b)#TODO: [e] Placeholder for unit test strut setup, test, teardown.</p>
+  <p class="Essential">--#TODO: [e] After this, save to .txt file. Will most likely need 'live' tests stored separately, as won't be able to write to a file in the filesystem on GAE.</p>
   <p class="Essential source">codeanalysis.py</p>
   <p class="Essential">--# TODO: [e] Write file size metrics.</p>
   <p class="Essential">--# TODO: [e] Write file created metrics.</p>
@@ -60,12 +78,24 @@
   <p class="Desirable source">404.html</p>
   <p class="Desirable">--&lt;!-- #TODO: [d] Update 404 --&gt;</p>
   <p class="Desirable source">edu_objects.py</p>
+  <p class="Desirable">--#TODO: [d] Look at whether properties should be ProperCase instead of camelCase, so that calls are like Dataset.Name() instead of Dataset.name().</p>
+  <p class="Desirable">--tags = db.StringProperty(default='') #TODO: [d] Tags would be single line comma separated. Does that make it parseable or not? Ber in mind that few datasets though, mainly internally used.</p>
+  <p class="Desirable">--#fileSource = file #TODO: [d] Ideally, keep data with the dataset. Thus export of dataset = 'for each dataset source, save to file'.</p>
   <p class="Desirable">--#TODO: [d] add proper assessment.</p>
   <p class="Desirable">--#TODO: [d] add other attendance values.</p>
+  <p class="Desirable">--ownerUserID = db.StringProperty(default='') #TODO: [d] Check this one. See GApps Reference.</p>
+  <p class="Desirable source">fragmentrequester.py</p>
+  <p class="Desirable">--#p.drawImage('dog.jpg', 150, 400) #TODO: [d] This is how you return an image dynamically. See reportlab documentation.</p>
   <p class="Desirable source">index.html</p>
   <p class="Desirable">--&lt;!-- #TODO: [d] POPULATE in Jinja2  ... (for item in userNavItems) --&gt;</p>
   <p class="Desirable">--&lt;div id="developerlinks"&gt; &lt;!-- #TODO: [d] Hide in live mode --&gt;</p>
   <p class="Desirable">--&lt;li&gt;&lt;a href="https://appengine.google.com/" target="_blank"&gt;App Engine Login (MUST USE CORRECT LOGIN EMAIL!)&lt;/a&gt;&lt;/li&gt; &lt;!-- #HACK: [d] Remove the reminder in live mode (more like remove all?). --&gt;</p>
+  <p class="Desirable source">othertodo.py</p>
+  <p class="Desirable">--#TODO: [d] Explore http://demos.kendoui.com/dataviz/scatter-charts/scatter-line.html as alternative to jqPlot.</p>
+  <p class="Desirable">--#TODO: [d] Explore processing.js as alternative to jqPlot.</p>
+  <p class="Desirable">--#TODO: [d] Add distribute to email (requires email property on staff).</p>
+  <p class="Desirable">--#TODO: [d] Add single PDF output - where items for same person are in order, with either (a) footer identifying who it is for, or (b) coversheet with list of pages and who it is for.</p>
+  <p class="Desirable">--#TODO: [d] Get tutor group members (iterate through staff and students). Probably one to cache at System or collection level?</p>
   <p class="Desirable source">system.py</p>
   <p class="Desirable">--#TODO [d] Add singleton behaviour (not really an issue if never redefined...).</p>
   <p class="Desirable">--self.version = "alpha" #TODO: [d] Get version number here.</p>

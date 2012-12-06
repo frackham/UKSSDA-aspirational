@@ -662,3 +662,34 @@
 
 2012-11-30 16:41:56.450000
 
+
+2012-12-06 20:36:39.686000
++  #TODO: [d] Look at whether properties should be ProperCase instead of camelCase, so that calls are like Dataset.Name() instead of Dataset.name().
++  dateOfReference = db.DateTimeProperty(auto_now_add=True)# Indicates the date that the dataset refers to. This is what shows on the timeline! #TODO: [e] Default dataset dateofreference is now(). Using auto_now_add=True for the moment.
++  status = db.StringProperty(default='Placeholder') #TODO: [e] Manage lifecycle of dataset from non-existent (impossible by definition), to placeholder (default), to minimal, to incomplete, to complete.
++  tags = db.StringProperty(default='') #TODO: [d] Tags would be single line comma separated. Does that make it parseable or not? Ber in mind that few datasets though, mainly internally used.
++  log = db.StringProperty(default='') #TODO: [e] Does History/Log need to be an additional object (would be under OO paradigm) , or is it ok as a long string object that will be handled separately later? Probably would use this on other objects (e.g. School), so maybe...
++  dataset = db.Dataset #TODO: [c] This is the parent dataset. Each dataset will have multiple datasetsources. This MUST be a reference property.
++  domainArea = db.StringProperty(default='Not set')  #TODO: [e] DatasetSource.domainareas are Assessment, Behaviour, Attendance, Staff, Premises etc.
++  sourceType = db.StringProperty(default='Not set')  #TODO: [e] sourcetype is either "new" (new dataset source file...stored as string object in this object?), "inherit", "peryear (where we'll need to define these per year (targetYear != All).
++  #inheritSource = db.Dataset  #TODO: [e] Inherit dataset. Is this nullable, or should it be the parent dataset as default?
++  #fileSource = file #TODO: [d] Ideally, keep data with the dataset. Thus export of dataset = 'for each dataset source, save to file'.
++  targetYear = db.DateTimeProperty() #TODO: [e] target
++  sourceYear = db.DateTimeProperty() #TODO: [e] Usually empty, but exists so that you can inherit Y7 data at start of Y8.
++  urn = db.IntegerProperty(default=0) #TODO: [e] School URN may need to be different number type (Int long enough?).
++  ownerUserID = db.StringProperty(default='') #TODO: [d] Check this one. See GApps Reference.
++  #TODO: [e] The whole of this if branch needs moving out into a separate object handler - ideally, we should be able to get the type of handler required from the handlerName (or passed as other argument).
++  #p.drawImage('dog.jpg', 150, 400) #TODO: [d] This is how you return an image dynamically. See reportlab documentation.
++  #TODO: [e] Add test of object *returned by handler function*, in order to return it using the right methods of self.response().
++ do.py
++ #TODO: [d] Explore http://demos.kendoui.com/dataviz/scatter-charts/scatter-line.html as alternative to jqPlot.
++ #TODO: [d] Explore processing.js as alternative to jqPlot.
++ #TODO: [e] Move rendering of charts and analysis to separate Python classes and file. NOT edu objects!
++ #TODO: [d] Add distribute to email (requires email property on staff).
++  #TODO: [i] Add non-staff distribution contacts (both inherit from superclass or use aggregation).
++  #TODO: [d] Add single PDF output - where items for same person are in order, with either (a) footer identifying who it is for, or (b) coversheet with list of pages and who it is for.
++  #TODO: [d] Get tutor group members (iterate through staff and students). Probably one to cache at System or collection level?
++ .py
++  #TODO: [i] Make sure that use singular versions of assert tests (assertEqual, NOT assertEquals *S), as these undocumented versions violate single way principle, as per http://stackoverflow.com/a/931011
++  #TODO: [e] After this, save to .txt file. Will most likely need 'live' tests stored separately, as won't be able to write to a file in the filesystem on GAE.
+
