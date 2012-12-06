@@ -2,6 +2,7 @@
 
 #RENDERING
 #TODO: [d] Explore http://demos.kendoui.com/dataviz/scatter-charts/scatter-line.html as alternative to jqPlot.
+#TODO: [i] Make sure all renderings have accessible alternatives (e.g. JS rendered as per http://jspro.com/raw-javascript/javascript-accessibility-101/). Optional parameter to analysis.render() call could be accessibilty=text, where default = false. If true, text alternatives rendered alongside.
 #TODO: [d] Explore processing.js as alternative to jqPlot.
 #TODO: [e] Move rendering of charts and analysis to separate Python classes and file. NOT edu objects!
 
@@ -12,3 +13,11 @@
 
 #EDU OBJECT CLASS PROPERTIES/METHODS
 #TODO: [d] Get tutor group members (iterate through staff and students). Probably one to cache at System or collection level?
+
+
+
+
+
+#EXTENSIONS (all idealistic).
+# (A) MAPPING
+#TODO: [i] Map to image map http://www.algonet.se/~ug/html+pycgi/img.html

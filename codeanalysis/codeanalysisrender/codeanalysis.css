@@ -10,7 +10,7 @@ h2            {font-size:1.1em;}
 #Idealisticwrapper  {border: solid gray 1px;} 
 #Hackwrapper         {border: solid gray 1px;}     
 
-.source       {text-decoration:underline;}              
+.source       {text-decoration:underline; padding-top:8px;}              
 .Bug          {color:red;}
 .Critical     {color:red;}
 .Essential    {color:black;}

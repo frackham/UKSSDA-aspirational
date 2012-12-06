@@ -29,7 +29,7 @@ sys.path.insert(0, 'reportlab.zip') #enables import of reportlab
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.lib.pagesizes import letter, A4
-import renderpdf
+#import renderpdf
 import reportlab
 folderFonts = os.path.dirname(reportlab.__file__) + os.sep + 'fonts'
 
