@@ -75,28 +75,53 @@ class MainPage(webapp2.RequestHandler):
           app_referer_HTMLid = "livetitle"
           livelink = "" #no need to link to live app if
 
-
+        nav = {}
+        nav['admin'] = ""
+        accessrights = []
+        #Auth process: (1) Get user access rights through login (if not logged in, login).
         if users.get_current_user():
             url = users.create_logout_url(self.request.uri)
             url_linktext = 'Logout'
             user = users.get_current_user()
             user_name = user.nickname()
+            
+            #TODO: [c] Here, get user access rights (currently adding admin rights to all logged in users) from a group in datastore. Most likely move whole function to auth library.
+            user.accessrights = accessrights #Note accessrights is tuple, nav is dict.
+            user.accessrights.append("admin")
         else:
             url = users.create_login_url(self.request.uri)
             url_linktext = 'Login'
 
-
+        #Auth process: (2) Append appropriate nav based on access rights.
+        if app_referer_type == "Local development" or "admin" in user.accessrights:
+          nav["admin"] = """<li><a href=""#"">Admin</a>
+          	<ul>
+          		<li class=""primarynav"" id=""admin-schooldetails"">    <a href=""#"">School Details</a></li>
+          		<li class=""primarynav"" id=""admin-datasetexplorer"">  <a href=""#"">Dataset Explorer</a></li> <!-- Visual view of datasets. Add datasets from here (including descriptive only datasets). -->
+          		<li class=""primarynav"" id=""admin-datasetvalidation""><a href=""#"">Dataset Validation(?)</a></li>
+          		<li class=""primarynav"" id=""admin-usersetup"">        <a href=""#"">User Setup</a></li>
+          		<li class=""primarynav"" id=""admin-flushdatastore"">   <a href=""#"">Flush Data Store</a></li>
+          	</ul>	
+          </li>"""     
+            
+            
+            
+            
+            
         template_values = {
             'greetings': greetings,
             'url': url,
             'url_linktext': url_linktext,
+            'nav_access_admin': nav["admin"],
             'header_title': str(app_title) + ": " + str(app_referer_type),
             'app_title': "<h1 class=\"title\" id=\"" + app_referer_HTMLid + "\">" + str(app_title) + ": " + str(app_referer_type) + "</h1>",
             'user_name': user_name,
             'livelink':livelink,
             'app_type_environment': app_referer_type,
         }
-
+        
+        logging.debug(" Nav access: Admin Block == " + nav["admin"])
+        
         template = jinja_environment.get_template('index.html')
         self.response.out.write(template.render(template_values))
         logging.info("Page write: MainPage")
@@ -130,6 +155,7 @@ config = {'anonymisedmode': bAnonymisedMode} #Use this to pass global config val
 #Match dev routes manually, as these will often be routed to different handlers.
 app = webapp2.WSGIApplication([
       webapp2.Route('/', handler=MainPage, name = ''),
+      #webapp2.Route('/login', handler=Login, name = 'Login'), #Comment this line out to skip login to anonymous. 
       webapp2.Route('/dev/ajaxtest', handler=DevSchoolList, name = 'DevSchoolList'),
       webapp2.Route('/dev/crudtest', handler=CRUDTest_GDS, name = 'CRUDTest_GDS'),
       webapp2.Route('/<:(dev)>/<:(pdftest)>', handler=ObjectRequestHandler, name = 'objectrequest'),
