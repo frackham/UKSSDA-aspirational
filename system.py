@@ -12,8 +12,9 @@ class EdSystem():
     #TODO: [e] Check status of unit test strut here?
     self.metrics=[]
     self.version = "alpha" #TODO: [d] Get version number here.
-    self.githublink = ""
-    self.passedUnitTests = False #TODO: [d] Get most recent unit test outcomes (from dev_unittestoutcomes() ).
+    #TODO: [e] On process dataset, update calculationVersion of the Dataset. If calculationVersion != edsystem.version, then recalc dataset?
+    self.githublink = "" #TODO: [i] Necessary?
+    self.passedUnitTests = False #TODO: [e] Get most recent unit test outcomes (from dev_unittestoutcomes() ).
     pass
   def __str__(self):
     return ("Education analysis system. Version " + str(self.version) + 

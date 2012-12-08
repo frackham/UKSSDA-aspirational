@@ -40,6 +40,7 @@ from google.appengine.ext import db
 from google.appengine.api import users
 
 from edu_objects import *
+from external_sources import *
 from dal_test import *
 from dal import *
 
@@ -190,6 +191,9 @@ def fragment_schoollist():
 
 def fragment_schoolcount():
   return testSchoolSetup()
+  
+def extension_edubase():
+  return scrape_edubase()
 """
 Menu list:
 Admin

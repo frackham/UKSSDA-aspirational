@@ -78,8 +78,10 @@ class MainPage(webapp2.RequestHandler):
         nav = {}
         nav['admin'] = ""
         accessrights = []
+        bUserExists = False
         #Auth process: (1) Get user access rights through login (if not logged in, login).
         if users.get_current_user():
+            bUserExists = True
             url = users.create_logout_url(self.request.uri)
             url_linktext = 'Logout'
             user = users.get_current_user()
@@ -93,14 +95,20 @@ class MainPage(webapp2.RequestHandler):
             url_linktext = 'Login'
 
         #Auth process: (2) Append appropriate nav based on access rights.
-        if app_referer_type == "Local development" or "admin" in user.accessrights:
-          nav["admin"] = """<li><a href=""#"">Admin</a>
+        bDoAdmin = False #HACK: [e] Separate variable for each nav group? No thanks, [refactor] on move to separate auth layer.
+        if app_referer_type == "Local development": 
+          bDoAdmin = True
+        if bUserExists: 
+          if "admin" in user.accessrights: 
+            bDoAdmin = True
+        if bDoAdmin:
+          nav["admin"] = """<li><a href=\"#\">Admin</a>
           	<ul>
-          		<li class=""primarynav"" id=""admin-schooldetails"">    <a href=""#"">School Details</a></li>
-          		<li class=""primarynav"" id=""admin-datasetexplorer"">  <a href=""#"">Dataset Explorer</a></li> <!-- Visual view of datasets. Add datasets from here (including descriptive only datasets). -->
-          		<li class=""primarynav"" id=""admin-datasetvalidation""><a href=""#"">Dataset Validation(?)</a></li>
-          		<li class=""primarynav"" id=""admin-usersetup"">        <a href=""#"">User Setup</a></li>
-          		<li class=""primarynav"" id=""admin-flushdatastore"">   <a href=""#"">Flush Data Store</a></li>
+          		<li class=\"primarynav\" id=\"admin-schooldetails\">    <a href=\"#\">School Details</a></li>
+          		<li class=\"primarynav\" id=\"admin-datasetexplorer\">  <a href=\"#\">Dataset Explorer</a></li> <!-- Visual view of datasets. Add datasets from here (including descriptive only datasets). -->
+          		<li class=\"primarynav\" id=\"admin-datasetvalidation\"><a href=\"#\">Dataset Validation(?)</a></li>
+          		<li class=\"primarynav\" id=\"admin-usersetup\">        <a href=\"#\">User Setup</a></li>
+          		<li class=\"primarynav\" id=\"admin-flushdatastore\">   <a href=\"#\">Flush Data Store</a></li>
           	</ul>	
           </li>"""     
             
@@ -159,7 +167,7 @@ app = webapp2.WSGIApplication([
       webapp2.Route('/dev/ajaxtest', handler=DevSchoolList, name = 'DevSchoolList'),
       webapp2.Route('/dev/crudtest', handler=CRUDTest_GDS, name = 'CRUDTest_GDS'),
       webapp2.Route('/<:(dev)>/<:(pdftest)>', handler=ObjectRequestHandler, name = 'objectrequest'),
-      webapp2.Route('/<:(admin|assessment|school|student|behaviour|curriculum|attendance|dev|extensions|fragment)>/<:[a-z]*>', handler=HTMLRequestHandler, name='analysis'),      
+      webapp2.Route('/<:(admin|assessment|school|student|behaviour|curriculum|attendance|dev|extension|fragment)>/<:[a-z]*>', handler=HTMLRequestHandler, name='analysis'),      
       webapp2.Route('/<:dev>/<:addschool>', handler=HTMLRequestHandler, name = 'addschool'),
       ], config=config)
 System = EdSystem  #TODO: [i] Consider which aspects of this file need moving to the system object.
