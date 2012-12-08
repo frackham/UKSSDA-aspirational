@@ -44,6 +44,25 @@ class School(db.Model):
   description = db.StringProperty(default='Empty School Description.',multiline=True)
   #TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.
   urn = db.IntegerProperty(default=0) #TODO: [e] School URN may need to be different number type (Int long enough?).
+ 
+#TODO: [e] Exclude libraries from tests.
+#TODO: [c] Move School_Test to tests folder
+#How to execute test suite: http://stackoverflow.com/questions/3160551/is-there-a-way-to-get-pythons-nose-module-to-work-the-same-in-main-and-on-t
+#Convention for naming test files/classes etc.: http://stackoverflow.com/questions/1457104/nose-unable-to-find-tests-in-ubuntu/1457852#1457852
+import unittest
+class School_Tests(unittest.TestCase):
+  def __init__(self):    
+    self.modelCreatedUsingDefaults  = School()
+    self.modelExpectedUsingDefaults = School(name='Empty School Name', description='Empty School Description.', urn=0)
+  def test_model_created_using_defaults_matches_expected_defaults(self): 
+    user = User(email = "test@foo.com") 
+    self.assertEquals(self.modelCreatedUsingDefaults, self.modelExpected)
+
+def doUnitTests():
+  pass
+    
+
+#---Up to here.
   
 class StudentColl(db.Model):
   """Models an collection of Student entities with appropriate property."""

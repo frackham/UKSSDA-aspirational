@@ -20,13 +20,18 @@ import re
 def scrape_edubase(urn = "138825"):#TODO: [i] [refactor] as API that returns specific scraped components of pages (e.g. given URN, get size of school & website).
   """Returns the full HTML as text for a given school Edubase page, found by number. Uses html5lib to scrape Edubase."""
   #HACK: If no URN, uses GCS. Remove.
-  constructed_URI = "http://www.education.gov.uk/edubase/establishment/summary.xhtml?urn=" + urn 
+  constructed_URI = "http://www.education.gov.uk/edubase/establishment/summary.xhtml?urn=" + str(urn) 
   text = urllib2.urlopen(constructed_URI).read() 
   #At this point, text is full HTML, including unsafe and unwanted links to CSS, javscript etc..
   text = re.subn(r'<(script).*?</\1>(?s)', '', text)[0]#My attempt: re.sub(r"((<)script(>)).*((<)(/)script(>))?", "", text)
   #text = re.sub("</script>", "", text)
   return text
 
+def scrape_registerofqualifications(qan = ""):
+  #TODO: [c] Use edubase scrape functions as start point.
+  #Most of these will be same process. Given id, construct a URI. Get returned HTML from that URI. Parse that URI for 1 or more items needed (pass a list of search strings/tree parses?).
+  pass
+  
 if __name__ == '__main__':
   print("manual test of external checks using a specific URN")
   urn = "138825"
