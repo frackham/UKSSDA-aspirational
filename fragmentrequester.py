@@ -46,8 +46,6 @@ from dal import *
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
-
-
 class ObjectRequestHandler(webapp2.RequestHandler):
   def post(self):
     self.response.out.write("!!post!!")
@@ -129,15 +127,7 @@ def doDisplayAnalysis(requestHandler, datafunction, completefunction):
   requestHandler.response.clear()
   requestHandler.response.out.write(completefunction())
   time.sleep(0.5) #Wait a while (DEBUG).
-  
 
-  
-
-
-
-
-  
-  
   
   
 #result = methodToCall()

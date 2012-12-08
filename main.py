@@ -50,8 +50,8 @@ class MainPage(webapp2.RequestHandler):
         logging.info("Page request: MainPage")
         guestbook_name=self.request.get('guestbook_name')
         greetings_query = Greeting.all().ancestor(
-            guestbook_key(guestbook_name)).order('-date')
-        greetings = greetings_query.fetch(10)
+            guestbook_key(guestbook_name)).order('-date') #TODO: [i] Remove.
+        greetings = greetings_query.fetch(10) #TODO: [i] Remove.
 
         user_name = "Anonymous User"
       
@@ -127,7 +127,7 @@ class MainPage(webapp2.RequestHandler):
         logging.info("Page write: MainPage")
 
         
-class Guestbook(webapp2.RequestHandler):
+class Guestbook(webapp2.RequestHandler): #TODO: [i] Remove.
   def post(self):
     # We set the same parent key on the 'Greeting' to ensure each greeting is in
     # the same entity group. Queries across the single entity group will be
@@ -162,10 +162,10 @@ app = webapp2.WSGIApplication([
       webapp2.Route('/<:(admin|assessment|school|student|behaviour|curriculum|attendance|dev|extensions|fragment)>/<:[a-z]*>', handler=HTMLRequestHandler, name='analysis'),      
       webapp2.Route('/<:dev>/<:addschool>', handler=HTMLRequestHandler, name = 'addschool'),
       ], config=config)
-System = EdSystem 
+System = EdSystem  #TODO: [i] Consider which aspects of this file need moving to the system object.
 
 
-def main():
+def main():  #TODO: [i] This is not being called - mainpage is doing all this, handled by the routing. Look at what should be part of this, and remove unnecessary parts [refactor].
     # Set the logging level in the main function
     # See the section on Requests and App Caching for information on how
     # App Engine reuses your request handlers when you specify a main function
@@ -180,4 +180,5 @@ def main():
     webapp.util.run_wsgi_app(application)
 
 if __name__ == '__main__':
-    main()
+  logging.info("Start.")
+  main()
