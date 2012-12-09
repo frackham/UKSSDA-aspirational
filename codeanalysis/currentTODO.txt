@@ -11,49 +11,71 @@
    --24 - #TODO: [e] add fields: assessmentType [estimates, targets, results, current-working, current-possible(?).
    --25 - tags = db.StringProperty(default='') #TODO: [d] Tags would be single line comma separated. Does that make it parseable or not? Ber in mind that few datasets though, mainly internally used.
    --26 - log = db.StringProperty(default='') #TODO: [e] Does History/Log need to be an additional object (would be under OO paradigm) , or is it ok as a long string object that will be handled separately later? Probably would use this on other objects (e.g. School), so maybe...
-   --30 - dataset = db.Dataset #TODO: [c] This is the parent dataset. Each dataset will have multiple datasetsources. This MUST be a reference property.
    --31 - domainArea = db.StringProperty(default='Not set')  #TODO: [e] DatasetSource.domainareas are Assessment, Behaviour, Attendance, Staff, Premises etc.
    --32 - sourceType = db.StringProperty(default='Not set')  #TODO: [e] sourcetype is either "new" (new dataset source file...stored as string object in this object?), "inherit", "peryear (where we'll need to define these per year (targetYear != All).
-   --33 - #inheritSource = db.Dataset  #TODO: [e] Inherit dataset. Is this nullable, or should it be the parent dataset as default?
-   --34 - #fileSource = file #TODO: [d] Ideally, keep data with the dataset. Thus export of dataset = 'for each dataset source, save to file'.
-   --35 - targetYear = db.DateTimeProperty() #TODO: [e] target
-   --36 - sourceYear = db.DateTimeProperty() #TODO: [e] Usually empty, but exists so that you can inherit Y7 data at start of Y8.
-   --44 - #TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.
-   --45 - urn = db.IntegerProperty(default=0) #TODO: [e] School URN may need to be different number type (Int long enough?).
-   --60 - #TODO: [e] add attendance, classes (arr)
-   --61 - #TODO: [e] add summary assessment values for proof.
-   --62 - #TODO: [d] add proper assessment.
-   --63 - #TODO: [d] add other attendance values.
-   --70 - #TODO: [e] add classes (arr)
-   --76 - ownerUserID = db.StringProperty(default='') #TODO: [d] Check this one. See GApps Reference.
-   --88 - #TODO: [i] NEXT STEP: How to put in the school? What is the key for? How to retrieve?
+   --33 - inheritSource = db.ReferenceProperty(Dataset, verbose_name="Inheriting-From Dataset", collection_name='sourcesThatInherit')  #TODO: [e] Inherit dataset. Is this nullable, or should it be the parent dataset as default? See https://developers.google.com/appengine/articles/modeling
+   --34 - #fileSource = file #TODO: [d] Ideally, keep data with the dataset. Thus export of dataset = 'for each dataset source, save to file'. See https://developers.google.com/appengine/docs/python/blobstore/blobinfoclass
+   --35 - #TODO: [c] A DatasetSource can only inherit from EITHER inheritSource OR fileSource. Filesource should take priority. When either is changed, entity should be verified.
+   --36 - targetYear = db.DateTimeProperty() #TODO: [e] target
+   --37 - sourceYear = db.DateTimeProperty() #TODO: [e] Usually empty, but exists so that you can inherit Y7 data at start of Y8.
+   --45 - #TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.
+   --46 - urn = db.IntegerProperty(default=0) #TODO: [e] School URN may need to be different number type (Int long enough?).
+   --48 - #TODO: [e] Exclude libraries from tests.
+   --49 - #TODO: [c] Move School_Test to tests folder
+   --63 - #self.modelExpectedUsingDefaults = Student(name='Empty School Name', description='Empty School Description.', urn=0) #TODO: Test against defaults [test].
+   --90 - #TODO: [e] add attendance, classes (arr)
+   --91 - #TODO: [e] add summary assessment values for proof.
+   --92 - #TODO: [d] add proper assessment.
+   --93 - #TODO: [d] add other attendance values.
+   --100 - #TODO: [e] add classes (arr)
+   --106 - ownerUserID = db.StringProperty(default='') #TODO: [d] Check this one. See GApps Reference.
+   --118 - #TODO: [i] NEXT STEP: How to put in the school? What is the key for? How to retrieve?
+  external_sources.py
+   --18 - #TODO: [d] See http://www.ehow.co.uk/how_8521125_use-html5lib-python.html
+   --31 - #TODO: [c] Use edubase scrape functions as start point.
   fragmentrequester.py
-   --58 - #TODO: [e] The whole of this if branch needs moving out into a separate object handler - ideally, we should be able to get the type of handler required from the handlerName (or passed as other argument).
-   --62 - #p.drawImage('dog.jpg', 150, 400) #TODO: [d] This is how you return an image dynamically. See reportlab documentation.
-   --73 - #TODO: [e] Add test of object *returned by handler function*, in order to return it using the right methods of self.response().
-   --89 - #TODO: [e] Only works if returning a string.
+   --57 - #TODO: [e] The whole of this if branch needs moving out into a separate object handler - ideally, we should be able to get the type of handler required from the handlerName (or passed as other argument).
+   --61 - #p.drawImage('dog.jpg', 150, 400) #TODO: [d] This is how you return an image dynamically. See reportlab documentation.
+   --72 - #TODO: [e] Add test of object *returned by handler function*, in order to return it using the right methods of self.response().
+   --88 - #TODO: [e] Only works if returning a string.
   index.html
    --67 - <!-- #TODO: [d] POPULATE in Jinja2  ... (for item in userNavItems) -->
-   --173 - <div id="developerlinks"> <!-- #TODO: [d] Hide in live mode -->
+   --155 - <!-- #TODO: [i] Slider for demoing possible exploration data... http://wowslider.com/css-slider-aqua-flip-demo.html . Use prelogin, but possibly as way of doing tutorial too... Acts as quick overview, and allows immediate access to kind of analysis the user identifies as being of interest... -->
+   --167 - <div id="developerlinks"> <!-- #TODO: [d] Hide in live mode -->
+  main.py
+   --53 - guestbook_key(guestbook_name)).order('-date') #TODO: [i] Remove.
+   --54 - greetings = greetings_query.fetch(10) #TODO: [i] Remove.
+   --90 - #TODO: [c] Here, get user access rights (currently adding admin rights to all logged in users) from a group in datastore. Most likely move whole function to auth library.
+   --108 - <li class=\"primarynav\" id=\"admin-datasetexplorer\">  <a href=\"#\">Dataset Explorer</a></li> <!-- #TODO: [e] Visual view of datasets. Add datasets from here (including descriptive only datasets). Consider using http://timeline.verite.co/  -->
+   --138 - class Guestbook(webapp2.RequestHandler): #TODO: [i] Remove.
+   --173 - System = EdSystem  #TODO: [i] Consider which aspects of this file need moving to the system object.
+   --176 - def main():  #TODO: [i] This is not being called - mainpage is doing all this, handled by the routing. Look at what should be part of this, and remove unnecessary parts [refactor].
   othertodo.py
-   --4 - #TODO: [d] Explore http://demos.kendoui.com/dataviz/scatter-charts/scatter-line.html as alternative to jqPlot.
-   --5 - #TODO: [d] Explore processing.js as alternative to jqPlot.
-   --6 - #TODO: [e] Move rendering of charts and analysis to separate Python classes and file. NOT edu objects!
-   --9 - #TODO: [d] Add distribute to email (requires email property on staff).
-   --10 - #TODO: [i] Add non-staff distribution contacts (both inherit from superclass or use aggregation).
-   --11 - #TODO: [d] Add single PDF output - where items for same person are in order, with either (a) footer identifying who it is for, or (b) coversheet with list of pages and who it is for.
-   --14 - #TODO: [d] Get tutor group members (iterate through staff and students). Probably one to cache at System or collection level?
+   --5 - #TODO: [c] Move all nav blocks to auth by user.
+   --6 - #TODO: [d] Move auth to separate library, including get user code. Make GAE agnostic, with GAE interface to user in DAL_User library further included in DAL.
+   --10 - #TODO: [d] Explore http://demos.kendoui.com/dataviz/scatter-charts/scatter-line.html as alternative to jqPlot.
+   --11 - #TODO: [i] Make sure all renderings have accessible alternatives (e.g. JS rendered as per http://jspro.com/raw-javascript/javascript-accessibility-101/). Optional parameter to analysis.render() call could be accessibilty=text, where default = false. If true, text alternatives rendered alongside.
+   --12 - #TODO: [d] Explore processing.js as alternative to jqPlot.
+   --13 - #TODO: [e] Move rendering of charts and analysis to separate Python classes and file. NOT edu objects!
+   --14 - #TODO: [i] Use NC (National Strategy?) colours! E.g. if rendering English, use Yellow. Means that matches user expectations.
+   --18 - #TODO: [d] Add distribute to email (requires email property on staff).
+   --19 - #TODO: [i] Add non-staff distribution contacts (both inherit from superclass or use aggregation).
+   --20 - #TODO: [d] Add single PDF output - where items for same person are in order, with either (a) footer identifying who it is for, or (b) coversheet with list of pages and who it is for.
+   --23 - #TODO: [d] Get tutor group members (iterate through staff and students). Probably one to cache at System or collection level?
+   --31 - #TODO: [i] Map to image map http://www.algonet.se/~ug/html+pycgi/img.html
   system.py
    --12 - #TODO: [e] Check status of unit test strut here?
    --14 - self.version = "alpha" #TODO: [d] Get version number here.
-   --16 - self.passedUnitTests = False #TODO: [d] Get version number here.
-   --48 - #TODO: [c] Add owner, referenceURI, prerequisites[], (more next lines-->)
-   --72 - #TODO: [e] Prerequisite metrics.
+   --15 - #TODO: [e] On process dataset, update calculationVersion of the Dataset. If calculationVersion != edsystem.version, then recalc dataset?
+   --16 - self.githublink = "" #TODO: [i] Necessary?
+   --17 - self.passedUnitTests = False #TODO: [e] Get most recent unit test outcomes (from dev_unittestoutcomes() ).
+   --49 - #TODO: [c] Add owner, referenceURI, prerequisites[], (more next lines-->)
+   --73 - #TODO: [e] Prerequisite metrics.
   testdata.py
    --4 - #TODO: Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
   testing.py
-   --11 - #TODO: [i] Make sure that use singular versions of assert tests (assertEqual, NOT assertEquals *S), as these undocumented versions violate single way principle, as per http://stackoverflow.com/a/931011
-   --12 - #TODO: [e] After this, save to .txt file. Will most likely need 'live' tests stored separately, as won't be able to write to a file in the filesystem on GAE.
+   --32 - #TODO: [i] Make sure that use singular versions of assert tests (assertEqual, NOT assertEquals *S), as these undocumented versions violate single way principle, as per http://stackoverflow.com/a/931011
+   --33 - #TODO: [e] After this, save to .txt file. Will most likely need 'live' tests stored separately, as won't be able to write to a file in the filesystem on GAE.
   codeanalysis.py
    --2 - # TODO: [d] see page 8 of python data vis.
    --3 - # TODO: [e] Write file size metrics.
@@ -87,22 +109,44 @@
    --366 - print (lineB), #TODO: [i] Replace these with stdout calls. print(string), <-- with trailing comma just smells bad to me. Makes it look unfinished.
    --374 - #TODO: [d]Check against http://stackoverflow.com/questions/2666863/list-to-csv-in-python
    --399 - Switch for iterating through types of TODO items. [notrack]
-   --474 - #HACK: [i] This works, but it means that we can't see where the TODO came from.
-   --486 - #TODO: [d] Remove all these debug strings.
-   --543 - #TODO: [i] I only needed to duplicate handleResults because it wasn't broken down enough. Refactor these.
-   --642 - #TODO: [i] Use jqPlot (or current js render library) to plot line comparison of LoC and TODO items.
-   --642 - #TODO: [i] Use jqPlot (or current js render library) to plot line comparison of LoC and TODO items.
-   --720 - # TODO: [d] should build this function into a unit test suite. every time we do a full check, we also log code review.
-   --722 - # TODO: [i] if new metrics added, update previous rows? Impossible?
-   --729 - #TODO: Change the path addition to only append if not already in path?
-   --751 - fileIgnoreList = ["codeanalysis.html"] #TODO: ignore imported non-project files (Add at later date. This file should be done fairly early in project (before lit review finished)).
-   --798 - #TODO: [e]Write to PDF.
+   --443 - #TODO: [i] Open HTML page, and/or export to PDF.
+   --475 - #HACK: [i] This works, but it means that we can't see where the TODO came from.
+   --487 - #TODO: [d] Remove all these debug strings.
+   --544 - #TODO: [i] I only needed to duplicate handleResults because it wasn't broken down enough. Refactor these.
+   --643 - #TODO: [i] Use jqPlot (or current js render library) to plot line comparison of LoC and TODO items.
+   --643 - #TODO: [i] Use jqPlot (or current js render library) to plot line comparison of LoC and TODO items.
+   --721 - # TODO: [d] should build this function into a unit test suite. every time we do a full check, we also log code review.
+   --723 - # TODO: [i] if new metrics added, update previous rows? Impossible?
+   --730 - #TODO: Change the path addition to only append if not already in path?
+   --752 - fileIgnoreList = ["codeanalysis.html"] #TODO: ignore imported non-project files (Add at later date. This file should be done fairly early in project (before lit review finished)).
+   --799 - #TODO: [e]Write to PDF.
+  formfiller.py
+   --122 - pass # TODO: part of "option without value= attribute" processing
+  htmlserializer.py
+   --230 - #TODO: Add namespace support here
+  test_sanitizer.py
+   --29 - continue ### TODO
+   --31 - continue ### TODO
+   --56 - if attribute_name != attribute_name.lower(): continue ### TODO
+  test_tokenizer.py
+   --85 - # TODO: convert tests to reflect arrays
+  test_treewalkers.py
+   --199 - #TODO: Remove this if statement, attrs should always exist
+   --235 - pass # TODO: what to do with errors?
+  _base.py
+   --20 - #TODO: treewalkers should always have attrs
+  aboutme.html
+   --27 - <!-- #TODO: [i] Also see http://careers.stackoverflow.com/uk/cv/edit/16289 -->
   precommit.py
    --3 - #TODO: [e] Run codeanalysis.
    --4 - #TODO: [i] Probably move codeanalysis in here.
   predeploy.py
-   --3 - #TODO: [e] Load test strut and check unit tests.
-   --4 - #TODO: [e] Run code analysis.
-   --5 - #TODO: [i] Make change to app.yaml?
-   --6 - #TODO: [e] Make local backup.
-   --8 - #TODO: [i] Explore some performance testing. Possible to use http://jspro.com/apis/profiling-page-loads-with-the-navigation-timing-api/ OR http://jspro.com/apis/discovering-the-high-resolution-time-api/ ? Would need to do postdeploy, probably.
+   --5 - #TODO: [c] Load test strut and check unit tests.
+   --6 - #TODO: [c] If tests fail, do not deploy (if you really want to deploy with a failed test (bad, bad practice), can use the GAE Launcher instead.
+   --7 - #TODO: [i] Make change to app.yaml?
+   --8 - #TODO: [c] Change to deploy, and add line to deploy using dataforschools admin email account.
+   --9 - #TODO: [e] Run code analysis.
+   --10 - #TODO: [i] Make change to app.yaml?
+   --11 - #TODO: [d] Make local backup.
+   --13 - #TODO: [e] Do not deploy if critical items exist (once past initial development).
+   --15 - #TODO: [i] Explore some performance testing. Possible to use http://jspro.com/apis/profiling-page-loads-with-the-navigation-timing-api/ OR http://jspro.com/apis/discovering-the-high-resolution-time-api/ ? Would need to do postdeploy, probably.

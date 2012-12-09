@@ -55,8 +55,18 @@ class School_Tests(unittest.TestCase):
     self.modelCreatedUsingDefaults  = School()
     self.modelExpectedUsingDefaults = School(name='Empty School Name', description='Empty School Description.', urn=0)
   def test_model_created_using_defaults_matches_expected_defaults(self): 
-    user = User(email = "test@foo.com") 
     self.assertEquals(self.modelCreatedUsingDefaults, self.modelExpected)
+
+class Student_Tests(unittest.TestCase):
+  def __init__(self):    
+    self.modelCreatedUsingDefaults  = Student()
+    #self.modelExpectedUsingDefaults = Student(name='Empty School Name', description='Empty School Description.', urn=0) #TODO: Test against defaults [test].
+  def test_model_created_using_defaults_matches_expected_defaults(self): 
+    self.assertEquals(self.modelCreatedUsingDefaults, self.modelExpected)
+  def test_attendance_not_below_0(self): 
+    self.assertAbove(self.modelCreatedUsingDefaults.attendance, 0)  
+  def test_attendance_not_above_100(self): 
+    self.assertBelow(self.modelCreatedUsingDefaults.attendance, 100)  
 
 def doUnitTests():
   pass

@@ -693,3 +693,80 @@
 +  #TODO: [i] Make sure that use singular versions of assert tests (assertEqual, NOT assertEquals *S), as these undocumented versions violate single way principle, as per http://stackoverflow.com/a/931011
 +  #TODO: [e] After this, save to .txt file. Will most likely need 'live' tests stored separately, as won't be able to write to a file in the filesystem on GAE.
 
+
+2012-12-09 16:56:57.361000
+-  dataset = db.Dataset #TODO: [c] This is the parent dataset. Each dataset will have multiple datasetsources. This MUST be a reference property.
+-  #inheritSource = db.Dataset  #TODO: [e] Inherit dataset. Is this nullable, or should it be the parent dataset as default?
++  inheritSource = db.ReferenceProperty(Dataset, verbose_name="Inheriting-From Dataset", collection_name='sourcesThatInherit')  #TODO: [e] Inherit dataset. Is this nullable, or should it be the parent dataset as default? See https://developers.google.com/appengine/articles/modeling
+-  #fileSource = file #TODO: [d] Ideally, keep data with the dataset. Thus export of dataset = 'for each dataset source, save to file'.
++  #fileSource = file #TODO: [d] Ideally, keep data with the dataset. Thus export of dataset = 'for each dataset source, save to file'. See https://developers.google.com/appengine/docs/python/blobstore/blobinfoclass
++  #TODO: [c] A DatasetSource can only inherit from EITHER inheritSource OR fileSource. Filesource should take priority. When either is changed, entity should be verified.
++  #TODO: [e] Exclude libraries from tests.
++  #TODO: [c] Move School_Test to tests folder
++  #self.modelExpectedUsingDefaults = Student(name='Empty School Name', description='Empty School Description.', urn=0) #TODO: Test against defaults [test].
+-  #TODO: [e] add classes (arr)
++ - #TODO: [e] add classes (arr)
+-  ownerUserID = db.StringProperty(default='') #TODO: [d] Check this one. See GApps Reference.
++ - ownerUserID = db.StringProperty(default='') #TODO: [d] Check this one. See GApps Reference.
+-  #TODO: [i] NEXT STEP: How to put in the school? What is the key for? How to retrieve?
++ - #TODO: [i] NEXT STEP: How to put in the school? What is the key for? How to retrieve?
++ l_sources.py
++  #TODO: [d] See http://www.ehow.co.uk/how_8521125_use-html5lib-python.html
++  #TODO: [c] Use edubase scrape functions as start point.
++ - <!-- #TODO: [i] Slider for demoing possible exploration data... http://wowslider.com/css-slider-aqua-flip-demo.html . Use prelogin, but possibly as way of doing tutorial too... Acts as quick overview, and allows immediate access to kind of analysis the user identifies as being of interest... -->
++ 
++  guestbook_key(guestbook_name)).order('-date') #TODO: [i] Remove.
++  greetings = greetings_query.fetch(10) #TODO: [i] Remove.
++  #TODO: [c] Here, get user access rights (currently adding admin rights to all logged in users) from a group in datastore. Most likely move whole function to auth library.
++ - <li class=\"primarynav\" id=\"admin-datasetexplorer\">  <a href=\"#\">Dataset Explorer</a></li> <!-- #TODO: [e] Visual view of datasets. Add datasets from here (including descriptive only datasets). Consider using http://timeline.verite.co/  -->
++ - class Guestbook(webapp2.RequestHandler): #TODO: [i] Remove.
++ - System = EdSystem  #TODO: [i] Consider which aspects of this file need moving to the system object.
++ - def main():  #TODO: [i] This is not being called - mainpage is doing all this, handled by the routing. Look at what should be part of this, and remove unnecessary parts [refactor].
++ #TODO: [c] Move all nav blocks to auth by user.
++ #TODO: [d] Move auth to separate library, including get user code. Make GAE agnostic, with GAE interface to user in DAL_User library further included in DAL.
+- #TODO: [d] Explore http://demos.kendoui.com/dataviz/scatter-charts/scatter-line.html as alternative to jqPlot.
++  #TODO: [d] Explore http://demos.kendoui.com/dataviz/scatter-charts/scatter-line.html as alternative to jqPlot.
++  #TODO: [i] Make sure all renderings have accessible alternatives (e.g. JS rendered as per http://jspro.com/raw-javascript/javascript-accessibility-101/). Optional parameter to analysis.render() call could be accessibilty=text, where default = false. If true, text alternatives rendered alongside.
+- #TODO: [d] Explore processing.js as alternative to jqPlot.
++  #TODO: [d] Explore processing.js as alternative to jqPlot.
+- #TODO: [e] Move rendering of charts and analysis to separate Python classes and file. NOT edu objects!
++  #TODO: [e] Move rendering of charts and analysis to separate Python classes and file. NOT edu objects!
++  #TODO: [i] Use NC (National Strategy?) colours! E.g. if rendering English, use Yellow. Means that matches user expectations.
+- #TODO: [d] Add distribute to email (requires email property on staff).
++  #TODO: [d] Add distribute to email (requires email property on staff).
++  #TODO: [i] Map to image map http://www.algonet.se/~ug/html+pycgi/img.html
+-  self.passedUnitTests = False #TODO: [d] Get version number here.
++  #TODO: [e] On process dataset, update calculationVersion of the Dataset. If calculationVersion != edsystem.version, then recalc dataset?
++  self.githublink = "" #TODO: [i] Necessary?
++  self.passedUnitTests = False #TODO: [e] Get most recent unit test outcomes (from dev_unittestoutcomes() ).
++ - #TODO: [i] Open HTML page, and/or export to PDF.
++ ler.py
++ - pass # TODO: part of "option without value= attribute" processing
++ ializer.py
++ - #TODO: Add namespace support here
++ nitizer.py
++  continue ### TODO
++  continue ### TODO
++  if attribute_name != attribute_name.lower(): continue ### TODO
++ kenizer.py
++  # TODO: convert tests to reflect arrays
++ eewalkers.py
++ - #TODO: Remove this if statement, attrs should always exist
++ - pass # TODO: what to do with errors?
++ y
++  #TODO: treewalkers should always have attrs
++ .html
++  <!-- #TODO: [i] Also see http://careers.stackoverflow.com/uk/cv/edit/16289 -->
+- #TODO: [e] Load test strut and check unit tests.
++ #TODO: [c] Load test strut and check unit tests.
++ #TODO: [c] If tests fail, do not deploy (if you really want to deploy with a failed test (bad, bad practice), can use the GAE Launcher instead.
++ #TODO: [i] Make change to app.yaml?
++ #TODO: [c] Change to deploy, and add line to deploy using dataforschools admin email account.
+- #TODO: [i] Make change to app.yaml?
++  #TODO: [i] Make change to app.yaml?
+- #TODO: [e] Make local backup.
++  #TODO: [d] Make local backup.
++  #TODO: [e] Do not deploy if critical items exist (once past initial development).
+- #TODO: [i] Explore some performance testing. Possible to use http://jspro.com/apis/profiling-page-loads-with-the-navigation-timing-api/ OR http://jspro.com/apis/discovering-the-high-resolution-time-api/ ? Would need to do postdeploy, probably.
++  #TODO: [i] Explore some performance testing. Possible to use http://jspro.com/apis/profiling-page-loads-with-the-navigation-timing-api/ OR http://jspro.com/apis/discovering-the-high-resolution-time-api/ ? Would need to do postdeploy, probably.
+
