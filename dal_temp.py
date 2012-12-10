@@ -4,10 +4,10 @@ from datetime import datetime
 from google.appengine.ext import db
 from edu_objects import *
 from dal import *
-from testdata import *
+#from testdata import *
 
 @db.transactional
-def testSchoolSetup():
+def tempSchoolSetup():
   retString = ""
   
   datasetRefDate = (datetime(2000,1,1))
@@ -16,11 +16,11 @@ def testSchoolSetup():
 
 
 
-  schoolA = School(key_name="Test School A", parent=dataset, schoolName="Test School A", schoolDescription="Descrip here for school A.")
+  schoolA = School(key_name="Test School A", parent=dataset, name="Test School A", description="Descrip here for school A.")
   schoolA.put()
-  schoolB = School(key_name="Test School B", parent=dataset, schoolName="Test School B", schoolDescription="Descrip here for school B.")
+  schoolB = School(key_name="Test School B", parent=dataset, name="Test School B", description="Descrip here for school B.")
   schoolB.put()
-  schoolC = School(key_name="Test School C", parent=dataset, schoolName="Test School C", schoolDescription="Descrip here for school C.")
+  schoolC = School(key_name="Test School C", parent=dataset, name="Test School C", description="Descrip here for school C.")
   schoolC.put()
   #A is mixed, B is girls, C is boys.
   schools     =[schoolA, schoolB, schoolC]
@@ -32,16 +32,16 @@ def testSchoolSetup():
     for i in range(1, x):
       studKey = "GenStudKey-" + str(i) + "-" + str(n) 
       thisSchool = schools[n]
-      thisStud = Student(parent = thisSchool, key_name=str(studKey), studentName = "Student " + str(i), studentYear = random.randint(7,11))
+      thisStud = Student(parent = thisSchool, key_name=str(studKey), name = "Student " + str(i), year = random.randint(7,11))
       try:
         currentSchoolPuts.append(thisStud)
         #thisStud.put()
       except:
-        retString+= "<p>Failed to add: (" + str(thisStud.key()) + ") " + thisStud.studentName + "</p>"      
+        retString+= "<p>Failed to add: (" + str(thisStud.key()) + ") " + thisStud.name + "</p>"      
     db.put(currentSchoolPuts) #Add all appended students in the current school.
-  """   studB = Student(key_name="0994493", studentName = "Jim Jones", studentYear = 7)
+  """   studB = Student(key_name="0994493", name = "Jim Jones", year = 7)
     studB.put()
-    studC = Student(parent = thisSchool, key_name="099753", studentName = "Sally Stephenson", studentYear = 8)
+    studC = Student(parent = thisSchool, key_name="099753", name = "Sally Stephenson", year = 8)
     studC.put()
   """
   
@@ -49,9 +49,9 @@ def testSchoolSetup():
   test_query = Student.all()
   test_query.ancestor(dataset)
   
-  retString+="<p>"+str(schoolA.schoolName) +"</p>"
+  retString+="<p>"+str(schoolA.name) +"</p>"
   for item in test_query.run(limit=50):
-    retString+= "<p>(" + str(item.key()) + ") " + str(item.studentName) + "</p>"
+    retString+= "<p>(" + str(item.key()) + ") " + str(item.name) + "</p>"
   #memcache.flush_all()
   return retString
 
@@ -59,14 +59,14 @@ def DALReturnAllSchools():
   test_query = School.all()
   retString = "<p>Schools (max 50):</p>"
   for item in test_query.run(limit=50):
-    retString+="<p> "+str(item.schoolName) +"</p>" 
+    retString+="<p> "+str(item.name) +"</p>" 
   return retString
 
 def DALReturnAllStudents():
   q = db.GqlQuery("SELECT * FROM Student")
   retString = "<p>Students (max 50):</p>"
   for item in q.run(limit=50):
-    retString+="<p>"+str(item.studentName) +"</p>" 
+    retString+="<p>"+str(item.name) +"</p>" 
   return retString
 
 def datasets_plotbydate():
@@ -92,7 +92,7 @@ def datasets_plotbydate():
     qq = db.GqlQuery("SELECT * FROM School WHERE ANCESTOR IS :1", dataset.key())
     for item in qq.run(limit=50):
       retString += "<p class=\"school\">"
-      retString += str(item.schoolName)
+      retString += str(item.name)
       retString += "</p>"
     retString+="</div>"
   else:
@@ -104,7 +104,7 @@ def school_addstudent_test():
   #TODO: Change name of function, incorrect!
   returnString = ""
   #thisSchool = School()
-  #thisSchool.schoolName = "GCS"
+  #thisSchool.name = "GCS"
   #thisSchool.schoolDescription = 
 	#	So, a school, huh?
 	#
@@ -117,9 +117,16 @@ def school_addstudent_test():
   schools = db.GqlQuery("SELECT * "
                       "FROM School")
   for school in schools:
-    returnString += '<p><b>%s</b> exists: </p>' % school.schoolName
+    returnString += '<p><b>%s</b> exists: </p>' % school.name
   return returnString
 
+def ReturnRandomSchool():  
+  #Not really random, just a way of getting a school.
+  #TODO: [e] Currently returns first item.
+  test_query = School.all()
+  for item in test_query.run(limit=1):
+    return item
+  
 def students_ofSchool(eSchool):
   returnString=""
   q = db.query_descendants(eSchool) 

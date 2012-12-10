@@ -166,7 +166,7 @@ app = webapp2.WSGIApplication([
       #webapp2.Route('/login', handler=Login, name = 'Login'), #Comment this line out to skip login to anonymous. 
       webapp2.Route('/dev/ajaxtest', handler=DevSchoolList, name = 'DevSchoolList'),
       webapp2.Route('/dev/crudtest', handler=CRUDTest_GDS, name = 'CRUDTest_GDS'),
-      webapp2.Route('/<:(dev)>/<:(pdftest)>', handler=ObjectRequestHandler, name = 'objectrequest'),
+      webapp2.Route('/<:(dev)>/<:(pdftemp)>', handler=ObjectRequestHandler, name = 'objectrequest'),
       webapp2.Route('/<:(admin|assessment|school|student|behaviour|curriculum|attendance|dev|extension|fragment)>/<:[a-z]*>', handler=HTMLRequestHandler, name='analysis'),      
       webapp2.Route('/<:dev>/<:addschool>', handler=HTMLRequestHandler, name = 'addschool'),
       ], config=config)

@@ -28,7 +28,7 @@ def School_Create(cSchool):
   if cSchool.schoolName:    
     #CREATE LOGIC HERE
     cSchool.put() #If school already exists, should replace.
-    logging.info("DAL: Created School. (" + cSchool.schoolName + ")")
+    logging.info("DAL: Created School. (" + cSchool.name + ")")
     logging.debug("School entry: " + str(cSchool))
   else:
-    logging.info("DAL: Could not create school. (" + cSchool + ")") #Assumes passed object has a str method defined.
+    logging.info("DAL: Could not create school. (" + str(cSchool) + ")") #Assumes passed object has a str method defined.

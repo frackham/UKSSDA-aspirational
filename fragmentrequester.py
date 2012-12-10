@@ -26,11 +26,12 @@ import jinja2
 import sys
 
 sys.path.insert(0, 'reportlab.zip') #enables import of reportlab
+import reportlab
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.lib.pagesizes import letter, A4
 #import renderpdf
-import reportlab
+
 folderFonts = os.path.dirname(reportlab.__file__) + os.sep + 'fonts'
 
 import unittest
@@ -41,7 +42,7 @@ from google.appengine.api import users
 
 from edu_objects import *
 from external_sources import *
-from dal_test import *
+from dal_temp import *
 from dal import *
 
 jinja_environment = jinja2.Environment(
@@ -64,7 +65,7 @@ class ObjectRequestHandler(webapp2.RequestHandler):
       #p.drawString(50, 600, 'DarkGarden font loaded from reportlab.zip')
       p.showPage()
       self.response.headers['Content-Type'] = 'application/pdf'
-      self.response.headers['Content-Disposition'] = 'attachment; filename=testpdf.pdf' #Added attachment content-disposition as per Jokob Nielsen's usability recommendation. http://www.useit.com/alertbox/open_new_windows.html 
+      self.response.headers['Content-Disposition'] = 'attachment; filename=temppdf.pdf' #Added attachment content-disposition as per Jokob Nielsen's usability recommendation. http://www.useit.com/alertbox/open_new_windows.html 
       p.save()
       #Up to here needs pulling out. All of it assumes a PDF object.
       
@@ -169,10 +170,10 @@ def dev_listschools():
   return DALReturnAllSchools()
 
 def dev_addschool():
-  return school_addstudent_test()
+  return school_addstudent_temp()
 
-def dev_loadteststrut():
-  return testSchoolSetup()
+def dev_loadtempstrut():
+  return tempSchoolSetup()
 
 def dev_addstudenttoschool():
   return "dev_addstudenttoschool CALLED!"   
@@ -180,7 +181,7 @@ def dev_addstudenttoschool():
 def dev_listallstudents():
   return DALReturnAllStudents()
   
-def dev_pdftest():
+def dev_pdftemp():
   return "PDF!!"
 
 def dev_unittestoutcomes():
@@ -190,7 +191,7 @@ def fragment_schoollist():
   return demo_DALDataStoreQuery()  
 
 def fragment_schoolcount():
-  return testSchoolSetup()
+  return tempSchoolSetup()
   
 def extension_edubase():
   return scrape_edubase()
