@@ -9,8 +9,6 @@
   <h2>Bug</h2>
   <p class="Bug source">index.html</p>
   <p class="Bug">--&lt;!-- #BUG: Status header (#headerstatus) displays inconsistently across browsers.  --&gt;</p>
-  <p class="Bug source">testing.py</p>
-  <p class="Bug">--#BUG: [c] Checks whole OS system, not just this app :/</p>
   <p class="Bug source">codeanalysis.py</p>
   <p class="Bug">--# BUG: [i] In CSV record, items closed always = 0.</p>
   <p class="Bug">--#BUG: Does not pick up 'TODO' items where square brackets immediately follow colon (e.g. TODO:(e) using [] ).</p>
@@ -25,15 +23,14 @@
   <p class="Critical">--#TODO: [c] Move School_Test to tests folder</p>
   <p class="Critical source">external_sources.py</p>
   <p class="Critical">--#TODO: [c] Use edubase scrape functions as start point.</p>
+  <p class="Critical source">mailhandler.py</p>
+  <p class="Critical">--#TODO: [c] Amend code here [refactor].</p>
   <p class="Critical source">main.py</p>
   <p class="Critical">--#TODO: [c] Here, get user access rights (currently adding admin rights to all logged in users) from a group in datastore. Most likely move whole function to auth library.</p>
   <p class="Critical source">othertodo.py</p>
   <p class="Critical">--#TODO: [c] Move all nav blocks to auth by user.</p>
   <p class="Critical source">system.py</p>
   <p class="Critical">--#TODO: [c] Add owner, referenceURI, prerequisites[], (more next lines--&gt;)</p>
-  <p class="Critical source">testing.py</p>
-  <p class="Critical">--#unittest.TestCase.assertEqual(a, b)#TODO: [c] Placeholder for unit test strut setup, test, teardown.</p>
-  <p class="Critical">--#BUG: [c] Checks whole OS system, not just this app :/</p>
   <p class="Critical source">codeanalysis.py</p>
   <p class="Critical">--#FIXED: [c]Currently appending CSV row record to existing entry. Does it need a manual newline character adding? THINK FIXED. BINARY MODE!</p>
   <p class="Critical">--#BUG: [c] Resolve pypdf import issues OR find alternative library.</p>
@@ -45,6 +42,8 @@
  <div id="Essentialwrapper">
  <br/>
   <h2>Essential</h2>
+  <p class="Essential source">dal_temp.py</p>
+  <p class="Essential">--#TODO: [e] Currently returns first item.</p>
   <p class="Essential source">edu_objects.py</p>
   <p class="Essential">--#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p>
   <p class="Essential">--dateOfReference = db.DateTimeProperty(auto_now_add=True)# Indicates the date that the dataset refers to. This is what shows on the timeline! #TODO: [e] Default dataset dateofreference is now(). Using auto_now_add=True for the moment.</p>
@@ -76,8 +75,6 @@
   <p class="Essential">--#TODO: [e] On process dataset, update calculationVersion of the Dataset. If calculationVersion != edsystem.version, then recalc dataset?</p>
   <p class="Essential">--self.passedUnitTests = False #TODO: [e] Get most recent unit test outcomes (from dev_unittestoutcomes() ).</p>
   <p class="Essential">--#TODO: [e] Prerequisite metrics.</p>
-  <p class="Essential source">testing.py</p>
-  <p class="Essential">--#TODO: [e] After this, save to .txt file. Will most likely need 'live' tests stored separately, as won't be able to write to a file in the filesystem on GAE.</p>
   <p class="Essential source">codeanalysis.py</p>
   <p class="Essential">--# TODO: [e] Write file size metrics.</p>
   <p class="Essential">--# TODO: [e] Write file created metrics.</p>

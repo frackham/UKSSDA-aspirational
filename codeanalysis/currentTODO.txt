@@ -1,7 +1,8 @@
   404.html
    --152 - <!-- #TODO: [d] Update 404 -->
-  dal_test.py
+  dal_temp.py
    --104 - #TODO: Change name of function, incorrect!
+   --125 - #TODO: [e] Currently returns first item.
   edu_objects.py
    --9 - #TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses
    --12 - #TODO: [i] Use ReferenceProperty for one to many relationship. https://developers.google.com/appengine/articles/modeling
@@ -34,14 +35,18 @@
    --18 - #TODO: [d] See http://www.ehow.co.uk/how_8521125_use-html5lib-python.html
    --31 - #TODO: [c] Use edubase scrape functions as start point.
   fragmentrequester.py
-   --57 - #TODO: [e] The whole of this if branch needs moving out into a separate object handler - ideally, we should be able to get the type of handler required from the handlerName (or passed as other argument).
-   --61 - #p.drawImage('dog.jpg', 150, 400) #TODO: [d] This is how you return an image dynamically. See reportlab documentation.
-   --72 - #TODO: [e] Add test of object *returned by handler function*, in order to return it using the right methods of self.response().
-   --88 - #TODO: [e] Only works if returning a string.
+   --58 - #TODO: [e] The whole of this if branch needs moving out into a separate object handler - ideally, we should be able to get the type of handler required from the handlerName (or passed as other argument).
+   --62 - #p.drawImage('dog.jpg', 150, 400) #TODO: [d] This is how you return an image dynamically. See reportlab documentation.
+   --73 - #TODO: [e] Add test of object *returned by handler function*, in order to return it using the right methods of self.response().
+   --89 - #TODO: [e] Only works if returning a string.
+  gendata.py
+   --4 - #TODO: Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
   index.html
    --67 - <!-- #TODO: [d] POPULATE in Jinja2  ... (for item in userNavItems) -->
    --155 - <!-- #TODO: [i] Slider for demoing possible exploration data... http://wowslider.com/css-slider-aqua-flip-demo.html . Use prelogin, but possibly as way of doing tutorial too... Acts as quick overview, and allows immediate access to kind of analysis the user identifies as being of interest... -->
    --167 - <div id="developerlinks"> <!-- #TODO: [d] Hide in live mode -->
+  mailhandler.py
+   --9 - #TODO: [c] Amend code here [refactor].
   main.py
    --53 - guestbook_key(guestbook_name)).order('-date') #TODO: [i] Remove.
    --54 - greetings = greetings_query.fetch(10) #TODO: [i] Remove.
@@ -71,11 +76,6 @@
    --17 - self.passedUnitTests = False #TODO: [e] Get most recent unit test outcomes (from dev_unittestoutcomes() ).
    --49 - #TODO: [c] Add owner, referenceURI, prerequisites[], (more next lines-->)
    --73 - #TODO: [e] Prerequisite metrics.
-  testdata.py
-   --4 - #TODO: Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
-  testing.py
-   --32 - #TODO: [i] Make sure that use singular versions of assert tests (assertEqual, NOT assertEquals *S), as these undocumented versions violate single way principle, as per http://stackoverflow.com/a/931011
-   --33 - #TODO: [e] After this, save to .txt file. Will most likely need 'live' tests stored separately, as won't be able to write to a file in the filesystem on GAE.
   codeanalysis.py
    --2 - # TODO: [d] see page 8 of python data vis.
    --3 - # TODO: [e] Write file size metrics.

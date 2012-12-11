@@ -770,3 +770,18 @@
 - #TODO: [i] Explore some performance testing. Possible to use http://jspro.com/apis/profiling-page-loads-with-the-navigation-timing-api/ OR http://jspro.com/apis/discovering-the-high-resolution-time-api/ ? Would need to do postdeploy, probably.
 +  #TODO: [i] Explore some performance testing. Possible to use http://jspro.com/apis/profiling-page-loads-with-the-navigation-timing-api/ OR http://jspro.com/apis/discovering-the-high-resolution-time-api/ ? Would need to do postdeploy, probably.
 
+
+2012-12-11 00:24:30.333000
+- t.py
++ p.py
++ - #TODO: [e] Currently returns first item.
++ .py
++ #TODO: Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
++ dler.py
++ #TODO: [c] Amend code here [refactor].
+- a.py
+- #TODO: Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
+- .py
+-  #TODO: [i] Make sure that use singular versions of assert tests (assertEqual, NOT assertEquals *S), as these undocumented versions violate single way principle, as per http://stackoverflow.com/a/931011
+-  #TODO: [e] After this, save to .txt file. Will most likely need 'live' tests stored separately, as won't be able to write to a file in the filesystem on GAE.
+
