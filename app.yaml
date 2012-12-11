@@ -2,7 +2,7 @@ application: fr-testapp
 version: 15
 runtime: python27
 api_version: 1
-threadsafe: yes
+threadsafe: true
 
 handlers:
 - url: /favicon\.ico
@@ -35,11 +35,18 @@ handlers:
 
 - url: /staticpages
   static_dir: staticpages
+  
+- url: /_ah/mail/.+
+  script: mailhandler.app
+  login: admin
 
 - url: .*
   script: main.app
 
   
+inbound_services:
+- mail
+
 libraries:
 - name: webapp2
   version: "2.5.1"
