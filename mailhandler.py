@@ -8,10 +8,12 @@
 #Using http://stackoverflow.com/questions/616889/parsing-incoming-mail-with-google-app-engine 
 #TODO: [c] Amend code here [refactor].
 import logging
-from google.appengine.ext import webapp 
+from google.appengine.ext import webapp2 
 from google.appengine.ext.webapp.mail_handlers import InboundMailHandler 
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.api import mail
+
+
 
 #subject contains the message subject.
 #sender is the sender's email address.
@@ -27,5 +29,5 @@ class mailhandler(InboundMailHandler):
     def receive(self, mail_message):
         logging.info("Received a message from: " + mail_message.sender)
 
-        
+logging.info("Received an email. Setting up app to handle...")        
 app = webapp2.WSGIApplication([mailhandler.mapping()], debug=True)

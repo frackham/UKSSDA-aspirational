@@ -43,7 +43,7 @@ from google.appengine.api import users
 from edu_objects import *
 from external_sources import *
 from dal_temp import *
-from dal import *
+from data.dal import *
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))

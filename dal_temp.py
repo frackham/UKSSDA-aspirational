@@ -3,7 +3,7 @@ import random
 from datetime import datetime
 from google.appengine.ext import db
 from edu_objects import *
-from dal import *
+from data.dal import *
 #from testdata import *
 
 @db.transactional

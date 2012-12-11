@@ -25,6 +25,9 @@ from developer import *
 from fragmentrequester import *
 from system import *
 
+from mail.relativeimport import relimport_demo
+relimport_demo() #TODO: [e] Use this pattern to refactor project. 
+
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
