@@ -80,6 +80,7 @@ class HTMLRequestHandler(webapp2.RequestHandler):
     self.response.out.write("!!post!!")
   def get(self, category, subcategory):
     logging.info("Page request: GlobalRequestHandler:" + category + ":" + subcategory)
+    logging.info(self.request.path) #TODO: This returns the path requested, so might be a better way of handling this [refactor].
     #self.response.out.write("!!GlobalRequestHandler from regex!:" + category + ":" + subcategory)
     #self.response.out.write("  Settings:" )
     #self.response.out.write("    Anonymised Mode:" + self.app.config['anonymisedmode'])

@@ -785,3 +785,8 @@
 -  #TODO: [i] Make sure that use singular versions of assert tests (assertEqual, NOT assertEquals *S), as these undocumented versions violate single way principle, as per http://stackoverflow.com/a/931011
 -  #TODO: [e] After this, save to .txt file. Will most likely need 'live' tests stored separately, as won't be able to write to a file in the filesystem on GAE.
 
+
+2012-12-11 23:30:28.810000
++  logging.info(self.request.path) #TODO: This returns the path requested, so might be a better way of handling this [refactor].
++  relimport_demo() #TODO: [e] Use this pattern to refactor project.
+

@@ -38,7 +38,8 @@
    --58 - #TODO: [e] The whole of this if branch needs moving out into a separate object handler - ideally, we should be able to get the type of handler required from the handlerName (or passed as other argument).
    --62 - #p.drawImage('dog.jpg', 150, 400) #TODO: [d] This is how you return an image dynamically. See reportlab documentation.
    --73 - #TODO: [e] Add test of object *returned by handler function*, in order to return it using the right methods of self.response().
-   --89 - #TODO: [e] Only works if returning a string.
+   --83 - logging.info(self.request.path) #TODO: This returns the path requested, so might be a better way of handling this [refactor].
+   --90 - #TODO: [e] Only works if returning a string.
   gendata.py
    --4 - #TODO: Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
   index.html
@@ -48,13 +49,14 @@
   mailhandler.py
    --9 - #TODO: [c] Amend code here [refactor].
   main.py
-   --53 - guestbook_key(guestbook_name)).order('-date') #TODO: [i] Remove.
-   --54 - greetings = greetings_query.fetch(10) #TODO: [i] Remove.
-   --90 - #TODO: [c] Here, get user access rights (currently adding admin rights to all logged in users) from a group in datastore. Most likely move whole function to auth library.
-   --108 - <li class=\"primarynav\" id=\"admin-datasetexplorer\">  <a href=\"#\">Dataset Explorer</a></li> <!-- #TODO: [e] Visual view of datasets. Add datasets from here (including descriptive only datasets). Consider using http://timeline.verite.co/  -->
-   --138 - class Guestbook(webapp2.RequestHandler): #TODO: [i] Remove.
-   --173 - System = EdSystem  #TODO: [i] Consider which aspects of this file need moving to the system object.
-   --176 - def main():  #TODO: [i] This is not being called - mainpage is doing all this, handled by the routing. Look at what should be part of this, and remove unnecessary parts [refactor].
+   --29 - relimport_demo() #TODO: [e] Use this pattern to refactor project.
+   --56 - guestbook_key(guestbook_name)).order('-date') #TODO: [i] Remove.
+   --57 - greetings = greetings_query.fetch(10) #TODO: [i] Remove.
+   --93 - #TODO: [c] Here, get user access rights (currently adding admin rights to all logged in users) from a group in datastore. Most likely move whole function to auth library.
+   --111 - <li class=\"primarynav\" id=\"admin-datasetexplorer\">  <a href=\"#\">Dataset Explorer</a></li> <!-- #TODO: [e] Visual view of datasets. Add datasets from here (including descriptive only datasets). Consider using http://timeline.verite.co/  -->
+   --141 - class Guestbook(webapp2.RequestHandler): #TODO: [i] Remove.
+   --176 - System = EdSystem  #TODO: [i] Consider which aspects of this file need moving to the system object.
+   --179 - def main():  #TODO: [i] This is not being called - mainpage is doing all this, handled by the routing. Look at what should be part of this, and remove unnecessary parts [refactor].
   othertodo.py
    --5 - #TODO: [c] Move all nav blocks to auth by user.
    --6 - #TODO: [d] Move auth to separate library, including get user code. Make GAE agnostic, with GAE interface to user in DAL_User library further included in DAL.
