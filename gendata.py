@@ -1,12 +1,16 @@
 from edu_objects import *
 import random
 
-#TODO: Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
+#TODO: [e]Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
 
 def ReturnRandomStudent():
   """Returns a 'randomly' generated Student object.
   Note that this does not load the object into the datastore"""
-  pass
+  stud = Student()
+  stud.name = "Random Student"
+  stud.year = 7
+  stud.attendance= 100
+  return stud
 
 
 def ReturnRandomSchool():
@@ -22,7 +26,7 @@ def ReturnRandomSchool():
   
   
   rSchool = School()
-  rSchool.schoolName = random.choice (schoolNames)
-  rSchool.schoolDescription = rSchool.schoolName + " is a " + rSchool.schoolName.split(" ")[1] + " founded in " + str(random.randrange(1700, 2010)) + "."
+  rSchool.name = random.choice(schoolNames)
+  rSchool.description = rSchool.name + " is a " + rSchool.name.split(" ")[1] + " founded in " + str(random.randrange(1700, 2010)) + "."
   return rSchool
   

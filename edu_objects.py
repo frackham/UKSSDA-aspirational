@@ -87,6 +87,7 @@ class Student(db.Model):
   dateUpdated = db.DateTimeProperty(auto_now=True)
   name = db.StringProperty(default='')
   year = db.IntegerProperty(default=0)
+  attendance = db.FloatProperty(required = False) # Handled this way so that can have null attendance
   #TODO: [e] add attendance, classes (arr)
   #TODO: [e] add summary assessment values for proof.
   #TODO: [d] add proper assessment.

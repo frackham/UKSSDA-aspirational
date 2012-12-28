@@ -32,7 +32,7 @@ def tempSchoolSetup():
     for i in range(1, x):
       studKey = "GenStudKey-" + str(i) + "-" + str(n) 
       thisSchool = schools[n]
-      thisStud = Student(parent = thisSchool, key_name=str(studKey), name = "Student " + str(i), year = random.randint(7,11))
+      thisStud = Student(parent = thisSchool, key_name=str(studKey), name = "Student " + str(i), year = random.randint(7,11), attendance=random.uniform(0.0,100.0))
       try:
         currentSchoolPuts.append(thisStud)
         #thisStud.put()
@@ -45,13 +45,12 @@ def tempSchoolSetup():
     studC.put()
   """
   
-  #Worth a sleep here? Put and query in same function is probably causing the problem...
   test_query = Student.all()
   test_query.ancestor(dataset)
   
   retString+="<p>"+str(schoolA.name) +"</p>"
   for item in test_query.run(limit=50):
-    retString+= "<p>(" + str(item.key()) + ") " + str(item.name) + "</p>"
+    retString+= "<p>(" + str(item.key()) + "). Name: " + str(item.name) + ", Attendance: " + str(item.attendance) + "</p>"
   #memcache.flush_all()
   return retString
 
@@ -66,7 +65,7 @@ def DALReturnAllStudents():
   q = db.GqlQuery("SELECT * FROM Student")
   retString = "<p>Students (max 50):</p>"
   for item in q.run(limit=50):
-    retString+="<p>"+str(item.name) +"</p>" 
+    retString+="<p>ParentName: " + str(item.parent().name) + ", Name: " + str(item.name) + ", Attendance: " + str(item.attendance) + "</p>" 
   return retString
 
 def datasets_plotbydate():
