@@ -1,8 +1,8 @@
   404.html
    --152 - <!-- #TODO: [d] Update 404 -->
   dal_temp.py
-   --104 - #TODO: Change name of function, incorrect!
-   --125 - #TODO: [e] Currently returns first item.
+   --103 - #TODO: Change name of function, incorrect!
+   --124 - #TODO: [e] Currently returns first item.
   edu_objects.py
    --9 - #TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses
    --12 - #TODO: [i] Use ReferenceProperty for one to many relationship. https://developers.google.com/appengine/articles/modeling
@@ -19,18 +19,22 @@
    --35 - #TODO: [c] A DatasetSource can only inherit from EITHER inheritSource OR fileSource. Filesource should take priority. When either is changed, entity should be verified.
    --36 - targetYear = db.DateTimeProperty() #TODO: [e] target
    --37 - sourceYear = db.DateTimeProperty() #TODO: [e] Usually empty, but exists so that you can inherit Y7 data at start of Y8.
-   --45 - #TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.
-   --46 - urn = db.IntegerProperty(default=0) #TODO: [e] School URN may need to be different number type (Int long enough?).
-   --48 - #TODO: [e] Exclude libraries from tests.
-   --49 - #TODO: [c] Move School_Test to tests folder
-   --63 - #self.modelExpectedUsingDefaults = Student(name='Empty School Name', description='Empty School Description.', urn=0) #TODO: Test against defaults [test].
-   --90 - #TODO: [e] add attendance, classes (arr)
-   --91 - #TODO: [e] add summary assessment values for proof.
-   --92 - #TODO: [d] add proper assessment.
-   --93 - #TODO: [d] add other attendance values.
-   --100 - #TODO: [e] add classes (arr)
-   --106 - ownerUserID = db.StringProperty(default='') #TODO: [d] Check this one. See GApps Reference.
-   --118 - #TODO: [i] NEXT STEP: How to put in the school? What is the key for? How to retrieve?
+   --47 - #TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.
+   --48 - urn = db.IntegerProperty(default=0) #TODO: [e] School URN may need to be different number type (Int long enough?).
+   --50 - localAuthorityNumber  = db.IntegerProperty(required = False) #TODO: Split this from the LA string returned (split(val, " ")(0) = Number, (1) = Name)
+   --57 - ageRange = db.StringProperty(default='Empty') #TODO: [i] Break this down into min age and max age.
+   --58 - gender = db.StringProperty(default='Empty') # TODO: Build validation check. If gender is Boys or Girls, and has Girls or Boys respectively, throw error.
+   --72 - #TODO: [e] Exclude libraries from tests.
+   --73 - #TODO: [c] Move School_Test to tests folder
+   --87 - #self.modelExpectedUsingDefaults = Student(name='Empty School Name', description='Empty School Description.', urn=0) #TODO: Test against defaults [test].
+   --115 - #TODO: [e] add attendance, classes (arr)
+   --116 - #TODO: [e] add summary assessment values for proof.
+   --117 - #TODO: [d] add proper assessment.
+   --118 - #TODO: [d] add other attendance values.
+   --125 - #TODO: [e] add classes (arr).
+   --126 - #TODO: [i] add manualSubjects (arr)? How do we account for non-specialists? If teaching, it is not necessarily their subject. Need separate subject profile for each staff member (e.g. Teacher Departments).
+   --132 - ownerUserID = db.StringProperty(default='') #TODO: [d] Check this one. See GApps Reference.
+   --144 - #TODO: [i] NEXT STEP: How to put in the school? What is the key for? How to retrieve?
   external_sources.py
    --18 - #TODO: [d] See http://www.ehow.co.uk/how_8521125_use-html5lib-python.html
    --31 - #TODO: [c] Use edubase scrape functions as start point.
@@ -41,7 +45,7 @@
    --83 - logging.info(self.request.path) #TODO: This returns the path requested, so might be a better way of handling this [refactor].
    --90 - #TODO: [e] Only works if returning a string.
   gendata.py
-   --4 - #TODO: Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
+   --4 - #TODO: [e]Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
   index.html
    --67 - <!-- #TODO: [d] POPULATE in Jinja2  ... (for item in userNavItems) -->
    --155 - <!-- #TODO: [i] Slider for demoing possible exploration data... http://wowslider.com/css-slider-aqua-flip-demo.html . Use prelogin, but possibly as way of doing tutorial too... Acts as quick overview, and allows immediate access to kind of analysis the user identifies as being of interest... -->
