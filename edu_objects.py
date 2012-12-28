@@ -37,13 +37,37 @@ class DatasetSource(db.Model):
   sourceYear = db.DateTimeProperty() #TODO: [e] Usually empty, but exists so that you can inherit Y7 data at start of Y8.
 
 class School(db.Model):
-  """Models an individual School entry with appropriate property."""
+  """Models an individual School entry with appropriate properties.
+  Most of the properties match with Edubase field descriptions.
+  """
   dateAdded = db.DateTimeProperty(auto_now_add=True)
   dateUpdated = db.DateTimeProperty(auto_now=True)
   name = db.StringProperty(default='Empty School Name')
   description = db.StringProperty(default='Empty School Description.',multiline=True)
   #TODO: [e] headteacher (staff or string), postcode, address (long string for now), urn, schooltype, ofstedinspections{date, judgement pairs), nextearliestinspection.
   urn = db.IntegerProperty(default=0) #TODO: [e] School URN may need to be different number type (Int long enough?).
+  dateOpened = db.DateTimeProperty(required = False)
+  localAuthorityNumber  = db.IntegerProperty(required = False) #TODO: Split this from the LA string returned (split(val, " ")(0) = Number, (1) = Name)
+  localAuthorityName = db.StringProperty(default='Empty')  
+  establishmentNumber  = db.IntegerProperty(required = False) 
+  headteacherString = db.StringProperty(default='Empty') 
+  phaseOfEducation = db.StringProperty(default='Empty') 
+  establishmentType = db.StringProperty(default='Empty')
+  schoolSponsor = db.StringProperty(default='Empty') 
+  ageRange = db.StringProperty(default='Empty') #TODO: [i] Break this down into min age and max age.
+  gender = db.StringProperty(default='Empty') # TODO: Build validation check. If gender is Boys or Girls, and has Girls or Boys respectively, throw error.
+  religiousCharacter = db.StringProperty(default='Empty')
+  schoolCapacity = db.IntegerProperty(required = False)
+  lastCensusRollCount = db.IntegerProperty(required = False) # (Total Number of Children) on Edubase.
+  specialClasses = db.StringProperty(default='Empty')
+  hasBoarders = db.StringProperty(default='Empty')
+  nurseryProvider = db.StringProperty(default='Empty')
+  inSpecialMeasures = db.StringProperty(default='Empty')
+  freshStart = db.StringProperty(default='Empty')
+  trustFlag = db.StringProperty(default='Empty')
+  ukPRN = db.IntegerProperty(required = False)
+  urbanRuralString = db.StringProperty(default='Empty')
+  sixthForm = db.StringProperty(default='Empty')
  
 #TODO: [e] Exclude libraries from tests.
 #TODO: [c] Move School_Test to tests folder
@@ -98,7 +122,8 @@ class Staff(db.Model):
   dateAdded = db.DateTimeProperty(auto_now_add=True)
   dateUpdated = db.DateTimeProperty(auto_now=True)
   name = db.StringProperty(default='')
-  #TODO: [e] add classes (arr)
+  #TODO: [e] add classes (arr).
+  #TODO: [i] add manualSubjects (arr)? How do we account for non-specialists? If teaching, it is not necessarily their subject. Need separate subject profile for each staff member (e.g. Teacher Departments).
 
 class Feedback(db.Model):
   """ To use as class storing feedback from users. """
