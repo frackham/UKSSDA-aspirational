@@ -147,6 +147,9 @@ def doDisplayAnalysis(requestHandler, datafunction, completefunction):
 def admin_datasetexplorer():
   return datasets_plotbydate()
 
+def admin_adddataset():
+  return datasets_add_form()
+  
 def admin_flushdatastore():
   return DAL_FlushDataStore()
 

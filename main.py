@@ -110,6 +110,7 @@ class MainPage(webapp2.RequestHandler):
           		<li class=\"primarynav\" id=\"admin-schooldetails\">    <a href=\"#\">School Details</a></li>
           		<li class=\"primarynav\" id=\"admin-datasetexplorer\">  <a href=\"#\">Dataset Explorer</a></li> <!-- #TODO: [e] Visual view of datasets. Add datasets from here (including descriptive only datasets). Consider using http://timeline.verite.co/  -->
           		<li class=\"primarynav\" id=\"admin-datasetvalidation\"><a href=\"#\">Dataset Validation(?)</a></li>
+          		<li class=\"primarynav\" id=\"admin-adddataset\">       <a href=\"#\">Create New Dataset</a></li>
           		<li class=\"primarynav\" id=\"admin-usersetup\">        <a href=\"#\">User Setup</a></li>
           		<li class=\"primarynav\" id=\"admin-flushdatastore\">   <a href=\"#\">Flush Data Store</a></li>
           	</ul>	

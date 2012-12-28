@@ -98,7 +98,53 @@ def datasets_plotbydate():
     retString+="<p>No results found</p>"
   return retString
 
+def datasets_add_form():
 
+
+
+  retString =  "<div id=\"adminformwrapper\"><h3>Create dataset:</h3>"
+  retString += "<form>"
+  #Initial dataset information.
+  retString += " <p>Dataset Name: <input type=\"text\" name=\"datasetName\"></p>"
+  retString += " <p>Dataset Description: <input type=\"text\" name=\"datasetDescription\"></p>"
+  retString += "  <div id=\"dataset-parameters\">"
+  
+  retString += "  </div>"
+  retString += "  <div id=\"dataset-datasources\">"
+  retString += "  <img src=\"/img/dataset_creation.jpg\" alt=\"alt text\" height=\"184\" width=\"326\" />"
+  retString += "  <h4>Data Sources</h4>"
+  retString += "    <div class=\"dataset-datasource\">"
+  retString += "     <p>Attendance: <span class=\"datasource-pathvalue\" id=\"datasource-pathvalue-attendance\"></span><input id=\"datasource-browsebutton-attendance\" type=\"button\" value=\"Browse\" onclick=\"formButtonClick_Browse(this.id)\"><span class=\"datasource-validationvalue\" id=\"datasource-validationvalue-attendance\"></span></p>"
+  retString += "    </div>"
+  retString += "    <div class=\"dataset-datasource\">"
+  retString += "     <p>Behaviour: <input type=\"button\" value=\"Browse\"></p>"
+  retString += "    </div>"
+  retString += "    <div class=\"dataset-datasource\">"
+  retString += "     <p>Attendance: <input type=\"button\" value=\"Browse\"></p>"
+  retString += "    </div>"
+  retString += "    <div class=\"dataset-datasource\">"
+  retString += "     <p>Attendance: <input type=\"button\" value=\"Browse\"></p>"
+  retString += "    </div>"
+  retString += "    <div class=\"dataset-datasource\">"
+  retString += "     <p>Attendance: <input type=\"button\" value=\"Browse\"></p>"
+  retString += "    </div>"
+  retString += "    </div>"
+  
+  retString += "  </div>"
+  retString += "</form>"
+  
+  retString += "</form>"
+  retString += "</div>"
+  return retString
+
+def datasets_add_form_submitted():
+  retString =  "<div id=\"adminformwrapper\"><p>Create dataset:</p>"
+  retString += "<form>"
+  retString += ""
+  retString += "</form>"
+  retString += "</div>"
+  return retString
+  
 def school_addstudent_test():
   #TODO: Change name of function, incorrect!
   returnString = ""

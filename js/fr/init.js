@@ -146,4 +146,24 @@ function init_app(bDebugMode)  {
 				 });
 		    });	
   
+		    
+		    
 };
+
+function formButtonClick_Browse(e) {
+  // #TODO: [e] Rename into something create dataset specific, or make more general. [refactor]
+  //alert('clicked');
+  alert(e);
+  
+  //Will return something like: datasource-browsebutton-attendance
+  //From this, get the span for (a) path display and (b) validation
+  arr = e.split("-");
+  //alert(arr[1]);
+  a = e.replace(arr[1], "pathvalue");
+  b = e.replace(arr[1], "validationvalue");
+  alert(a);
+  alert(b);
+  $('#'+a).text("Path to file here");
+  $('#'+b).text("Whether matched validation.");
+  
+}

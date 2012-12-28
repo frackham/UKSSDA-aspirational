@@ -157,3 +157,11 @@ body {
 }
 #footer-container ul li a        { color:red; text-decoration:none;  }
 #footer-container ul li a:hover  { text-decoration:underline; }
+
+/* Other pages
+-----------------------------------------------------------------------------*/
+/*Admin*/
+#dataset-datasources	              { background-color:#555; padding:20px;}
+.datasource-validationvalue         { color:red;}
+.datasource-validationvalue-success { color:green;}
+.datasource-validationvalue-fail    { color:red;}
