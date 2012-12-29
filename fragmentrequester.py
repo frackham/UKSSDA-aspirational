@@ -48,6 +48,17 @@ from data.dal import *
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
+class RedirectRequestHandler(webapp2.RequestHandler):
+  def post(self):
+    self.response.out.write("!!post!!")
+  def get(self, category, subcategory):
+    logging.info("Page request: RedirectRequestHandler:" + category + ":" + subcategory)
+    handlerByName = category + "_" + subcategory    
+    if handlerByName in globals():
+      webapp2.redirect(handlerByName)
+    else:
+      self.response.out.write("Redirect Handler (" + handlerByName + ") not yet defined. Come back later!")
+      
 class ObjectRequestHandler(webapp2.RequestHandler):
   def post(self):
     self.response.out.write("!!post!!")
@@ -150,6 +161,9 @@ def admin_datasetexplorer():
 def admin_adddataset():
   return datasets_add_form()
   
+def admin_scheduledtasks():
+  return '/_ah/admin/cron'
+   
 def admin_flushdatastore():
   return DAL_FlushDataStore()
 

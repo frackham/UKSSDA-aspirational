@@ -158,6 +158,27 @@ body {
 #footer-container ul li a        { color:red; text-decoration:none;  }
 #footer-container ul li a:hover  { text-decoration:underline; }
 
+/* Shapes for icons */
+.circle-12px {
+	float:left;
+  height: 12px;
+	width: 12px;
+
+	/* In this case we use half of the
+	 width and height as radius. */
+
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	margin:2px;
+	margin-top:5px;
+}
+.circle-color-empty {/*background-color: #72b8c2;*/ border: 1px solid #aaa;}
+.circle-color-blue  {background-color: #72b8c2; border: 1px solid #72b8c2;}
+.circle-color-green {background-color: green; border: 1px solid green;}
+.circle-color-red   {background-color: red; border: 1px solid red;}
+.circle-color-amber {background-color: orange; border: 1px solid orange;}
+
 /* Other pages
 -----------------------------------------------------------------------------*/
 /*Admin*/
@@ -165,3 +186,5 @@ body {
 .datasource-validationvalue         { color:red;}
 .datasource-validationvalue-success { color:green;}
 .datasource-validationvalue-fail    { color:red;}
+
+
