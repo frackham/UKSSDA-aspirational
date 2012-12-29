@@ -1,5 +1,5 @@
 application: fr-testapp
-version: 15
+version: 16
 runtime: python27
 api_version: 1
 threadsafe: true
@@ -18,8 +18,8 @@ handlers:
 - url: /img
   static_dir: img
 
-- url: /fontface
-  static_dir: fontface
+- url: /font
+  static_dir: font
   
 - url: /js
   static_dir: js

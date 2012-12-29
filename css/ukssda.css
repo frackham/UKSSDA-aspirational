@@ -1,0 +1,18 @@
+*           {background-color:#050505; color:#DDD; }
+
+  
+h1          { padding-left:10px;}
+
+#topnav li  { float:left; list-style-type:none; padding-left:5px;} /* TODO: [e] [mobile] On mobile layout, no 'float:left;' */
+#nav        { padding-top:10px;}
+#nav li     { list-style-type:none; }
+
+#mainwrapper {padding:2px;}
+
+#statusbar {background-color:gray; color:black;} /* monos[ace */
+
+/* Ratings */
+.icon-star  {cursor: pointer;}
+.star1 , .star2, .star3, .star4, .star5 {} 
+.startrue {color:yellow;}
+.starfalse{color:none !important;
