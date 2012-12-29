@@ -10,7 +10,7 @@ from edu_objects import *
 
 # Memcache:
 # https://developers.google.com/appengine/docs/python/memcache/usingmemcache?hl=en
-# Don't want ot cache everything...
+# Don't want to cache everything...do want to use manual caching via Dataset.Cache
 
 #TO ADD LIST: (CRUD)
 # CreateOBJECT
@@ -44,16 +44,26 @@ def School_Delete(cSchool):
   logging.info("DAL: School_Delete function.")
   pass
       
-def Student_Create(cSchool):
-  logging.info("DAL: School_Create function.")
+def Student_Create(cStudent):
+  logging.info("DAL: Student_Create function.")
   #Note that we cannot amend a key_name after it has been set, so this assumes that the school has already had a key set. 
   #Note that this doesn't add a dataset.
   
   #VALIDATE HERE.  
-  if cSchool.name:    
+  if cStudent.name:    
     #CREATE LOGIC HERE
-    cSchool.put() #If school already exists, should replace.
-    logging.info("DAL: Created School. (" + cSchool.name + ")")
-    logging.debug("School entry: " + str(cSchool))
+    cSchool.put() #If Student already exists, should replace.
+    logging.info("DAL: Created Student. (" + cStudent.name + ")")
+    logging.debug("Student entry: " + str(cStudent))
   else:
     logging.info("DAL: Could not create school. (" + str(cSchool) + ")") #Assumes passed object has a str method defined.
+
+def Student_Read(StudentName):
+  pass    
+
+def Student_Update(cStudent):
+  pass
+
+def Student_Delete(cStudent):
+  logging.info("DAL: Student_Delete function.")
+  pass
