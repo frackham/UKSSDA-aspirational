@@ -4,7 +4,7 @@ from datetime import datetime
 from google.appengine.ext import db
 from edu_objects import *
 from data.dal import *
-#from testdata import *
+from data.gendata import *
 
 @db.transactional
 def tempSchoolSetup():
@@ -71,6 +71,7 @@ def DALReturnAllStudents():
 def datasets_plotbydate():
   q = db.GqlQuery("SELECT * FROM Dataset")
   retString = "<p>Datasets (max 50):</p>"
+  retString += "  <img src=\"/img/dataset_explorer.jpg\" alt=\"alt text\" height=\"184\" width=\"326\" />"
   dataJSON = []
   bFound = False
   for item in q.run(limit=50):
@@ -99,9 +100,6 @@ def datasets_plotbydate():
   return retString
 
 def datasets_add_form():
-
-
-
   retString =  "<div id=\"adminformwrapper\"><h3>Create dataset:</h3>"
   retString += "<form>"
   #Initial dataset information.
@@ -145,7 +143,7 @@ def datasets_add_form_submitted():
   retString += "</div>"
   return retString
   
-def school_addstudent_test():
+def school_addschool_temp():
   #TODO: Change name of function, incorrect!
   returnString = ""
   #thisSchool = School()
@@ -153,24 +151,19 @@ def school_addstudent_test():
   #thisSchool.schoolDescription = 
 	#	So, a school, huh?
 	#
-  thisSchool = ReturnRandomSchool()
+  thisSchool = GenerateRandomSchool()
   thisSchool.parent= db.GqlQuery("SELECT KEY FROM Dataset").get() #Adds to most recent dataset.
 	
   returnString += "<p>" + str(thisSchool) + "</p>"    		
   logging.info("Page request: Add School:")
-  School_Create(thisSchool)
+  School_Create(thisSchool) #Adds to datastore.
   schools = db.GqlQuery("SELECT * "
                       "FROM School")
   for school in schools:
     returnString += '<p><b>%s</b> exists: </p>' % school.name
   return returnString
 
-def ReturnRandomSchool():  
-  #Not really random, just a way of getting a school.
-  #TODO: [e] Currently returns first item.
-  test_query = School.all()
-  for item in test_query.run(limit=1):
-    return item
+
   
 def students_ofSchool(eSchool):
   returnString=""

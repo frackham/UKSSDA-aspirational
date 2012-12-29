@@ -3,7 +3,15 @@ import random
 
 #TODO: [e]Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
 
-def ReturnRandomStudent():
+  
+def ReturnRandomSchool():  
+  #Not really random, just a way of getting a school.
+  #TODO: [e] Currently returns first item.
+  test_query = School.all()
+  for item in test_query.run(limit=1):
+    return item
+
+def GenerateRandomStudent():
   """Returns a 'randomly' generated Student object.
   Note that this does not load the object into the datastore"""
   stud = Student()
@@ -11,9 +19,8 @@ def ReturnRandomStudent():
   stud.year = 7
   stud.attendance= 100
   return stud
-
-
-def ReturnRandomSchool():
+  
+def GenerateRandomSchool():
   """Returns a 'randomly' generated School object.
   Note that this does not load the object into the datastore"""
   

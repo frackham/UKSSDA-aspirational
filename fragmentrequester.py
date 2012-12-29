@@ -174,7 +174,7 @@ def dev_listschools():
   return DALReturnAllSchools()
 
 def dev_addschool():
-  return school_addstudent_temp()
+  return school_addschool_temp()
 
 def dev_loadtempstrut():
   return tempSchoolSetup()
