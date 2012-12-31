@@ -1,5 +1,5 @@
 application: fr-testapp
-version: 16
+version: v0-003
 runtime: python27
 api_version: 1
 threadsafe: true
@@ -29,7 +29,13 @@ handlers:
 
 - url: /js/fr
   static_dir: js/fr
+
+- url: /flashcanvas
+  static_dir: flashcanvas
     
+- url: /graphael
+  static_dir: graphael
+  
 - url: /js/vendor/jqplotplugins
   static_dir: js/vendor/jqplotplugins
 

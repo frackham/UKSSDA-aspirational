@@ -42,6 +42,7 @@ from google.appengine.api import users
 
 from edu_objects import *
 from external_sources import *
+from developer import *
 from dal_temp import *
 from data.dal import *
 
@@ -53,11 +54,15 @@ class RedirectRequestHandler(webapp2.RequestHandler):
     self.response.out.write("!!post!!")
   def get(self, category, subcategory):
     logging.info("Page request: RedirectRequestHandler:" + category + ":" + subcategory)
-    handlerByName = category + "_" + subcategory    
+    handlerByName = category + "_" + subcategory
+    uriByName = category + "/" + subcategory #HACK: [i] [refactor] handlerbyname function should identify URI, and return that as a string here to be redirected to.
     if handlerByName in globals():
-      webapp2.redirect(handlerByName)
+      logging.info("Page redirection: RedirectRequestHandler:" + uriByName)
+      return webapp2.redirect(uriByName)
     else:
       self.response.out.write("Redirect Handler (" + handlerByName + ") not yet defined. Come back later!")
+
+      
       
 class ObjectRequestHandler(webapp2.RequestHandler):
   def post(self):
@@ -68,16 +73,24 @@ class ObjectRequestHandler(webapp2.RequestHandler):
     if handlerByName in globals():
       #TODO: [e] The whole of this if branch needs moving out into a separate object handler - ideally, we should be able to get the type of handler required from the handlerName (or passed as other argument).
       #self.response.out.write("PDFTEST")
+      logging.info("PDFStep1")
       text = handlerByName
+      logging.info("PDFStep2")
       p = canvas.Canvas(self.response.out, pagesize=A4) # try to find some resources through REPORTLAB and then   http://en.wikipedia.org/wiki/Pdf
+      logging.info("PDFStep3")
       #p.drawImage('dog.jpg', 150, 400) #TODO: [d] This is how you return an image dynamically. See reportlab documentation.
       p.drawString(50, 700, 'The text you entered: ' + text)
+      logging.info("PDFStep4")
       #p.setFont('Arial', 16)
       #p.drawString(50, 600, 'DarkGarden font loaded from reportlab.zip')
       p.showPage()
+      logging.info("PDFStep5")
       self.response.headers['Content-Type'] = 'application/pdf'
+      logging.info("PDFStep6")
       self.response.headers['Content-Disposition'] = 'attachment; filename=temppdf.pdf' #Added attachment content-disposition as per Jokob Nielsen's usability recommendation. http://www.useit.com/alertbox/open_new_windows.html 
+      logging.info("PDFStep7")
       p.save()
+      logging.info("PDFStep8")
       #Up to here needs pulling out. All of it assumes a PDF object.
       
       #KEEP THESE TWO COMMENTS.
@@ -204,6 +217,9 @@ def dev_pdftemp():
 
 def dev_unittestoutcomes():
   return "UNIT TEST TEXT FILE HERE"
+  
+def dev_fonttestpage():
+  return fonttestpage()
   
 def fragment_schoollist():
   return demo_DALDataStoreQuery()  

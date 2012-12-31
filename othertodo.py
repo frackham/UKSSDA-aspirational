@@ -29,3 +29,29 @@
 #EXTENSIONS (all idealistic).
 # (A) MAPPING
 #TODO: [i] Map to image map http://www.algonet.se/~ug/html+pycgi/img.html
+
+
+#http://kraskniga.blogspot.co.uk/2012/06/comparison-of-javascript-data.html
+#http://raphaeljs.com/
+#http://stackoverflow.com/questions/12761297/javascript-issue-in-bootstrap
+#http://stackoverflow.com/questions/119969/javascript-chart-library
+#http://www.jqplot.com/tests/line-charts.php
+#http://datatables.net/blog/Twitter_Bootstrap_2
+#http://datatables.net/blog/Drill-down_rows
+#http://tympanus.net/codrops/2011/06/09/grid-navigation-effects/
+#http://blog.sherpawebstudios.com/2009/06/17/top-10-html-form-layout-best-practices/
+#http://mathiasbynens.be/notes/localstorage-pattern
+#http://mathiasbynens.be/notes/html5-levels
+#http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html
+#http://mathiasbynens.be/notes/html5-details-jquery
+
+#http://www.fontsquirrel.com/fonts/modern-pictograms
+#http://www.ffdingbatsfont.com/erler/index.html
+#http://www.heydonworks.com/article/a-free-icon-web-font
+#http://somerandomdude.com/work/iconic/
+#http://somerandomdude.com/work/cue/
+#http://www.fonthead.com/fonts/ClickBits
+#http://fortawesome.github.com/Font-Awesome/#new-icons
+#http://uxdesign.smashingmagazine.com/2012/12/04/fittss-law-and-user-experience/
+#http://css-tricks.com/examples/StarRating/
+#

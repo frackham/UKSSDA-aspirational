@@ -3,9 +3,16 @@
   
 h1          { padding-left:10px;}
 
-#topnav li  { float:left; list-style-type:none; padding-left:5px;} /* TODO: [e] [mobile] On mobile layout, no 'float:left;' */
-#nav        { padding-top:10px;}
-#nav li     { list-style-type:none; }
+/*Global Nav*/
+#globalnav li  { font-size:1.2em; float:left; list-style-type:none; padding-left:15px;} /* TODO: [e] [mobile] On mobile layout, no 'float:left;' */
+
+/*Primary Nav */
+#nav            { padding-top:10px;}
+#nav li         { list-style-type:none; }
+.primarynavicon { color:cyan; } /* #HACK: Not blue or cyan, get html color.... */
+
+/*Common to Nav */
+
 
 #mainwrapper {padding:2px;}
 
@@ -16,3 +23,14 @@ h1          { padding-left:10px;}
 .star1 , .star2, .star3, .star4, .star5 {} 
 .startrue {color:yellow;}
 .starfalse{color:none !important;
+
+/* Font Toggles */
+.roboto       {font-family:Roboto;}
+.arial        {font-family:Arial;}
+.verdana      {font-family:Verdana;}
+.helvetica    {font-family:Arial;}
+.courier      {font-family:Courier;}
+
+.serif        {font-family:Serif;}
+.sansserif    {font-family:Sans-Serif;}
+.monospace    {font-family:Monospace;}

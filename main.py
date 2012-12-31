@@ -105,7 +105,10 @@ class MainPage(webapp2.RequestHandler):
           if "admin" in user.accessrights: 
             bDoAdmin = True
         if bDoAdmin:
-          nav["admin"] = """<li><a href=\"#\">Admin</a>
+        
+          #TODO: [e] Move these to separate python file (mainnavigation.py). Pass user object, and get string with whole nav menu.
+        
+          nav["admin"] = """<li><a href=\"#\"><i class=\"primarynavicon icon-cogs icon-large\"></i>Admin</a>
           	<ul>
           		<li class=\"primarynav\" id=\"admin-schooldetails\">    <a href=\"#\">School Details</a></li>
           		<li class=\"primarynav\" id=\"admin-datasetexplorer\">  <a href=\"#\">Dataset Explorer</a></li> <!-- #TODO: [e] Visual view of datasets. Add datasets from here (including descriptive only datasets). Consider using http://timeline.verite.co/  -->
@@ -117,15 +120,100 @@ class MainPage(webapp2.RequestHandler):
           	</ul>	
           </li>"""     
             
+          nav["school"] = """<li><a href=\"#\"><i class=\"primarynavicon icon-home icon-large\"></i>School</a>
+        	<ul>
+        		<li class=\"primarynav\" id=\"school-context\"><a href=\"#\">School Context</a></li>
+        		<li class=\"primarynav\" id=\"school-temp\">   <a href=\"#\">Other Analyses</a></li>
+        	</ul>	
+        </li>"""
             
+          nav["student"] = """<li><a href=\"#\"><i class=\"primarynavicon icon-group icon-large\"></i>Students</a>
+        	<ul>
+        		<li class=\"primarynav\" id=\"students-summary\"><a href=\"#\">Students Summary</a></li>
+        		<li class=\"primarynav\" id=\"students-temp\">   <a href=\"#\">Other Analyses</a></li>
+        	</ul>	
+        </li>"""
             
-            
-            
+          nav["attendance"] = """<li><a href=\"#\"><i class=\"primarynavicon icon-check icon-large\"></i>Attendance</a>
+        	<ul>
+        		<li class=\"primarynav\" id=\"attendance-summary\">             <a href=\"#\">Attendance Summary</a></li>
+        		<li class=\"primarynav\" id=\"attendance-groups\">              <a href=\"#\">Attendance within Groups</a></li>
+        		<li class=\"primarynav\" id=\"attendance-attainmentthresholds\"><a href=\"#\">Attendance against Thresholds</a></li>
+        		<li class=\"primarynav\" id=\"attendance-temp\">                <a href=\"#\">Other Analyses</a></li>
+        	</ul>	
+        </li>"""
+        
+          nav["behaviour"] = """<li><a href=\"#\"><i class=\"primarynavicon icon-fire icon-large\"></i>Behaviour</a>
+        	<ul>
+        		<li class=\"primarynav\" id=\"behaviour-summary\"><a href=\"#\">Behaviour Summary</a></li>
+        		<li class=\"primarynav\" id=\"behaviour-temp\">   <a href=\"#\">Other Behaviour Analyses</a></li>
+        	</ul>	
+        </li>"""
+        
+          nav["assessment"] = """<li><a href=\"#\"><i class=\"primarynavicon icon-cogs icon-large\"></i>Assessment</a>
+        	<ul>
+        		<li class=\"primarynav\" id=\"assessment-summary\"><a href=\"#\">Assessment Summary</a></li>
+        		<li class=\"primarynav\" id=\"assessment-temp\">   <a href=\"#\">Other Assessment Analyses</a></li>
+        	</ul>	
+        </li>"""
+          
+          nav["curriculum"] = """<li><a href=\"#\"><i class=\"primarynavicon icon-cogs icon-large\"></i>Curriculum</a>
+        	<ul>
+        		<li class=\"primarynav\" id=\"curriculum-summary\"><a href=\"#\">Curriculum Summary</a></li>
+        		<li class=\"primarynav\" id=\"curriculum-temp\">   <a href=\"#\">Other Curriculum Analyses</a></li>
+        	</ul>	
+        </li>"""
+        
+          nav["developer"] = """<li><a href=\"#\"><i class=\"primarynavicon icon-cogs icon-large\"></i>Developer</a>
+        	<ul>
+          	<li class=\"primarynav\" id=\"dev-listschools\">            <a href=\"#\">School List</a></li>
+          	<li class=\"primarynav\" id=\"dev-ajaxtemp\">               <a href=\"#\">Ajaxtest</a></li>
+          	<li class=\"primarynav\" id=\"dev-loadtempstrut\">          <a href=\"#\">Load test strut</a></li>
+          	<li class=\"primarynav\" id=\"dev-qanparse\">               <a href=\"#\">QAN parse</a></li>
+          	<li class=\"primarynav\" id=\"dev-edubasescrape\">          <a href=\"#\">Edubase scrape</a></li>
+          	<li class=\"primarynav\" id=\"dev-addschool\">              <a href=\"#\">Add School</a></li>
+          	<li class=\"primarynav\" id=\"dev-addstudenttoschool\">     <a href=\"#\">Add Student to (Fixed) School</a></li>
+          	<li class=\"primarynav\" id=\"dev-listallstudents\">        <a href=\"#\">Show Students of Schools</a></li>
+          	<li class=\"primarynav\" id=\"dev-analysisloaderdemo\">     <a href=\"#\">Analysis Loader Demo</a></li>
+          	<li class=\"primarynav objectReturn\" id=\"dev-pdftemp\">   <a href=\"#\">Render PDF Demo</a></li>
+          	<li class=\"primarynav\" id=\"dev-unittestoutcomes\">       <a href=\"#\">Unit Test Results</a></li>
+          	<li class=\"primarynav\" id=\"dev-fonttestpage\">           <a href=\"#\">Font Test Page</a></li>
+        	</ul>	
+        </li>"""
+        
+          nav["extension"] = """<li><a href=\"#\"><i class=\"primarynavicon icon-cogs icon-large\"></i>Extension Demos</a>
+        	<ul>
+          	<li class=\"primarynav\" id=\"extension-location\"><a href=\"#\">Location</a></li>
+          	<li class=\"primarynav\" id=\"extension-news\">    <a href=\"#\">News</a></li>
+          	<li class=\"primarynav\" id=\"extension-ofsted\">  <a href=\"#\">OFSTED</a></li>
+          	<li class=\"primarynav\" id=\"extension-edubase\">  <a href=\"#\">Edubase</a></li>
+        	</ul>	
+        </li>"""
+        
+          nav["fragmentsinprogress"] = """<li><a href=\"#\"><i class=\"primarynavicon icon-cogs icon-large\"></i>Fragments in Progress</a>
+        	<ul>
+          	<li class=\"primarynav\" id=\"fragment-studentcount\"><a href=\"#\">Count(Students)</a></li>
+          	<li class=\"primarynav\" id=\"fragment-schoolcount\"><a href=\"#\">Count(School)</a></li>
+          	<li class=\"primarynav\" id=\"fragment-schoollist\"><a href=\"#\">List(School)</a></li>
+        	</ul>	
+        </li>""" 
+          nav["documents"] = """<li id=\"documents\"><a href=\"#\"><i class=\"primarynavicon icon-inbox icon-large\"></i>Documents</a></li>"""
+        
         template_values = {
             'greetings': greetings,
             'url': url,
             'url_linktext': url_linktext,
             'nav_access_admin': nav["admin"],
+            'nav_access_school': nav["school"],
+            'nav_access_student': nav["student"],
+            'nav_access_attendance': nav["attendance"],
+            'nav_access_behaviour': nav["behaviour"],
+            'nav_access_assessment': nav["assessment"],
+            'nav_access_curriculum': nav["curriculum"],
+            'nav_access_developer': nav["developer"],
+            'nav_access_extension': nav["extension"],
+            'nav_access_fragmentsinprogress': nav["fragmentsinprogress"],
+            'nav_access_documents': nav["documents"],
             'header_title': str(app_title) + ": " + str(app_referer_type),
             'app_title': "<h1 class=\"title\" id=\"" + app_referer_HTMLid + "\">" + str(app_title) + ": " + str(app_referer_type) + "</h1>",
             'user_name': user_name,

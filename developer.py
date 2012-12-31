@@ -66,3 +66,21 @@ class CRUDTest_GDS(webapp2.RequestHandler):
     
     logging.info("Page write: CRUDTest_GDS")
     
+def fonttestpage():
+  retString = "<h3>Font test</h3>"
+  #retString += "  <img src=\"/img/dataset_explorer.jpg\" alt=\"alt text\" height=\"184\" width=\"326\" />"
+  testString = "A quick brown fox yadda yaddah jumping."
+  retString+="<p>Arial::  <span class=\"arial\">"+ testString +"</span></p>"
+  retString+="<p>Helvetica::  <span class=\"helvetica\">"+ testString +"</span></p>"
+  retString+="<p>Verdana::  <span class=\"verdana\">"+ testString +"</span></p>"
+  retString+="<p>Courier::  <span class=\"courier\">"+ testString +"</span></p>"
+  retString+="<br/>"
+  
+  retString+="<p>Roboto::  <span class=\"roboto\">"+ testString +"</span></p>"
+  retString+="<br/>"
+  
+  retString+="<p>Serif::  <span class=\"serif\">"+ testString +"</span></p>"
+  retString+="<p>Sans Serif::  <span class=\"sansserif\">"+ testString +"</span></p>"
+  retString+="<p>Monospace::  <span class=\"monospace\">"+ testString +"</span></p>"
+
+  return retString
