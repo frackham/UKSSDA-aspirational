@@ -7,8 +7,6 @@
  <div id="Bugwrapper">
  <br/>
   <h2>Bug</h2>
-  <p class="Bug source">index.html</p>
-  <p class="Bug">--&lt;!-- #BUG: Status header (#headerstatus) displays inconsistently across browsers.  --&gt;</p>
   <p class="Bug source">codeanalysis.py</p>
   <p class="Bug">--# BUG: [i] In CSV record, items closed always = 0.</p>
   <p class="Bug">--#BUG: Does not pick up 'TODO' items where square brackets immediately follow colon (e.g. TODO:(e) using [] ).</p>
@@ -42,8 +40,6 @@
  <div id="Essentialwrapper">
  <br/>
   <h2>Essential</h2>
-  <p class="Essential source">dal_temp.py</p>
-  <p class="Essential">--#TODO: [e] Currently returns first item.</p>
   <p class="Essential source">edu_objects.py</p>
   <p class="Essential">--#TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses</p>
   <p class="Essential">--dateOfReference = db.DateTimeProperty(auto_now_add=True)# Indicates the date that the dataset refers to. This is what shows on the timeline! #TODO: [e] Default dataset dateofreference is now(). Using auto_now_add=True for the moment.</p>
@@ -65,11 +61,13 @@
   <p class="Essential">--#TODO: [e] The whole of this if branch needs moving out into a separate object handler - ideally, we should be able to get the type of handler required from the handlerName (or passed as other argument).</p>
   <p class="Essential">--#TODO: [e] Add test of object *returned by handler function*, in order to return it using the right methods of self.response().</p>
   <p class="Essential">--#TODO: [e] Only works if returning a string.</p>
-  <p class="Essential source">gendata.py</p>
-  <p class="Essential">--#TODO: [e]Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).</p>
+  <p class="Essential source">index.html</p>
+  <p class="Essential">--&lt;h1&gt;{{ app_title }}&lt;/h1&gt; &lt;!-- #TODO: [e] add floating, so top menu is horizontally aligned. --&gt;</p>
+  <p class="Essential">--&lt;div class="span3" id="mainnavwrapper"&gt; &lt;!-- #TODO: [e] add padding-left *before* menu, so it has some breathing room --&gt;</p>
   <p class="Essential source">main.py</p>
   <p class="Essential">--relimport_demo() #TODO: [e] Use this pattern to refactor project.</p>
   <p class="Essential">--bDoAdmin = False #HACK: [e] Separate variable for each nav group? No thanks, [refactor] on move to separate auth layer.</p>
+  <p class="Essential">--#TODO: [e] Move these to separate python file (mainnavigation.py). Pass user object, and get string with whole nav menu.</p>
   <p class="Essential">--&lt;li class=\"primarynav\" id=\"admin-datasetexplorer\"&gt;  &lt;a href=\"#\"&gt;Dataset Explorer&lt;/a&gt;&lt;/li&gt; &lt;!-- #TODO: [e] Visual view of datasets. Add datasets from here (including descriptive only datasets). Consider using http://timeline.verite.co/  --&gt;</p>
   <p class="Essential source">othertodo.py</p>
   <p class="Essential">--#TODO: [e] Move rendering of charts and analysis to separate Python classes and file. NOT edu objects!</p>
@@ -86,6 +84,11 @@
   <p class="Essential">--# TODO: [e] objects...is it easiest to import each file, then use dir() on the module? see p. 99)</p>
   <p class="Essential">--#TODO: [e]Write to PDF.</p>
   <p class="Essential">--#input() #HACK: [e]Added so that results can be read when run from console. Not needed in interactive mode (or if we've run this solely to update the code analysis record).</p>
+  <p class="Essential source">ukssda.css</p>
+  <p class="Essential">--#globalnav li  { font-size:1.2em; float:left; list-style-type:none; padding-left:15px;} /* TODO: [e] [mobile] On mobile layout, no 'float:left;' */</p>
+  <p class="Essential source">gendata.py</p>
+  <p class="Essential">--#TODO: [e]Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).</p>
+  <p class="Essential">--#TODO: [e] Currently returns first item.</p>
   <p class="Essential source">precommit.py</p>
   <p class="Essential">--#TODO: [e] Run codeanalysis.</p>
   <p class="Essential source">predeploy.py</p>
@@ -109,7 +112,8 @@
   <p class="Desirable source">fragmentrequester.py</p>
   <p class="Desirable">--#p.drawImage('dog.jpg', 150, 400) #TODO: [d] This is how you return an image dynamically. See reportlab documentation.</p>
   <p class="Desirable source">index.html</p>
-  <p class="Desirable">--&lt;!-- #TODO: [d] POPULATE in Jinja2  ... (for item in userNavItems) --&gt;</p>
+  <p class="Desirable">--&lt;link rel="apple-touch-icon-precomposed" href="apple-touch-icon-144x144-precomposed.png"&gt; &lt;!-- #TODO: [d] Icon for iOS devices. Equivalent to favicon on mobile, kinda. See http://mathiasbynens.be/notes/touch-icons  --&gt;</p>
+  <p class="Desirable">--&lt;li id="global-login_logout"&gt;&lt;a href="#"&gt; {{ url_linktext }} &lt;/a&gt;&lt;/li&gt; &lt;!-- #TODO: [d] &lt;i class="icon-info-sign"&gt;&lt;/i&gt; Icon for linktext should be dependent on action required --&gt;</p>
   <p class="Desirable">--&lt;div id="developerlinks"&gt; &lt;!-- #TODO: [d] Hide in live mode --&gt;</p>
   <p class="Desirable">--&lt;li&gt;&lt;a href="https://appengine.google.com/" target="_blank"&gt;App Engine Login (MUST USE CORRECT LOGIN EMAIL!)&lt;/a&gt;&lt;/li&gt; &lt;!-- #HACK: [d] Remove the reminder in live mode (more like remove all?). --&gt;</p>
   <p class="Desirable source">othertodo.py</p>
@@ -146,6 +150,7 @@
   <p class="Hack source">external_sources.py</p>
   <p class="Hack">--#HACK: If no URN, uses GCS. Remove.</p>
   <p class="Hack source">fragmentrequester.py</p>
+  <p class="Hack">--uriByName = category + "/" + subcategory #HACK: [i] [refactor] handlerbyname function should identify URI, and return that as a string here to be redirected to.</p>
   <p class="Hack">--#HACK: use first 5 chars to determine response...</p>
   <p class="Hack source">index.html</p>
   <p class="Hack">--&lt;li&gt;&lt;a href="https://appengine.google.com/" target="_blank"&gt;App Engine Login (MUST USE CORRECT LOGIN EMAIL!)&lt;/a&gt;&lt;/li&gt; &lt;!-- #HACK: [d] Remove the reminder in live mode (more like remove all?). --&gt;</p>
@@ -175,6 +180,8 @@
   <p class="Hack">--desirableList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path. [notrack]</p>
   <p class="Hack">--idealisticList.append("  " + os.path.basename(item[0])) #HACK: [i]Not a good way to get the class filename from the stored path. [notrack]</p>
   <p class="Hack">--#input() #HACK: [e]Added so that results can be read when run from console. Not needed in interactive mode (or if we've run this solely to update the code analysis record).</p>
+  <p class="Hack source">ukssda.css</p>
+  <p class="Hack">--.primarynavicon { color:cyan; } /* #HACK: Not blue or cyan, get html color.... */</p>
   <p class="Hack source">dom.py</p>
   <p class="Hack">--# HACK: allow text nodes as children of the document node</p>
   <p class="Hack source">simpletree.py</p>

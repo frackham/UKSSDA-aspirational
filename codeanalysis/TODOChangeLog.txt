@@ -809,3 +809,25 @@
 - #TODO: Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
 + #TODO: [e]Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
 
+
+2012-12-31 15:09:06.751000
+- - #TODO: [e] Currently returns first item.
+-  logging.info(self.request.path) #TODO: This returns the path requested, so might be a better way of handling this [refactor].
++ - logging.info(self.request.path) #TODO: This returns the path requested, so might be a better way of handling this [refactor].
+-  #TODO: [e] Only works if returning a string.
++ - #TODO: [e] Only works if returning a string.
+- .py
+- #TODO: [e]Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
+-  <!-- #TODO: [d] POPULATE in Jinja2  ... (for item in userNavItems) -->
+- - <!-- #TODO: [i] Slider for demoing possible exploration data... http://wowslider.com/css-slider-aqua-flip-demo.html . Use prelogin, but possibly as way of doing tutorial too... Acts as quick overview, and allows immediate access to kind of analysis the user identifies as being of interest... -->
++  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-144x144-precomposed.png"> <!-- #TODO: [d] Icon for iOS devices. Equivalent to favicon on mobile, kinda. See http://mathiasbynens.be/notes/touch-icons  -->
++  <h1>{{ app_title }}</h1> <!-- #TODO: [e] add floating, so top menu is horizontally aligned. -->
++  <li id="global-login_logout"><a href="#"> {{ url_linktext }} </a></li> <!-- #TODO: [d] <i class="icon-info-sign"></i> Icon for linktext should be dependent on action required -->
++  <div class="span3" id="mainnavwrapper"> <!-- #TODO: [e] add padding-left *before* menu, so it has some breathing room -->
++ - #TODO: [e] Move these to separate python file (mainnavigation.py). Pass user object, and get string with whole nav menu.
++ css
++ #globalnav li  { font-size:1.2em; float:left; list-style-type:none; padding-left:15px;} /* TODO: [e] [mobile] On mobile layout, no 'float:left;' */
++ .py
++ #TODO: [e]Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
++ #TODO: [e] Currently returns first item.
+

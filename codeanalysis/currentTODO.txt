@@ -1,8 +1,7 @@
   404.html
    --152 - <!-- #TODO: [d] Update 404 -->
   dal_temp.py
-   --103 - #TODO: Change name of function, incorrect!
-   --124 - #TODO: [e] Currently returns first item.
+   --147 - #TODO: Change name of function, incorrect!
   edu_objects.py
    --9 - #TODO: [e] Use...-- https://developers.google.com/appengine/docs/python/datastore/typesandpropertyclasses
    --12 - #TODO: [i] Use ReferenceProperty for one to many relationship. https://developers.google.com/appengine/articles/modeling
@@ -39,17 +38,17 @@
    --18 - #TODO: [d] See http://www.ehow.co.uk/how_8521125_use-html5lib-python.html
    --31 - #TODO: [c] Use edubase scrape functions as start point.
   fragmentrequester.py
-   --58 - #TODO: [e] The whole of this if branch needs moving out into a separate object handler - ideally, we should be able to get the type of handler required from the handlerName (or passed as other argument).
-   --62 - #p.drawImage('dog.jpg', 150, 400) #TODO: [d] This is how you return an image dynamically. See reportlab documentation.
-   --73 - #TODO: [e] Add test of object *returned by handler function*, in order to return it using the right methods of self.response().
-   --83 - logging.info(self.request.path) #TODO: This returns the path requested, so might be a better way of handling this [refactor].
-   --90 - #TODO: [e] Only works if returning a string.
-  gendata.py
-   --4 - #TODO: [e]Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
+   --74 - #TODO: [e] The whole of this if branch needs moving out into a separate object handler - ideally, we should be able to get the type of handler required from the handlerName (or passed as other argument).
+   --81 - #p.drawImage('dog.jpg', 150, 400) #TODO: [d] This is how you return an image dynamically. See reportlab documentation.
+   --97 - #TODO: [e] Add test of object *returned by handler function*, in order to return it using the right methods of self.response().
+   --107 - logging.info(self.request.path) #TODO: This returns the path requested, so might be a better way of handling this [refactor].
+   --114 - #TODO: [e] Only works if returning a string.
   index.html
-   --67 - <!-- #TODO: [d] POPULATE in Jinja2  ... (for item in userNavItems) -->
-   --155 - <!-- #TODO: [i] Slider for demoing possible exploration data... http://wowslider.com/css-slider-aqua-flip-demo.html . Use prelogin, but possibly as way of doing tutorial too... Acts as quick overview, and allows immediate access to kind of analysis the user identifies as being of interest... -->
-   --167 - <div id="developerlinks"> <!-- #TODO: [d] Hide in live mode -->
+   --14 - <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-144x144-precomposed.png"> <!-- #TODO: [d] Icon for iOS devices. Equivalent to favicon on mobile, kinda. See http://mathiasbynens.be/notes/touch-icons  -->
+   --56 - <h1>{{ app_title }}</h1> <!-- #TODO: [e] add floating, so top menu is horizontally aligned. -->
+   --69 - <li id="global-login_logout"><a href="#"> {{ url_linktext }} </a></li> <!-- #TODO: [d] <i class="icon-info-sign"></i> Icon for linktext should be dependent on action required -->
+   --80 - <div class="span3" id="mainnavwrapper"> <!-- #TODO: [e] add padding-left *before* menu, so it has some breathing room -->
+   --138 - <div id="developerlinks"> <!-- #TODO: [d] Hide in live mode -->
   mailhandler.py
    --9 - #TODO: [c] Amend code here [refactor].
   main.py
@@ -57,10 +56,11 @@
    --56 - guestbook_key(guestbook_name)).order('-date') #TODO: [i] Remove.
    --57 - greetings = greetings_query.fetch(10) #TODO: [i] Remove.
    --93 - #TODO: [c] Here, get user access rights (currently adding admin rights to all logged in users) from a group in datastore. Most likely move whole function to auth library.
-   --111 - <li class=\"primarynav\" id=\"admin-datasetexplorer\">  <a href=\"#\">Dataset Explorer</a></li> <!-- #TODO: [e] Visual view of datasets. Add datasets from here (including descriptive only datasets). Consider using http://timeline.verite.co/  -->
-   --141 - class Guestbook(webapp2.RequestHandler): #TODO: [i] Remove.
-   --176 - System = EdSystem  #TODO: [i] Consider which aspects of this file need moving to the system object.
-   --179 - def main():  #TODO: [i] This is not being called - mainpage is doing all this, handled by the routing. Look at what should be part of this, and remove unnecessary parts [refactor].
+   --109 - #TODO: [e] Move these to separate python file (mainnavigation.py). Pass user object, and get string with whole nav menu.
+   --114 - <li class=\"primarynav\" id=\"admin-datasetexplorer\">  <a href=\"#\">Dataset Explorer</a></li> <!-- #TODO: [e] Visual view of datasets. Add datasets from here (including descriptive only datasets). Consider using http://timeline.verite.co/  -->
+   --231 - class Guestbook(webapp2.RequestHandler): #TODO: [i] Remove.
+   --267 - System = EdSystem  #TODO: [i] Consider which aspects of this file need moving to the system object.
+   --270 - def main():  #TODO: [i] This is not being called - mainpage is doing all this, handled by the routing. Look at what should be part of this, and remove unnecessary parts [refactor].
   othertodo.py
    --5 - #TODO: [c] Move all nav blocks to auth by user.
    --6 - #TODO: [d] Move auth to separate library, including get user code. Make GAE agnostic, with GAE interface to user in DAL_User library further included in DAL.
@@ -126,6 +126,11 @@
    --730 - #TODO: Change the path addition to only append if not already in path?
    --752 - fileIgnoreList = ["codeanalysis.html"] #TODO: ignore imported non-project files (Add at later date. This file should be done fairly early in project (before lit review finished)).
    --799 - #TODO: [e]Write to PDF.
+  ukssda.css
+   --7 - #globalnav li  { font-size:1.2em; float:left; list-style-type:none; padding-left:15px;} /* TODO: [e] [mobile] On mobile layout, no 'float:left;' */
+  gendata.py
+   --4 - #TODO: [e]Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
+   --9 - #TODO: [e] Currently returns first item.
   formfiller.py
    --122 - pass # TODO: part of "option without value= attribute" processing
   htmlserializer.py
