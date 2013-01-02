@@ -763,7 +763,7 @@ if __name__ == "__main__":
                 thisdir = os.path.dirname(thisfile)
                 print("File: " + thisfile, "Filename: " + thisfilename, "Dir: " + thisdir)
                 #raw_input()
-                if (thisfile.endswith(".py")) or (thisfile.endswith(".html")) or (thisfile.endswith(".css")):
+                if (thisfile.endswith(".py")) or (thisfile.endswith(".html")) or (thisfile.endswith(".css")) or (thisfile.endswith(".md")):
                     for folder in folderIgnoreList:
                         if folder in thisdir:
                             print("'" + thisdir + "' is in '" + folder +"'") 
