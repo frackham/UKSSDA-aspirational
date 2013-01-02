@@ -1,5 +1,4 @@
-
-* Contribute *
+** Contribute
 At this stage, the UKSSDA project is an MSc dissertation project for Kingston University. However, if you are interested in the development of the project, please get in touch with me on Twitter @frackham_edu .
 
 Before you get involved
