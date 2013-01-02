@@ -1,3 +1,5 @@
+#TODO: [d] See https://github.com/blog/1184-contributing-guidelines for details on how to use this.
+
 ** Contribute **
 
 At this stage, the UKSSDA project is an MSc dissertation project for Kingston University. However, if you are interested in the development of the project, please get in touch with me on Twitter @frackham_edu .
