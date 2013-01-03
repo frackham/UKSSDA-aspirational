@@ -30,10 +30,6 @@ from google.appengine.api import users
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
-  
-
-
-
         
 class DevSchoolList(webapp2.RequestHandler):
   def post(self):
@@ -45,8 +41,6 @@ class DevSchoolList(webapp2.RequestHandler):
       str += ("%s = %s<br />\n" % (name, os.environ[name]))
     self.response.out.write("!!get!!" + str)
     logging.info("Page write: DevSchoolList")
-
-
 
     
 class CRUDTest_GDS(webapp2.RequestHandler):
@@ -60,27 +54,28 @@ class CRUDTest_GDS(webapp2.RequestHandler):
             'crudval': CRUDVal,
             'anonymisedmode': self.app.config.get('anonymisedmode')
         }
-    
     template = jinja_environment.get_template('fragment1.html')
-    self.response.out.write(template.render(template_values))
-    
+    self.response.out.write(template.render(template_values))   
     logging.info("Page write: CRUDTest_GDS")
     
 def fonttestpage():
   retString = "<h3>Font test</h3>"
   #retString += "  <img src=\"/img/dataset_explorer.jpg\" alt=\"alt text\" height=\"184\" width=\"326\" />"
   testString = "A quick brown fox yadda yaddah jumping."
-  retString+="<p>Arial::  <span class=\"arial\">"+ testString +"</span></p>"
-  retString+="<p>Helvetica::  <span class=\"helvetica\">"+ testString +"</span></p>"
-  retString+="<p>Verdana::  <span class=\"verdana\">"+ testString +"</span></p>"
-  retString+="<p>Courier::  <span class=\"courier\">"+ testString +"</span></p>"
-  retString+="<br/>"
-  
-  retString+="<p>Roboto::  <span class=\"roboto\">"+ testString +"</span></p>"
-  retString+="<br/>"
-  
-  retString+="<p>Serif::  <span class=\"serif\">"+ testString +"</span></p>"
-  retString+="<p>Sans Serif::  <span class=\"sansserif\">"+ testString +"</span></p>"
-  retString+="<p>Monospace::  <span class=\"monospace\">"+ testString +"</span></p>"
+  retString+="<table class=\"fonttable\">"
+  retString+=" <tr><td>Arial</td><td><span class=\"arial\">"+ testString +"</span></td></tr>"
+  retString+=" <tr><td>Georgia</td><td><span class=\"georgia\">"+ testString +"</span></td></tr>"
+  retString+=" <tr><td>Helvetica</td><td> <span class=\"helvetica\">"+ testString +" </span></td></tr>"
+  retString+=" <tr><td>Verdana</td><td> <span class=\"verdana\">"+ testString +" </span></td></tr>"
+  retString+=" <tr><td>Courier</td><td> <span class=\"courier\">"+ testString +" </span></td></tr>"
 
+  retString+=" <tr><td></td><td></td></tr>"
+  retString+=" <tr><td>Roboto</td><td> <span class=\"roboto\">"+ testString +" </span></td></tr>"
+  retString+=" <tr><td>Quicksand</td><td> <span class=\"quicksand\">"+ testString +" </span></td></tr>"
+  
+  retString+=" <tr><td></td><td></td></tr>" 
+  retString+=" <tr><td>Serif</td><td> <span class=\"serif\">"+ testString +" </span></td></tr>"
+  retString+=" <tr><td>Sans Serif</td><td> <span class=\"sansserif\">"+ testString +" </span></td></tr>"
+  retString+=" <tr><td>Monospace</td><td> <span class=\"monospace\">"+ testString +" </span></td></tr>"
+  retString+="</table>"
   return retString

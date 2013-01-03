@@ -716,15 +716,7 @@ class CodeVisitor(ASTVisitor):
               " with code %(code)s" % parsedFunc.__dict__
 
 
-
-#global variables here. include path to dropbox text file where log is appended.
-# TODO: [d] should build this function into a unit test suite. every time we do a full check, we also log code review.
-# entry should be time stamp, location if available, computer, DATA. Header should indicate data headers.
-# TODO: [i] if new metrics added, update previous rows? Impossible?
-if __name__ == "__main__":
-    """Does not run if imported - use to allow importing without running test code."""
-
-    
+def codeanalysis_logic():
     RESETPATH = sys.path #store system path for import of modules to be reset at end, after hackish adding to system path.
     RESETCWD = os.getcwd()
     #TODO: Change the path addition to only append if not already in path?
@@ -752,7 +744,7 @@ if __name__ == "__main__":
     fileIgnoreList = ["codeanalysis.html"] #TODO: ignore imported non-project files (Add at later date. This file should be done fairly early in project (before lit review finished)).
     for root, dirs, files in os.walk("."): #Changed from (..) to (.), so it only walks this project.
         #print (root, dirs, files) #debug. uncomment to show paths in interactive mode.
-        #print("DIR:" + str(dir(dirs)))
+        #print("DIR:" + str (dir(dirs)))
         #for sDir in dirs:
         #    print(sDir)
          #   thisDir = os.path.join(root, sDir)
@@ -803,3 +795,13 @@ if __name__ == "__main__":
     sys.path = RESETPATH
     os.chdir(RESETCWD)
     #input() #HACK: [e]Added so that results can be read when run from console. Not needed in interactive mode (or if we've run this solely to update the code analysis record).
+
+#global variables here. include path to dropbox text file where log is appended.
+# TODO: [d] should build this function into a unit test suite. every time we do a full check, we also log code review.
+# entry should be time stamp, location if available, computer, DATA. Header should indicate data headers.
+# TODO: [i] if new metrics added, update previous rows? Impossible?
+if __name__ == "__main__":
+    """Does not run if imported - use to allow importing without running test code."""
+    codeanalysis_logic()
+    
+    

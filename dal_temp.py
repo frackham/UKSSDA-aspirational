@@ -6,6 +6,26 @@ from edu_objects import *
 from data.dal import *
 from data.gendata import *
 
+def getCurrentDataset():
+  #dal_temp returns a default dataset. In actual DAL, this should return the current dataset in use.
+  dataset =  Dataset(key_name="Demo Dataset")
+  return dataset 
+  
+def CurrentDatasetAttendanceOverview():
+  retString = "<p>Attendance Overview</p>"
+  dataset = getCurrentDataset()
+  test_query = Student.all()
+  test_query.ancestor(dataset)
+  totAtt = 0
+  students = 0
+  for item in test_query.run():
+    students += 1
+    totAtt+=item.attendance
+    retString+="<p>Att: "+str(item.attendance) +"</p>" 
+  retString+="<p>Att average: "+str(totAtt/students) +"</p>"   
+  return retString
+  
+
 @db.transactional
 def tempSchoolSetup():
   retString = ""

@@ -28,7 +28,7 @@ function init_app(bDebugMode)  {
         // Creates pie chart at with center at 320, 200,
         // radius 100 and data: [55, 20, 13, 32, 5, 1, 2]
         r.piechart(320, 240, 100, [55, 20, 13, 32, 5, 1, 2]);	
-				
+				$("#chart1").css({zIndex: 0});
 				
 			}  else {
   		  console.log("jQuery not loaded.");	

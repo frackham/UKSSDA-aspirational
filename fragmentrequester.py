@@ -45,10 +45,22 @@ from external_sources import *
 from developer import *
 from dal_temp import *
 from data.dal import *
+from codeanalysis.codeanalysis import *
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
+class AuthHandler(webapp2.RequestHandler):     
+  def get(self, category, subcategory):         
+    user = users.get_current_user()         
+    if user:             
+      greeting = ("Welcome, %s! (<a href=\"%s\">sign out</a>)" % (user.nickname(), users.create_logout_url("/")))         
+    else:             
+      greeting = ("<a href=\"%s\">Sign in or register</a>." % users.create_login_url("/"))          
+    #2013-01-02 14.22.17.jpg. # TODO: [d]move response to auth.py
+    self.response.out.write("<html><body>%s</body></html>" % greeting) #TODO: [d] Use this section to return the fragment to a specific DIV.
+    
+    
 class RedirectRequestHandler(webapp2.RequestHandler):
   def post(self):
     self.response.out.write("!!post!!")
@@ -116,15 +128,15 @@ class HTMLRequestHandler(webapp2.RequestHandler):
       methodToCall = globals()[handlerByName]() #Returns a string.
       
       #HACK: use first 5 chars to determine response...
-      if methodToCall[0:5] == "PDF!!":
-        #self.response.out.write("PDFTEST")
-        self.response.headers['Content-Type'] = 'application/pdf'
-        p = canvas.Canvas(self.response.out)
-        p.drawString(100, 750, "Hey, it's easy!.")
-        p.showPage()
-        p.save()
-      else:
-        self.response.out.write(methodToCall)
+      #if methodToCall[0:5] == "PDF!!":
+      #  #self.response.out.write("PDFTEST")
+      #  self.response.headers['Content-Type'] = 'application/pdf'
+      #  p = canvas.Canvas(self.response.out)
+      #  p.drawString(100, 750, "Hey, it's easy!.")
+      #  p.showPage()
+      #  p.save()
+      #else:
+      self.response.out.write(methodToCall)
       
        #Live mode
       """try: 
@@ -167,6 +179,10 @@ def doDisplayAnalysis(requestHandler, datafunction, completefunction):
 
 #Each analysis needs a function here.        
 #NOTE: careful of dashes, they become underscores here.
+def user_authenticate():
+  users.create_logout_url("logout")
+  auth_fragment = users.create_login_url("login")
+  return '{{ auth_fragment }}'
 
 def admin_datasetexplorer():
   return datasets_plotbydate()
@@ -185,6 +201,9 @@ def school_context():
   """ use schoolcontext in fragments."""
   return "School Context CALLED!"   
 
+def attendance_summary():
+  """Attendance within Groups"""
+  return CurrentDatasetAttendanceOverview() 
 
 def attendance_groups():
   """Attendance within Groups"""
@@ -229,83 +248,24 @@ def fragment_schoolcount():
   
 def extension_edubase():
   return scrape_edubase()
-"""
-Menu list:
-Admin
-		id="admin-schooldetails">    School Details
-		id="admin-datasetexplorer">  Dataset Explorer <!-- Visual view of datasets. Add datasets from here (including descriptive only datasets). -->
-		id="admin-datasetvalidation">Dataset Validation(?)
-		id="admin-usersetup">        User Setup
+  
+  
+def tasks_summary():
+  #TODO: [i] Name this semantically. What is it, not how often it runs.
+  logging.info("Scheduled task triggered - tasks summary.")
+  outcomeCallback = "DAILY" #Outcome 
+  retStr = str(datetime.datetime.now()) +  ": " + outcomeCallback
+  logging.info(retStr)
+  return "Scheduled Task executed: " + retStr
 
-School
-		id="school-context">School Context
-		id="school-temp">   Other Analyses
-		
-
-Students
-		id="students-summary">Students Summary
-		id="students-temp">   Other Analyses
-		
-
-Attendance
-		id="attendance-summary">             Attendance Summary
-		id="attendance-groups">              Attendance within Groups
-		id="attendance-attainmentthresholds">Attendance against Thresholds
-		id="attendance-temp">                Other Analyses
-		
-
-Behaviour
-		id="behaviour-summary">Behaviour Summary
-		id="behaviour-temp">   Other Behaviour Analyses
-		
-
-Assessment
-		id="assessment-summary">Assessment Summary
-		id="assessment-temp">   Other Assessment Analyses
-		
-
-Curriculum
-		id="curriculum-summary">Curriculum Summary
-		id="curriculum-temp">   Other Curriculum Analyses
-		
-
-Developer
-  	id="dev-testclick">              School List
-  	id="dev-ajaxtest">               Ajaxtest
-  	id="dev-crudtest">               CRUD test (Data Store)
-  	id="dev-qanparse">               QAN parse
-  	id="dev-edubasescrape">          Edubase scrape
-  	id="dev-addschool">              Add School
-  	id="dev-showschools">            Show Schools
-  	id="dev-addstudenttoschool">     Add Student to (Fixed) School
-  	id="dev-showstudents">           Show Students of Schools
-  	id="dev-analysisloaderdemo">     Analysis Loader Demo
-		
-
-Extension Demos
-  	id="extension-location">Location
-  	id="extension-news">    News
-  	id="extension-ofsted">  OFSTED
-		
-
-Fragments in Progress
-  	id="fragment-studentcount">Count(Students)
-  	id="fragment-schoolcount">Count(School)
-  	id="fragment-schoollist">List(School)
-		
- 
-<li id="documents">Documents
-
-
-
-"""
-
-
-
-
-
-
-
+def tasks_weekly():
+  #TODO: [i] Name this semantically. What is it, not how often it runs.
+  logging.info("Scheduled task triggered - weekly task.")
+  outcomeCallback = "WEEKLY" #Outcome 
+  retStr = str(datetime.datetime.now()) +  ": " + outcomeCallback
+  logging.info(retStr)
+  return "Scheduled Task executed: " + retStr
+  
 #unittesting
 """
 class Case_AEqualsB(unittest.TestCase):

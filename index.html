@@ -2,14 +2,6 @@
 <html>
 
 <head>
-  <link href="css/bootstrap.min.css" rel="stylesheet" />
-  <link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
-  <link href="css/ukssda.css" rel="stylesheet" />   
-  <link href="css/font-awesome.css" rel="stylesheet" >
-  <link href="css/jquery.jqplot.min.css" rel="stylesheet" />
-  <link href="css/googlewebfont.css" rel="stylesheet" />
-  <link href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" rel="stylesheet" />
-  <link href='http://fonts.googleapis.com/css?family=Titillium+Web|Exo|Quicksand|Pontano+Sans|Josefin+Sans|Antic|Oxygen|Basic|Jura|Bubbler+One|Belleza' rel='stylesheet' />
   <link rel="icon" href="/favicon.ico">
   <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-144x144-precomposed.png"> <!-- #TODO: [d] Icon for iOS devices. Equivalent to favicon on mobile, kinda. See http://mathiasbynens.be/notes/touch-icons  -->
   <title> {{ header_title }} </title>
@@ -20,6 +12,14 @@
   <meta name="description" content="Demonstration application for UK Educational analysis.">
 
   <meta content="text/html;charset=utf-8" http-equiv="Content-Type"> 
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
+  <link href="css/ukssda.css" rel="stylesheet" />   
+  <link href="css/font-awesome.css" rel="stylesheet" >
+  <link href="css/jquery.jqplot.min.css" rel="stylesheet" />
+  <link href="css/googlewebfont.css" rel="stylesheet" />
+  <!-- <link href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" rel="stylesheet" /> -->
+  <link href='http://fonts.googleapis.com/css?family=Titillium+Web|Exo|Quicksand|Pontano+Sans|Josefin+Sans|Antic|Oxygen|Basic|Jura|Bubbler+One|Belleza' rel='stylesheet' />
   <script>
     WebFontConfig = { google: {     families: [ 'Titillium Web', 'Exo', 'Quicksand', 'Pontano Sans', 'Josefin Sans', 'Antic', 'Oxygen', 'Basic', 'Jura', 'Bubbler One', 'Belleza' ]  }};
   </script>
@@ -53,7 +53,7 @@
   <!-- Row 1: Header, 12 span -->
   <div class="row">
     <div class="span12">
-      <h1>{{ app_title }}</h1> <!-- #TODO: [e] add floating, so top menu is horizontally aligned. -->    
+      {{ app_title }} <!-- #TODO: [e] add floating, so top menu is horizontally aligned. -->    
     </div>
   </div>
 
@@ -63,10 +63,10 @@
     <div class="span6">
       <ul id="globalnav">
           <li id="global-tour"><a href="#"><i class="icon-magic"></i>Tour</a></li>
-          <li id="global-contribute"><a href="#"><i class="icon-github"></i>Contribute</a></li>
-          <li id="global-help"><a href="#"><i class="icon-question-sign"></i>Help</a></li>
+          <li id="global-contribute"><a href="https://github.com/frackham/UKSSDA-aspirational/wiki/Contribute"><i class="icon-github"></i>Contribute</a></li>
+          <li id="global-help"><a href="https://github.com/frackham/UKSSDA-aspirational/wiki" target="_blank"><i class="icon-question-sign"></i>Help</a></li>
           <li id="global-settings"><a href="#"><i class="icon-cog"></i>Settings</a></li>
-          <li id="global-login_logout"><a href="#"> {{ url_linktext }} </a></li> <!-- #TODO: [d] <i class="icon-info-sign"></i> Icon for linktext should be dependent on action required -->
+          <li id="global-login_logout"><a href="{{ url_linkuri }}"> {{ url_linktext }} </a></li> <!-- #TODO: [d] <i class="icon-info-sign"></i> Icon for linktext should be dependent on action required -->
       </ul>
       <br />
       <p id="headerstatus"><i class="icon-lock"></i> Data is Anonymised <i class="icon-info-sign"></i></p>
@@ -81,6 +81,8 @@
       <nav id="nav-primary">
       <ul id="nav">
         <li>{{ user_name }}  </li>
+        <li>{{ user_debug_accessrights }}  </li>
+        
           	  {{ nav_access_admin }}
         <li id="buffernav"><a href="#">- - - - -</a></li>
               {{ nav_access_school }}
@@ -153,7 +155,7 @@
          <li><a href="http://www.jshint.com/" target="_blank">JSHint</a></li>
         </ul>
         <p>Docs</p>      
-        <ul id="devlist_3">
+        <ul id="devlist_4">
          <li><a href="http://docs.jquery.com/" target="_blank">jQuery Docs</a></li>
          <li><a href="http://api.jqueryui.com" target="_blank">jQueryUI Docs</a></li>
          <li><a href="http://www.jqplot.com/docs/files/usage-txt.html" target="_blank">jqPlot Docs</a></li>
@@ -198,7 +200,7 @@
     <script type="text/javascript">// <![CDATA[	
 		  $(document).ready(function() {
 		    //alert(':/');	
-		    var bDebug = true;
+		    var bDebug = false;
 		    init_app(bDebug);	 
 		    //alert(':)');	
 		  });

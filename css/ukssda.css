@@ -1,7 +1,11 @@
 *           {background-color:#050505; color:#DDD; }
 
-  
+li          { z-index:50;}  
+svg         { z-index:10;}
 h1          { padding-left:10px;}
+
+.ui-menu-item>ul    {left:40px !important;}
+.ui-menu-item ul li { background-color:green; padding:3px;}
 
 /*Global Nav*/
 #globalnav li  { font-size:1.2em; float:left; list-style-type:none; padding-left:15px;} /* TODO: [e] [mobile] On mobile layout, no 'float:left;' */
@@ -22,13 +26,16 @@ h1          { padding-left:10px;}
 .icon-star  {cursor: pointer;}
 .star1 , .star2, .star3, .star4, .star5 {} 
 .startrue {color:yellow;}
-.starfalse{color:none !important;
+.starfalse{color:none !important;}
 
 /* Font Toggles */
+table.fonttable {border:solid 1px red; width:100%;}
 .roboto       {font-family:Roboto;}
+.quicksand    {font-family:Quicksand;}
 .arial        {font-family:Arial;}
+.georgia      {font-family:Georgia;}
 .verdana      {font-family:Verdana;}
-.helvetica    {font-family:Arial;}
+.helvetica    {font-family:Helvetica;}
 .courier      {font-family:Courier;}
 
 .serif        {font-family:Serif;}

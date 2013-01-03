@@ -1,9 +1,9 @@
 cron:
 - description: daily summary job
   url: /tasks/summary
-  schedule: every day 02:00
+  schedule: every day 21:00
 - description: monday morning mailout
-  url: /mail/weekly
+  url: /tasks/weekly
   schedule: every monday 09:00
 - description: new daily summary job
   url: /tasks/summary

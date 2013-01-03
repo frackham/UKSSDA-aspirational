@@ -24,6 +24,7 @@ import os
 from developer import *
 from fragmentrequester import *
 from system import *
+from authentication.authentication import *
 
 from mail.relativeimport import relimport_demo
 relimport_demo() #TODO: [e] Use this pattern to refactor project. 
@@ -51,12 +52,12 @@ def guestbook_key(guestbook_name=None):
 class MainPage(webapp2.RequestHandler):
     def get(self):
         logging.info("Page request: MainPage")
-        guestbook_name=self.request.get('guestbook_name')
-        greetings_query = Greeting.all().ancestor(
-            guestbook_key(guestbook_name)).order('-date') #TODO: [i] Remove.
-        greetings = greetings_query.fetch(10) #TODO: [i] Remove.
+        #guestbook_name=self.request.get('guestbook_name')
+        #greetings_query = Greeting.all().ancestor(
+            #guestbook_key(guestbook_name)).order('-date') #TODO: [i] Remove.
+        #greetings = greetings_query.fetch(10) #TODO: [i] Remove.
 
-        user_name = "Anonymous User"
+        
       
         app_title = "Secondary School Analysis"
         app_uri = "Unknown URI"
@@ -76,17 +77,18 @@ class MainPage(webapp2.RequestHandler):
         else:
           app_referer_type = "Live environment"
           app_referer_HTMLid = "livetitle"
-          livelink = "" #no need to link to live app if
+          livelink = "" #no need to link to live app if on live app.
 
+        user_name = "Anonymous User"
         nav = {}
-        nav['admin'] = ""
+        prepareNavigation(nav)
         accessrights = []
         bUserExists = False
         #Auth process: (1) Get user access rights through login (if not logged in, login).
         if users.get_current_user():
             bUserExists = True
-            url = users.create_logout_url(self.request.uri)
             url_linktext = 'Logout'
+            url_linkuri = "user/authenticate"
             user = users.get_current_user()
             user_name = user.nickname()
             
@@ -94,115 +96,29 @@ class MainPage(webapp2.RequestHandler):
             user.accessrights = accessrights #Note accessrights is tuple, nav is dict.
             user.accessrights.append("admin")
         else:
-            url = users.create_login_url(self.request.uri)
             url_linktext = 'Login'
+            url_linkuri = "user/authenticate"
 
         #Auth process: (2) Append appropriate nav based on access rights.
         bDoAdmin = False #HACK: [e] Separate variable for each nav group? No thanks, [refactor] on move to separate auth layer.
         if app_referer_type == "Local development": 
-          bDoAdmin = True
+          bDoAdmin = False
+          
+          
         if bUserExists: 
           if "admin" in user.accessrights: 
             bDoAdmin = True
         if bDoAdmin:
-        
           #TODO: [e] Move these to separate python file (mainnavigation.py). Pass user object, and get string with whole nav menu.
-        
-          nav["admin"] = """<li><a href=\"#\"><i class=\"primarynavicon icon-cogs icon-large\"></i>Admin</a>
-          	<ul>
-          		<li class=\"primarynav\" id=\"admin-schooldetails\">    <a href=\"#\">School Details</a></li>
-          		<li class=\"primarynav\" id=\"admin-datasetexplorer\">  <a href=\"#\">Dataset Explorer</a></li> <!-- #TODO: [e] Visual view of datasets. Add datasets from here (including descriptive only datasets). Consider using http://timeline.verite.co/  -->
-          		<li class=\"primarynav\" id=\"admin-datasetvalidation\"><a href=\"#\">Dataset Validation(?)</a></li>
-          		<li class=\"primarynav\" id=\"admin-adddataset\">       <a href=\"#\">Create New Dataset</a></li>
-          		<li class=\"primarynav\" id=\"admin-usersetup\">        <a href=\"#\">User Setup</a></li>
-          		<li class=\"primarynav\" id=\"admin-scheduledtasks\">   <a href=\"#\">Scheduled Tasks</a></li>
-          		<li class=\"primarynav\" id=\"admin-flushdatastore\">   <a href=\"#\">Flush Data Store</a></li>
-          	</ul>	
-          </li>"""     
-            
-          nav["school"] = """<li><a href=\"#\"><i class=\"primarynavicon icon-home icon-large\"></i>School</a>
-        	<ul>
-        		<li class=\"primarynav\" id=\"school-context\"><a href=\"#\">School Context</a></li>
-        		<li class=\"primarynav\" id=\"school-temp\">   <a href=\"#\">Other Analyses</a></li>
-        	</ul>	
-        </li>"""
-            
-          nav["student"] = """<li><a href=\"#\"><i class=\"primarynavicon icon-group icon-large\"></i>Students</a>
-        	<ul>
-        		<li class=\"primarynav\" id=\"students-summary\"><a href=\"#\">Students Summary</a></li>
-        		<li class=\"primarynav\" id=\"students-temp\">   <a href=\"#\">Other Analyses</a></li>
-        	</ul>	
-        </li>"""
-            
-          nav["attendance"] = """<li><a href=\"#\"><i class=\"primarynavicon icon-check icon-large\"></i>Attendance</a>
-        	<ul>
-        		<li class=\"primarynav\" id=\"attendance-summary\">             <a href=\"#\">Attendance Summary</a></li>
-        		<li class=\"primarynav\" id=\"attendance-groups\">              <a href=\"#\">Attendance within Groups</a></li>
-        		<li class=\"primarynav\" id=\"attendance-attainmentthresholds\"><a href=\"#\">Attendance against Thresholds</a></li>
-        		<li class=\"primarynav\" id=\"attendance-temp\">                <a href=\"#\">Other Analyses</a></li>
-        	</ul>	
-        </li>"""
-        
-          nav["behaviour"] = """<li><a href=\"#\"><i class=\"primarynavicon icon-fire icon-large\"></i>Behaviour</a>
-        	<ul>
-        		<li class=\"primarynav\" id=\"behaviour-summary\"><a href=\"#\">Behaviour Summary</a></li>
-        		<li class=\"primarynav\" id=\"behaviour-temp\">   <a href=\"#\">Other Behaviour Analyses</a></li>
-        	</ul>	
-        </li>"""
-        
-          nav["assessment"] = """<li><a href=\"#\"><i class=\"primarynavicon icon-cogs icon-large\"></i>Assessment</a>
-        	<ul>
-        		<li class=\"primarynav\" id=\"assessment-summary\"><a href=\"#\">Assessment Summary</a></li>
-        		<li class=\"primarynav\" id=\"assessment-temp\">   <a href=\"#\">Other Assessment Analyses</a></li>
-        	</ul>	
-        </li>"""
+          nav["admin"] = nav_admin()
+        if bUserExists:     
+          buildNavigation(nav)
           
-          nav["curriculum"] = """<li><a href=\"#\"><i class=\"primarynavicon icon-cogs icon-large\"></i>Curriculum</a>
-        	<ul>
-        		<li class=\"primarynav\" id=\"curriculum-summary\"><a href=\"#\">Curriculum Summary</a></li>
-        		<li class=\"primarynav\" id=\"curriculum-temp\">   <a href=\"#\">Other Curriculum Analyses</a></li>
-        	</ul>	
-        </li>"""
-        
-          nav["developer"] = """<li><a href=\"#\"><i class=\"primarynavicon icon-cogs icon-large\"></i>Developer</a>
-        	<ul>
-          	<li class=\"primarynav\" id=\"dev-listschools\">            <a href=\"#\">School List</a></li>
-          	<li class=\"primarynav\" id=\"dev-ajaxtemp\">               <a href=\"#\">Ajaxtest</a></li>
-          	<li class=\"primarynav\" id=\"dev-loadtempstrut\">          <a href=\"#\">Load test strut</a></li>
-          	<li class=\"primarynav\" id=\"dev-qanparse\">               <a href=\"#\">QAN parse</a></li>
-          	<li class=\"primarynav\" id=\"dev-edubasescrape\">          <a href=\"#\">Edubase scrape</a></li>
-          	<li class=\"primarynav\" id=\"dev-addschool\">              <a href=\"#\">Add School</a></li>
-          	<li class=\"primarynav\" id=\"dev-addstudenttoschool\">     <a href=\"#\">Add Student to (Fixed) School</a></li>
-          	<li class=\"primarynav\" id=\"dev-listallstudents\">        <a href=\"#\">Show Students of Schools</a></li>
-          	<li class=\"primarynav\" id=\"dev-analysisloaderdemo\">     <a href=\"#\">Analysis Loader Demo</a></li>
-          	<li class=\"primarynav objectReturn\" id=\"dev-pdftemp\">   <a href=\"#\">Render PDF Demo</a></li>
-          	<li class=\"primarynav\" id=\"dev-unittestoutcomes\">       <a href=\"#\">Unit Test Results</a></li>
-          	<li class=\"primarynav\" id=\"dev-fonttestpage\">           <a href=\"#\">Font Test Page</a></li>
-        	</ul>	
-        </li>"""
-        
-          nav["extension"] = """<li><a href=\"#\"><i class=\"primarynavicon icon-cogs icon-large\"></i>Extension Demos</a>
-        	<ul>
-          	<li class=\"primarynav\" id=\"extension-location\"><a href=\"#\">Location</a></li>
-          	<li class=\"primarynav\" id=\"extension-news\">    <a href=\"#\">News</a></li>
-          	<li class=\"primarynav\" id=\"extension-ofsted\">  <a href=\"#\">OFSTED</a></li>
-          	<li class=\"primarynav\" id=\"extension-edubase\">  <a href=\"#\">Edubase</a></li>
-        	</ul>	
-        </li>"""
-        
-          nav["fragmentsinprogress"] = """<li><a href=\"#\"><i class=\"primarynavicon icon-cogs icon-large\"></i>Fragments in Progress</a>
-        	<ul>
-          	<li class=\"primarynav\" id=\"fragment-studentcount\"><a href=\"#\">Count(Students)</a></li>
-          	<li class=\"primarynav\" id=\"fragment-schoolcount\"><a href=\"#\">Count(School)</a></li>
-          	<li class=\"primarynav\" id=\"fragment-schoollist\"><a href=\"#\">List(School)</a></li>
-        	</ul>	
-        </li>""" 
-          nav["documents"] = """<li id=\"documents\"><a href=\"#\"><i class=\"primarynavicon icon-inbox icon-large\"></i>Documents</a></li>"""
-        
+          
+        #At this point, user authentication handled and values obtained.  
         template_values = {
-            'greetings': greetings,
-            'url': url,
             'url_linktext': url_linktext,
+            'url_linkuri': url_linkuri,
             'nav_access_admin': nav["admin"],
             'nav_access_school': nav["school"],
             'nav_access_student': nav["student"],
@@ -217,6 +133,7 @@ class MainPage(webapp2.RequestHandler):
             'header_title': str(app_title) + ": " + str(app_referer_type),
             'app_title': "<h1 class=\"title\" id=\"" + app_referer_HTMLid + "\">" + str(app_title) + ": " + str(app_referer_type) + "</h1>",
             'user_name': user_name,
+            'user_debug_accessrights': accessrights,
             'livelink':livelink,
             'app_type_environment': app_referer_type,
         }
@@ -261,8 +178,9 @@ app = webapp2.WSGIApplication([
       webapp2.Route('/dev/crudtest', handler=CRUDTest_GDS, name = 'CRUDTest_GDS'),
       webapp2.Route('/<:(admin)>/<:(scheduledtasks)>', handler=RedirectRequestHandler, name = 'admin-scheduledtasks'),
       webapp2.Route('/<:(dev)>/<:(pdftemp)>', handler=ObjectRequestHandler, name = 'objectrequest'),
-      webapp2.Route('/<:(admin|assessment|school|student|behaviour|curriculum|attendance|dev|extension|fragment)>/<:[a-z]*>', handler=HTMLRequestHandler, name='analysis'),      
+      webapp2.Route('/<:(admin|assessment|school|student|behaviour|curriculum|attendance|dev|extension|fragment|tasks)>/<:[a-z]*>', handler=HTMLRequestHandler, name='analysis'),      
       webapp2.Route('/<:dev>/<:addschool>', handler=HTMLRequestHandler, name = 'addschool'),
+      webapp2.Route('/<:(user)>/<:(authenticate)>', handler=AuthHandler, name = 'user-authenticate'),
       ], config=config)
 System = EdSystem  #TODO: [i] Consider which aspects of this file need moving to the system object.
 

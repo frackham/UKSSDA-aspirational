@@ -831,3 +831,16 @@
 + #TODO: [e]Replace these strings with values loaded from textfiles on module start (system object? onload of admin console, load these to system.object).
 + #TODO: [e] Currently returns first item.
 
+
+2013-01-01 20:15:48.835000
+-  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-144x144-precomposed.png"> <!-- #TODO: [d] Icon for iOS devices. Equivalent to favicon on mobile, kinda. See http://mathiasbynens.be/notes/touch-icons  -->
++ <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-144x144-precomposed.png"> <!-- #TODO: [d] Icon for iOS devices. Equivalent to favicon on mobile, kinda. See http://mathiasbynens.be/notes/touch-icons  -->
+-  <h1>{{ app_title }}</h1> <!-- #TODO: [e] add floating, so top menu is horizontally aligned. -->
++  {{ app_title }} <!-- #TODO: [e] add floating, so top menu is horizontally aligned. -->
+- - # TODO: [d] should build this function into a unit test suite. every time we do a full check, we also log code review.
+- - # TODO: [i] if new metrics added, update previous rows? Impossible?
++ - # TODO: [d] should build this function into a unit test suite. every time we do a full check, we also log code review.
++ - # TODO: [i] if new metrics added, update previous rows? Impossible?
+- #globalnav li  { font-size:1.2em; float:left; list-style-type:none; padding-left:15px;} /* TODO: [e] [mobile] On mobile layout, no 'float:left;' */
++  #globalnav li  { font-size:1.2em; float:left; list-style-type:none; padding-left:15px;} /* TODO: [e] [mobile] On mobile layout, no 'float:left;' */
+
