@@ -1,3 +1,7 @@
+import pprint
+import edu_objects
+
+
 def verifyStatistic(statistic):
 	"""if statistic is a statistic object, return same. else get statistic"""
 	return statistic
@@ -19,11 +23,17 @@ def getStatisticOfDatasets(statistic, datasets):
 	schools.append(thisSchool)
 	
 	for sch in schools:
-		lst.append(getStatisticOfSchool(vStatistic, sch)
+		row =[]
+		row.append(school.id, school.name)
+		for d in datasets:
+			row.append(getStatisticOfSchool(vStatistic, sch, dataset))
+		lst.append(row)
 		
 	pprint(lst)
 
 def getStatisticOfSchool(statistic, school):
 	
 	vStatistic = verifyStatistic(statistic)
+	result="result here"
+	return result
 	
