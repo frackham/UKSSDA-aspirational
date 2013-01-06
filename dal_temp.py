@@ -143,10 +143,32 @@ def datasets_add_form():
   retString += "    <div class=\"circle-12px circle-color-amber icon-timetable\"></div><div class=\"dataset-datasource\">"
   retString += "     <p>Attendance: <input type=\"button\" value=\"Browse\"></p>"
   retString += "    </div>"
+  
+  #See http://twitter.github.com/bootstrap/javascript.html#modals for bootstrap modal template.
+  retString += "    <br/>      "
+  #Button to trigger modal
+  retString += "    <a href=\"#myModal\" role=\"button\" class=\"btn\" data-toggle=\"modal\">Launch demo modal</a> "
+  retString += "    <br/>      "
+  retString += "  <div id=\"myModal\" class=\"modal hide fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">     "
+  retString += "   <div class=\"modal-header\">    "
+  retString += "     <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>    "
+  retString += "     <h3>Modal header</h3>  "
+  retString += "   </div>  "
+  retString += "   <div class=\"modal-body\">    "
+  retString += "     <p>One fine body...</p>  "
+  retString += "   </div>  "
+  retString += "   <div class=\"modal-footer\">    "
+  retString += "     <a href=\"#\" class=\"btn\">Close</a>    "
+  retString += "     <a href=\"#\" class=\"btn btn-primary\">Save changes</a>  "
+  retString += "   </div>"
+  retString += "  </div>"
   retString += "    <div class=\"dataset-datasource\">"
-  retString += "     <p>Attendance: <input type=\"button\" value=\"Browse\"></p>"
+  retString += "     <p>Modal demo above: <input type=\"button\" value=\"Browse\"></p>"
   retString += "    </div>"
 
+  
+  
+  
   
   retString += "  </div>"
   retString += "</form>"

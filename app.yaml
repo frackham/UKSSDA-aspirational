@@ -30,6 +30,9 @@ handlers:
 - url: /js/fr
   static_dir: js/fr
 
+- url: /js/bootstrap
+  static_dir: js/bootstrap
+
 - url: /flashcanvas
   static_dir: flashcanvas
     
@@ -47,7 +50,7 @@ handlers:
   login: admin
 
 - url: /secure_api/.* 
-  script: api_handler.py 
+  script: apihandler.app 
   login: required 
   auth_fail_action: unauthorized
 

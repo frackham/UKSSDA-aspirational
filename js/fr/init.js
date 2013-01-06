@@ -173,7 +173,6 @@ function init_app(bDebugMode)  {
 		    });	
   
 		    
-		    
 };
 
 function formButtonClick_Browse(e) {
