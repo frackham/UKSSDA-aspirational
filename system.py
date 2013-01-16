@@ -15,12 +15,30 @@ class EdSystem():
     #TODO: [e] On process dataset, update calculationVersion of the Dataset. If calculationVersion != edsystem.version, then recalc dataset?
     self.githublink = "" #TODO: [i] Necessary?
     self.passedUnitTests = False #TODO: [e] Get most recent unit test outcomes (from dev_unittestoutcomes() ).
+    self.abstractReportDefinitions = []
     pass
   def __str__(self):
     return ("Education analysis system. Version " + str(self.version) + 
            ". Created by Fraser Rackham (2012). This project can be forked from the Github repository at " +
            str(self.githublink))
-    
+  
+  def ReportDefinition(self, file):
+    if file.extension == ".txt": 
+      if file.readline(0) == "UKSSDA REPORT DEFINITION":
+        System.ReportDefinitions.append(file) #Does this store it in memory? How does that handle lots of definitions?
+        return 1
+      else:
+        return 0
+                      
+  def AddReportDefinitionSet(self, folder):
+    with folder:
+      for file in folder:
+        n = self.AddReportDefinition(file) #Returns 0 on fail.
+        if n == 0:
+          console.logging.debug("Report '" + file.name() +"' (no. " + str(reportCount) + ") failed to add to system object.")      
+        reportCount += 1
+        successCount += n
+      console.logging.debug(str(successCount) + ", out of " + str(reportCount) + " possible files, report definitions added to system.")
     
   def Metric(self, metricname):
     """
