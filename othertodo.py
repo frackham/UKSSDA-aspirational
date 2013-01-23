@@ -55,3 +55,32 @@
 #http://uxdesign.smashingmagazine.com/2012/12/04/fittss-law-and-user-experience/
 #http://css-tricks.com/examples/StarRating/
 #
+
+
+"""
+Demo plan:
+
+Ask where someone went to school. Find on Edubase, (v quick link to search, get URN).
+ - Generate School base details from URN.
+ - Show that, from that single number, we already have positioned school in the web of existing data (Edubase, Performance Tables, OFSTED inspections - and estimated next inspection!).
+  - Also, as a minor point, links to the Register, statement of intent (global links in System).
+ - Load demo dataset, showing different sections of data (and that they may come from a single MIS, or from multiple sources).
+  - Show inheritance from an existing dataset.
+ - 
+
+
+
+
+
+
+
+
+REQUIRED FOR THE DEMO:
+- School build from URN.
+ - Edubase load.
+ - OFSTED load.
+ - Perfomance tables load.
+ - Global links.
+
+
+"""
