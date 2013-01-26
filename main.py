@@ -25,6 +25,7 @@ from developer import *
 from fragmentrequester import *
 from system import *
 from authentication.authentication import *
+from data.persistence.filehandler import *
 
 from mail.relativeimport import relimport_demo
 relimport_demo() #TODO: [e] Use this pattern to refactor project. 
@@ -101,13 +102,17 @@ class MainPage(webapp2.RequestHandler):
 
         #Auth process: (2) Append appropriate nav based on access rights.
         bDoAdmin = False #HACK: [e] Separate variable for each nav group? No thanks, [refactor] on move to separate auth layer.
+        user_accessrightslevel = "none"
         if app_referer_type == "Local development": 
           bDoAdmin = False
           
           
         if bUserExists: 
           if "admin" in user.accessrights: 
+            user_accessrightslevel = "admin"
             bDoAdmin = True
+          elif "full-access" in user.accessrights:  
+            user_accessrightslevel = "full-access"
         if bDoAdmin:
           #TODO: [e] Move these to separate python file (mainnavigation.py). Pass user object, and get string with whole nav menu.
           nav["admin"] = nav_admin()
@@ -133,6 +138,7 @@ class MainPage(webapp2.RequestHandler):
             'header_title': str(app_title) + ": " + str(app_referer_type),
             'app_title': "<h1 class=\"title\" id=\"" + app_referer_HTMLid + "\">" + str(app_title) + ": " + str(app_referer_type) + "</h1>",
             'user_name': user_name,
+            'user_accessrightslevel': user_accessrightslevel,
             'user_debug_accessrights': accessrights,
             'livelink':livelink,
             'app_type_environment': app_referer_type,
@@ -174,6 +180,8 @@ config = {'anonymisedmode': bAnonymisedMode} #Use this to pass global config val
 app = webapp2.WSGIApplication([
       webapp2.Route('/', handler=MainPage, name = ''),
       #webapp2.Route('/login', handler=Login, name = 'Login'), #Comment this line out to skip login to anonymous. 
+      webapp2.Route('/upload', handler=UploadHandler, name = 'Upload'),
+      webapp2.Route('/serve/([^/]+)?', ServeHandler),
       webapp2.Route('/dev/ajaxtest', handler=DevSchoolList, name = 'DevSchoolList'),
       webapp2.Route('/dev/crudtest', handler=CRUDTest_GDS, name = 'CRUDTest_GDS'),
       webapp2.Route('/<:(admin)>/<:(scheduledtasks)>', handler=RedirectRequestHandler, name = 'admin-scheduledtasks'),
@@ -181,7 +189,7 @@ app = webapp2.WSGIApplication([
       webapp2.Route('/<:(admin|assessment|school|student|behaviour|curriculum|attendance|dev|extension|fragment|tasks)>/<:[a-z]*>', handler=HTMLRequestHandler, name='analysis'),      
       webapp2.Route('/<:dev>/<:addschool>', handler=HTMLRequestHandler, name = 'addschool'),
       webapp2.Route('/<:(user)>/<:(authenticate)>', handler=AuthHandler, name = 'user-authenticate'),
-      ], config=config)
+      ], config=config, debug=True)
 System = EdSystem  #TODO: [i] Consider which aspects of this file need moving to the system object.
 
 

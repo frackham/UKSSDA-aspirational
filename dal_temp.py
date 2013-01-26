@@ -6,6 +6,10 @@ from edu_objects import *
 from data.dal import *
 from data.gendata import *
 
+#For file upload.
+from google.appengine.ext import blobstore 
+from google.appengine.ext.webapp import blobstore_handlers 
+
 def getCurrentDataset():
   #dal_temp returns a default dataset. In actual DAL, this should return the current dataset in use.
   dataset =  Dataset(key_name="Demo Dataset")
@@ -33,8 +37,6 @@ def tempSchoolSetup():
   datasetRefDate = (datetime(2000,1,1))
   dataset =  Dataset(key_name="Demo Dataset", dateOfReference=datasetRefDate) #datasetShortName, datasetDescription.
   dataset.put()
-
-
 
   schoolA = School(key_name="Test School A", parent=dataset, name="Test School A", description="Descrip here for school A.")
   schoolA.put()
@@ -247,4 +249,12 @@ def DAL_FlushDataStore():
         
   s+="<p>...flushed.</p>"
   return s
-  
+ 
+"""   
+def DAL_PutFilestream(fFile):
+  class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):   
+    def post(self):     
+      upload_files = self.get_uploads('file')  # 'file' is file upload field in the form     
+      blob_info = upload_files[0]     
+      self.redirect('/serve/%s' % blob_info.key())
+"""

@@ -45,7 +45,7 @@ def nav_admin():
           
           
 def nav_school():
-  return """<li><a href=\"#\"><i class=\"primarynavicon icon-home icon-large\"></i>School</a>
+  return """<li><a href=\"#\"><i class=\"primarynavicon icon-home icon-large strategic\"></i>School</a>
         	<ul>
         		<li class=\"primarynav\" id=\"school-context\"><a href=\"#\">School Context</a></li>
         		<li class=\"primarynav\" id=\"school-temp\">   <a href=\"#\">Other Analyses</a></li>
@@ -53,7 +53,7 @@ def nav_school():
         </li>"""
         
 def nav_student():
-  return """<li><a href=\"#\"><i class=\"primarynavicon icon-group icon-large\"></i>Students</a>
+  return """<li><a href=\"#\"><i class=\"primarynavicon icon-group icon-large operational\"></i>Students</a>
         	<ul>
         		<li class=\"primarynav\" id=\"students-summary\"><a href=\"#\">Students Summary</a></li>
         		<li class=\"primarynav\" id=\"students-temp\">   <a href=\"#\">Other Analyses</a></li>
@@ -61,7 +61,7 @@ def nav_student():
         </li>"""
         
 def nav_attendance():
-  return """<li><a href=\"#\"><i class=\"primarynavicon icon-check icon-large\"></i>Attendance</a>
+  return """<li><a href=\"#\"><i class=\"primarynavicon icon-check icon-large tactical\"></i>Attendance</a>
         	<ul>
         		<li class=\"primarynav\" id=\"attendance-summary\">             <a href=\"#\">Attendance Summary</a></li>
         		<li class=\"primarynav\" id=\"attendance-groups\">              <a href=\"#\">Attendance within Groups</a></li>
@@ -71,7 +71,7 @@ def nav_attendance():
         </li>"""
 
 def nav_behaviour():
-  return """<li><a href=\"#\"><i class=\"primarynavicon icon-fire icon-large\"></i>Behaviour</a>
+  return """<li><a href=\"#\"><i class=\"primarynavicon icon-fire icon-large tactical\"></i>Behaviour</a>
         	<ul>
         		<li class=\"primarynav\" id=\"behaviour-summary\"><a href=\"#\">Behaviour Summary</a></li>
         		<li class=\"primarynav\" id=\"behaviour-temp\">   <a href=\"#\">Other Behaviour Analyses</a></li>
@@ -79,7 +79,7 @@ def nav_behaviour():
         </li>"""
         
 def nav_assessment():
-  return """<li><a href=\"#\"><i class=\"primarynavicon icon-cogs icon-large\"></i>Assessment</a>
+  return """<li><a href=\"#\"><i class=\"primarynavicon icon-cogs icon-large tactical\"></i>Assessment</a>
         	<ul>
         		<li class=\"primarynav\" id=\"assessment-summary\"><a href=\"#\">Assessment Summary</a></li>
         		<li class=\"primarynav\" id=\"assessment-temp\">   <a href=\"#\">Other Assessment Analyses</a></li>
@@ -87,7 +87,7 @@ def nav_assessment():
         </li>"""
         
 def nav_curriculum():
-  return """<li><a href=\"#\"><i class=\"primarynavicon icon-cogs icon-large\"></i>Curriculum</a>
+  return """<li><a href=\"#\"><i class=\"primarynavicon icon-cogs icon-large tactical\"></i>Curriculum</a>
         	<ul>
         		<li class=\"primarynav\" id=\"curriculum-summary\"><a href=\"#\">Curriculum Summary</a></li>
         		<li class=\"primarynav\" id=\"curriculum-temp\">   <a href=\"#\">Other Curriculum Analyses</a></li>
@@ -110,6 +110,7 @@ def nav_developer():
           	<li class=\"primarynav objectReturn\" id=\"dev-pdftemp\">   <a href=\"#\">Render PDF Demo</a></li>
           	<li class=\"primarynav\" id=\"dev-unittestoutcomes\">       <a href=\"#\">Unit Test Results</a></li>
           	<li class=\"primarynav\" id=\"dev-fonttestpage\">           <a href=\"#\">Font Test Page</a></li>
+          	<li class=\"primarynav\" id=\"dev-fileuploaddownload\">     <a href=\"#\">File upload and download</a></li>
         	</ul>	
         </li>"""
         
@@ -133,4 +134,4 @@ def nav_fragmentsinprogress():
         </li>""" 
         
 def nav_documents():
-  return """<li id=\"documents\"><a href=\"#\"><i class=\"primarynavicon icon-inbox icon-large\"></i>Documents</a></li>"""
+  return """<li id=\"documents\"><a href=\"#\"><i class=\"primarynavicon icon-inbox icon-large strategic\"></i>Documents</a></li>"""

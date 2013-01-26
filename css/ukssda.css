@@ -14,7 +14,10 @@ h1          { padding-left:10px;}
 #nav            { padding-top:10px;}
 #nav li         { list-style-type:none; }
 .primarynavicon { color:cyan; } /* #HACK: Not blue or cyan, get html color.... */
-
+.notlink, .notlink:hover, .notlink:focus, .notlink:active       { text-decoration:none;} /* Removes underline from <a> without href attributes where browser does not recognise link-less anchor */
+.strategic      { color:red; }
+.tactical       { color:orange; }
+.operational    { color:green; }
 /*Common to Nav */
 
 

@@ -62,9 +62,9 @@
     <div class="span6"></div>
     <div class="span6">
       <ul id="globalnav">
-          <li id="global-tour"><a href="#"><i class="icon-magic"></i>Tour</a></li>
-          <li id="global-contribute"><a href="https://github.com/frackham/UKSSDA-aspirational/wiki/Contribute"><i class="icon-github"></i>Contribute</a></li>
-          <li id="global-help"><a href="https://github.com/frackham/UKSSDA-aspirational/wiki" target="_blank"><i class="icon-question-sign"></i>Help</a></li>
+          <li id="global-tour"><a onclick="window.open('https://www.youtube.com/user/UKSSDA', '_blank', 'width=800, height=500, left='+((screen.width/2)-250)+', top='+((screen.height/2)-250));"><i class="icon-magic"></i>Tour</a></li>
+          <li id="global-contribute"><a onclick="window.open('https://github.com/frackham/UKSSDA-aspirational/wiki/Contribute', '_blank', 'width=500, height=500, left='+((screen.width/2)-250)+', top='+((screen.height/2)-250));"><i class="icon-github"></i>Contribute</a></li> <!-- #TODO: [d] Only add Contribute to navigation if a developer? --> <!-- Also, note that an anchor without href IS STILL VALID http://www.w3.org/TR/2011/WD-html5-20110525/links.html#attr-hyperlink-href -->
+          <li id="global-help"><a onclick="window.open('https://github.com/frackham/UKSSDA-aspirational/wiki/Application-guide', '_blank', 'width=500, height=500, left='+((screen.width/2)-250)+', top='+((screen.height/2)-250));"><i class="icon-question-sign"></i>Help</a></li>
           <li id="global-settings"><a href="#"><i class="icon-cog"></i>Settings</a></li>
           <li id="global-login_logout"><a href="{{ url_linkuri }}"> {{ url_linktext }} </a></li> <!-- #TODO: [d] <i class="icon-info-sign"></i> Icon for linktext should be dependent on action required -->
       </ul>
@@ -72,7 +72,7 @@
       <p id="headerstatus"><i class="icon-lock"></i> Data is Anonymised <i class="icon-info-sign"></i></p>
     </div>
   </div>
-        
+
   
   
   <!-- Row 3: Main content, 3 span secondary nav and 9 span main content -->
@@ -84,7 +84,7 @@
         <li>{{ user_debug_accessrights }}  </li>
         
           	  {{ nav_access_admin }}
-        <li id="buffernav"><a href="#">- - - - -</a></li>
+        <li id="buffernav"><a class="notlink">- - - - -</a></li>
               {{ nav_access_school }}
               {{ nav_access_student }}
               {{ nav_access_attendance }}
@@ -107,10 +107,20 @@
     <div class="span9" id="mainwrapper">
       <div id="main">
         <h2>Main content here</h2>
-        <div id="debug"> <!-- Replace with Bootstrap alerts...-->
-          <div class="debugmessage"><p>User is {{user_name}} </p></div>
+        <div id="alert debug alert-info"> <!-- Replace with Bootstrap alerts...-->
+          <div class="alert debugmessage">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <p>User is {{user_name}} </p><p>User has access rights <span class="strategic">{{user_accessrightslevel}}</span> </p>
+          </div>
+          <div class="alert debugmessage">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <p>User is {{user_name}} </p><p>User has access rights <span class="strategic">{{user_accessrightslevel}}</span> </p>
+          </div>
         </div>
         <div id="loader"><img src="/img/temp_hourglass.gif" alt="Loading..."/></div>
+        <div class="progress">
+          <div class="bar" style="width: 60%;"></div>
+        </div>
         <div id="notices">
           <!-- User notices (e.g. are loaded here. Can be 0+ subdivs.-->
         </div>

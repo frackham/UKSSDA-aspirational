@@ -240,6 +240,9 @@ def dev_unittestoutcomes():
 def dev_fonttestpage():
   return fonttestpage()
   
+def dev_fileuploaddownload():
+  return fileuploaddownloaddemo()
+  
 def fragment_schoollist():
   return demo_DALDataStoreQuery()  
 
