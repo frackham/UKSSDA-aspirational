@@ -22,17 +22,17 @@ import urllib
 import webapp2
 import os
 import jinja2
-#import wsgiref.handlers
 import sys
+from registry import System
 
 sys.path.insert(0, 'reportlab.zip') #enables import of reportlab
 import reportlab
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.lib.pagesizes import letter, A4
+folderFonts = os.path.dirname(reportlab.__file__) + os.sep + 'fonts'
 #import renderpdf
 
-folderFonts = os.path.dirname(reportlab.__file__) + os.sep + 'fonts'
 
 import unittest
 from google.appengine.ext import testbed
@@ -45,6 +45,7 @@ from external_sources import *
 from developer import *
 from dal_temp import *
 from data.dal import *
+from data.persistence.filehandler import *
 from codeanalysis.codeanalysis import *
 
 jinja_environment = jinja2.Environment(
@@ -57,10 +58,9 @@ class AuthHandler(webapp2.RequestHandler):
       greeting = ("Welcome, %s! (<a href=\"%s\">sign out</a>)" % (user.nickname(), users.create_logout_url("/")))         
     else:             
       greeting = ("<a href=\"%s\">Sign in or register</a>." % users.create_login_url("/"))          
-    #2013-01-02 14.22.17.jpg. # TODO: [d]move response to auth.py
+    # TODO: [d]move response to auth.py
     self.response.out.write("<html><body>%s</body></html>" % greeting) #TODO: [d] Use this section to return the fragment to a specific DIV.
-    
-    
+
 class RedirectRequestHandler(webapp2.RequestHandler):
   def post(self):
     self.response.out.write("!!post!!")
@@ -72,7 +72,7 @@ class RedirectRequestHandler(webapp2.RequestHandler):
       logging.info("Page redirection: RedirectRequestHandler:" + uriByName)
       return webapp2.redirect(uriByName)
     else:
-      self.response.out.write("Redirect Handler (" + handlerByName + ") not yet defined. Come back later!")
+      self.response.out.write("Redirect Handler (" + handlerByName + ") not yet defined.")
 
       
       
@@ -81,6 +81,7 @@ class ObjectRequestHandler(webapp2.RequestHandler):
     self.response.out.write("!!post!!")
   def get(self, category, subcategory):
     logging.info("Page request: ObjectRequestHandler:" + category + ":" + subcategory)
+    #System().Counter()
     handlerByName = category + "_" + subcategory    
     if handlerByName in globals():
       #TODO: [e] The whole of this if branch needs moving out into a separate object handler - ideally, we should be able to get the type of handler required from the handlerName (or passed as other argument).
@@ -117,9 +118,6 @@ class HTMLRequestHandler(webapp2.RequestHandler):
   def get(self, category, subcategory):
     logging.info("Page request: GlobalRequestHandler:" + category + ":" + subcategory)
     logging.info(self.request.path) #TODO: This returns the path requested, so might be a better way of handling this [refactor].
-    #self.response.out.write("!!GlobalRequestHandler from regex!:" + category + ":" + subcategory)
-    #self.response.out.write("  Settings:" )
-    #self.response.out.write("    Anonymised Mode:" + self.app.config['anonymisedmode'])
     handlerByName = category + "_" + subcategory    
     #self.response.out.write(str(globals()))
     if handlerByName in globals():
@@ -127,15 +125,7 @@ class HTMLRequestHandler(webapp2.RequestHandler):
       #Debug mode.
       methodToCall = globals()[handlerByName]() #Returns a string.
       
-      #HACK: use first 5 chars to determine response...
-      #if methodToCall[0:5] == "PDF!!":
-      #  #self.response.out.write("PDFTEST")
-      #  self.response.headers['Content-Type'] = 'application/pdf'
-      #  p = canvas.Canvas(self.response.out)
-      #  p.drawString(100, 750, "Hey, it's easy!.")
-      #  p.showPage()
-      #  p.save()
-      #else:
+
       self.response.out.write(methodToCall)
       
        #Live mode
@@ -199,16 +189,29 @@ def admin_flushdatastore():
 def school_context():
   """School Context"""
   """ use schoolcontext in fragments."""
-  return "School Context CALLED!"   
-
+  return SchoolContextDashboard()   
+  
+def assessment_summary():
+  """Assessment summary."""
+  return CurrentAssessmentOverview()
+  
+  
 def attendance_summary():
-  """Attendance within Groups"""
+  """Attendance Overview"""
   return CurrentDatasetAttendanceOverview() 
 
+def attendance_summaryb():
+  """Attendance Overview B"""
+  return CurrentDatasetAttendanceOverview_FromAnalysisObject("Demo Report Template") 
+  
 def attendance_groups():
   """Attendance within Groups"""
-  return "ATTENDANCE GROUPS CALLED!"   
+  return System().Analysis("Attendance Groups", "HTML")   
         
+def behaviour_summary():
+  """behaviour_summary summary."""
+  return CurrentBehaviourOverview()
+  
 def dev_analysisloaderdemo():
   """May need changing to return a string!"""
   self.response.out.write("1!")

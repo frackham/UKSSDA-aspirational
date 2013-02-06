@@ -5,6 +5,9 @@ from google.appengine.ext import db
 from edu_objects import *
 from data.dal import *
 from data.gendata import *
+from string import Template
+from registry import System
+from reporting.communications import *
 
 #For file upload.
 from google.appengine.ext import blobstore 
@@ -12,26 +15,201 @@ from google.appengine.ext.webapp import blobstore_handlers
 
 def getCurrentDataset():
   #dal_temp returns a default dataset. In actual DAL, this should return the current dataset in use.
-  dataset =  Dataset(key_name="Demo Dataset")
+  dataset =  Dataset(key_name="Demonstration Dataset")
   return dataset 
+
+def AnalysisPlaceholder(model, renderType = 'HTML'):
+  """Given a model, returns a rendering"""
+  dbg = System().debugMode
+  retString = "<h3>Attendance Overview</h3>"
+  #logging.info(str(model))
+  returns = model[1] #Dictionary, retrieve returns by name.
+  students = model[0]
   
-def CurrentDatasetAttendanceOverview():
-  retString = "<p>Attendance Overview</p>"
-  dataset = getCurrentDataset()
-  test_query = Student.all()
-  test_query.ancestor(dataset)
-  totAtt = 0
-  students = 0
-  for item in test_query.run():
-    students += 1
-    totAtt+=item.attendance
-    retString+="<p>Att: "+str(item.attendance) +"</p>" 
-  retString+="<p>Att average: "+str(totAtt/students) +"</p>"   
+  if returns['average attendance'] < 85:
+    retString += alertMessageHTML("Average attendance is below 85%", "Warning")
+  if returns['persistent absentee percentage'] > 30:
+    retString += alertMessageHTML("Proportion of persistent absentees is above 30%", "Error")
+  elif returns['persistent absentee percentage'] > 20:
+    retString += alertMessageHTML("Proportion of persistent absentees is above 20%", "Warning")
+
+  for item in students:
+    if dbg:
+      retString+="<p>Att: "+str(item.attendance) +", from school " +str(item.currentSchool)+ "</p>" 
+    pass
+  retString+="<p>Att average: " + str(returns['average attendance']) +"</p>"   
+  retString+="<p>Number of persistent absentees: " + str(returns['persistent absentee count']) +"</p>"   
+  retString+="<p>Percentage of persistent absentees: " + str(returns['persistent absentee percentage']) +"</p>"   
+ 
   return retString
   
+def modelFromQuery(query):
+  totAtt = 0
+  students = 0
+  persAbs = 0
+  persAtt=0
+  persAbsPct=0
+  model = []
+  modelobjects = []
+  returns = {} #Dictionary, retrieve returns by name.
+  
+  for item in query.run():
+    students += 1
+    attendance = item.attendance  #Retrieve once from dataset object.
+    
+    #Store objects #TODO: [e] Should be storing business object from BAL.
+    modelobjects.append(item) 
+    
+    #Process data.
+    totAtt+=attendance
+    
+    if attendance < 85:
+      persAbs += 1
+      persAtt += attendance  
+    
+  #Summative data processing.  
+  avAtt = totAtt/students
+  if persAbs> 0: 
+    persAbsPct = (persAtt/persAbs)
+  
+  #Store data returns in model.
+  returns['student count'] = students
+  returns['total attendance'] = totAtt 
+  returns['average attendance'] = avAtt  
+  returns['persistent absentee count'] = persAbs
+  returns['persistent absentee percentage'] = persAbsPct
+  
+  model = [modelobjects, returns] #first item of model is list of objects, after that is returns dictionary.
+  return model
+  
+def CurrentDatasetAttendanceOverview():
+  #(0) With current analysis object.
+  #(1) Get dataset.
+  dataset = getCurrentDataset()
+  #(2) Query.
+  query = Student.all() #TODO:[e] Review. Not optimal. Have each analysis define a query.
+  query.ancestor(dataset)  
+    
+  #(3) Create model.
+  model = modelFromQuery(query)
+  
+  #(4) Pass model to analysis, and retrieve return.
+  retString = AnalysisPlaceholder(model)#System.Analysis['Attendance']
+  return retString
+  
+def CurrentDatasetAttendanceOverview_FromAnalysisObject(analysisObjectName):
+  #(0) With current analysis object.
+  analysisObject = System().Analysis(analysisObjectName)
+  #(1) Get dataset.
+  dataset = getCurrentDataset()
+  #(2) Query.
+  queryString = analysisObject.query 
+  q = db.GqlQuery(queryString)
+
+  #(3) Create model.
+  model = modelFromQuery(q) #HACK: [c] CURRENTLY NOT coming from analysis object.
+  
+  #(4) Pass model to analysis, and retrieve return.
+  retString = AnalysisPlaceholder(model)#System.Analysis['Attendance']
+  #logging.info(analysisObjectName)
+  #logging.info(queryString)
+  #logging.info(str(model))
+  return retString
+
+    
 
 @db.transactional
 def tempSchoolSetup():
+  retString = ""
+  
+  datasetRefDate = (datetime(2013,1,1))
+  dataset =  Dataset(key_name="Demonstration Dataset", dateOfReference=datasetRefDate) #datasetShortName, datasetDescription.
+  dataset.put()
+
+  schoolA = School(key_name="YellowTreeDrive", 
+                   parent=dataset, 
+                   name="Yellow Tree Drive", 
+                   description="Secondary school generated based on average profile of school in RAISEonline unvalidated 2012.", 
+                   ageRange="11-16",
+                   urn=306455, 
+                   dateOpened= datetime(2011,9,1),
+                   localAuthorityName = 'Richmond Upon Thames',
+                   localAuthorityNumber = 316,
+                   schoolCapacity=1200)
+                   
+  schoolA.put() #Adds the school
+
+  schools     =[schoolA]
+  schoolCounts=[1000]
+  retString= "<p>List of YTD's students. </p>"
+  currentSchoolPuts =[] #See http://googleappengine.blogspot.co.uk/2009/06/10-things-you-probably-didnt-know-about.html .
+  logging.info(str(len(schools)) + " + length of schools")
+  for n in range(0, len(schools)):
+    x = schoolCounts[n-1]
+    thisSchool = schools[n-1]
+    thisSchoolName = thisSchool.name
+    logging.info("school no: " + str(n))
+    logging.info(str(thisSchool))
+    for i in range(1, x):
+      studKey = "GenStudKey-" + str(i) + "-" + str(n) 
+      thisStud = Student(parent = thisSchool, 
+                         currentSchool = thisSchoolName,
+                         key_name=str(studKey), 
+                         name = "Student " + str(i), 
+                         year = random.randint(7,11))
+      if random.randint(0,100) < 25: 
+        thisStud.group_isFSM = True
+      if random.randint(0, 100)<15:
+        thisStud.attendance=random.uniform(0.0,100.0)
+      else:
+        thisStud.attendance=random.uniform(80.0,100.0)
+        
+      if random.randint(0,100) < 20: 
+        thisStud.group_isEAL = True
+        
+      SENInt = random.randint(0,100)
+      if SENInt  < 5: 
+        thisStud.group_SEN = "S"                            
+      elif SENInt  < 12: 
+        thisStud.group_SEN = "P"                            
+      elif SENInt  < 25: 
+        thisStud.group_SEN = "A"                            
+      else:
+        thisStud.group_SEN = "N" 
+        
+      AssessInt = random.randint(0,100)  
+      #logging.info("AssessInt: " + str(AssessInt))
+      if AssessInt < 25: 
+        thisStud.assessment_has5AA = True
+        thisStud.assessment_has5AC = True
+        thisStud.assessment_has5AG = True
+      elif AssessInt < 60: 
+        thisStud.assessment_has5AC = True
+        thisStud.assessment_has5AG = True 
+      elif AssessInt < 95: 
+        thisStud.assessment_has5AG = True 
+      else: 
+        pass #Not 5AG.
+                                       
+      try:
+        currentSchoolPuts.append(thisStud)
+        #thisStud.put()
+      except:
+        retString+= "<p>Failed to add: (" + str(thisStud.key()) + ") " + thisStud.name + "</p>"      
+    db.put(currentSchoolPuts) #Add all appended students in the current school.
+
+  
+  test_query = Student.all()
+  test_query.ancestor(dataset)
+  
+  retString+="<p>"+str(schoolA.name) +"</p>"
+  for item in test_query.run(limit=1000):
+    retString+= "<p>(" + str(item.key()) + "). Name: " + str(item.name) + ", Year Group: " + str(item.year) +", Attendance: " + str(item.attendance) + ", Groups: FSM=" + str(item.group_isFSM) + ", SEN=" + str(item.group_SEN) + ", EAL=" + str(item.group_isEAL) + ", 5AA=" + str(item.assessment_has5AA) +  "</p>"
+  #memcache.flush_all()
+  return retString
+
+@db.transactional
+def tempDatasetFromFiles():
   retString = ""
   
   datasetRefDate = (datetime(2000,1,1))
@@ -75,7 +253,8 @@ def tempSchoolSetup():
     retString+= "<p>(" + str(item.key()) + "). Name: " + str(item.name) + ", Attendance: " + str(item.attendance) + "</p>"
   #memcache.flush_all()
   return retString
-
+  
+  
 def DALReturnAllSchools():
   test_query = School.all()
   retString = "<p>Schools (max 50):</p>"
@@ -157,7 +336,7 @@ def datasets_add_form():
   retString += "     <h3>Modal header</h3>  "
   retString += "   </div>  "
   retString += "   <div class=\"modal-body\">    "
-  retString += "     <p>One fine body...</p>  "
+  retString += "     <p>Modal body...</p>  "
   retString += "   </div>  "
   retString += "   <div class=\"modal-footer\">    "
   retString += "     <a href=\"#\" class=\"btn\">Close</a>    "
@@ -169,7 +348,7 @@ def datasets_add_form():
   retString += "    </div>"
 
   
-  
+    
   
   
   retString += "  </div>"
@@ -258,3 +437,124 @@ def DAL_PutFilestream(fFile):
       blob_info = upload_files[0]     
       self.redirect('/serve/%s' % blob_info.key())
 """
+
+ 
+def SchoolContextDashboard():
+  #(0) With current analysis object.
+  #analysisObject = System().Analysis(analysisObjectName)
+  #(1) Get dataset.
+  dataset = getCurrentDataset()
+  logging.info("school context")
+  #(2) Query.
+  queryString = "SELECT * FROM School" 
+  q = db.GqlQuery(queryString)
+
+  #(3) Create model.
+  #model = modelFromQuery(q) #HACK: [c] CURRENTLY NOT coming from analysis object.
+  totAtt = 0
+  students = 0
+  persAbs = 0
+  persAtt=0
+  
+  for school in q.run():
+    q2 = db.GqlQuery("SELECT * FROM Student WHERE ANCESTOR IS :1", school.key())
+    for student in q2.run():
+      
+      students +=1
+      attendance = student.attendance  #Retrieve once from dataset object.
+      
+      #Store objects #TODO: [e] Should be storing business object from BAL.
+      #modelobjects.append(item) 
+    
+      #Process data.
+      totAtt+=attendance
+    
+      if attendance < 85:
+        persAbs += 1
+        persAtt += attendance  
+    
+  #Summative data processing.  
+  avAtt = totAtt/students
+  if persAbs == 0:
+    persAbsPct = 0
+  else:
+    persAbsPct = (persAtt/persAbs)*100
+  
+  #(4) Pass model to analysis, and retrieve return.
+  retString = "<h3>" + school.name + ": Context</h3>"
+  retString+= "<div id=\"dashboardchart\">"  "</div>"
+  retString+= "<script type=\"text/javascript\">"
+  retString+= "var r = Raphael(document.getElementById('dashboardchart'), 640, 480);"
+  #// Creates a single series barchart at 10, 10
+  #// width 300, height 220, data: [10,20,30,40]
+  retString+= "var max_val = 50;"
+  thisList = [[persAtt, avAtt]]
+  retString+= "r.barchart(80, 200, 420, 320, " +str(thisList)+");"
+  retString+= "axis = r.axis(85,230,310,null,null,4,2,['% PA', '% Attendance'], '|', 0);"
+  retString+= "axis.label(['% PA', '% Attendance']);"
+  retString+= "axis.text.attr({font:\"12px Arial\", \"font-weight\": \"regular\", \"fill\": \"#000000\"});"
+  #retString+= " // show y-axis by setting orientation to 1"
+  retString+= "axis2 = r.axis(40,230,300,0,400,10,1);"
+  retString+= "</script>" 
+  
+  
+  #logging.info(analysisObjectName)
+  logging.info(retString)
+  return retString
+
+    
+  
+def CurrentAssessmentOverview():
+  #(0) With current analysis object.
+  #(1) Get dataset.
+  students = 0
+  FiveAA = 0
+  FiveAC = 0
+  FiveAG = 0
+  dataset = getCurrentDataset()
+  #(2) Query.
+  queryString = "SELECT * FROM School" 
+  q = db.GqlQuery(queryString)
+
+  for school in q.run():
+    q2 = db.GqlQuery("SELECT * FROM Student WHERE ANCESTOR IS :1", school.key())
+
+    
+    #(3) Create model.
+    for item in q2.run():
+      students += 1
+      logging.info(str(item.assessment_has5AA))
+      #attendance = item.attendance  #Retrieve once from dataset object.  
+      
+      #Process data.
+      if item.assessment_has5AA:
+        FiveAA+= 1  
+      if item.assessment_has5AC:
+        FiveAC+= 1  
+      if item.assessment_has5AG:
+        FiveAG+= 1  
+
+    
+     
+  
+  #(4) Pass model to analysis, and retrieve return.
+
+  retString = "<h3>" + school.name + ": Assessment Overview</h3>"
+  retString+= "<div id=\"dashboardchart\">"  "</div>"
+  retString+= "<script type=\"text/javascript\">"
+  retString+= "var r = Raphael(document.getElementById('dashboardchart'), 640, 480);"
+  #// Creates a single series barchart at 10, 10
+  #// width 300, height 220, data: [10,20,30,40]
+  retString+= "var max_val = 50;"
+  logging.info(str(students) + ", " + str(FiveAA) + ", "+str(FiveAC) + ", "+str(FiveAG) + ".")
+  retString+= "r.barchart(40, 10, 320, 220, [["+str(FiveAA)+","+str(FiveAC)+","+str(FiveAG)  +"]]);"
+  retString+= "axis = r.axis(85,230,310,null,null,4,2,['5AA', '5AC', '5AG'], '|', 0);"
+  retString+= "axis.text.attr({font:\"12px Arial\", \"font-weight\": \"regular\", \"fill\": \"#333333\"});"
+  #retString+= " // show y-axis by setting orientation to 1"
+  retString+= "axis2 = r.axis(40,230,300,0,400,10,1);"
+  retString+= "</script>" 
+  return retString  
+  
+def GroupQuery(groupType, sCriteria, sValue):
+  #http://jsfiddle.net/arosen/uz2Bw/
+  return  "SELECT * FROM Student WHERE " + sCriteria + "=" + sValue

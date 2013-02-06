@@ -64,6 +64,7 @@ def nav_attendance():
   return """<li><a href=\"#\"><i class=\"primarynavicon icon-check icon-large tactical\"></i>Attendance</a>
         	<ul>
         		<li class=\"primarynav\" id=\"attendance-summary\">             <a href=\"#\">Attendance Summary</a></li>
+        		<li class=\"primarynav\" id=\"attendance-summaryb\">           <a href=\"#\">Attendance Summary (Analysis Object)</a></li>
         		<li class=\"primarynav\" id=\"attendance-groups\">              <a href=\"#\">Attendance within Groups</a></li>
         		<li class=\"primarynav\" id=\"attendance-attainmentthresholds\"><a href=\"#\">Attendance against Thresholds</a></li>
         		<li class=\"primarynav\" id=\"attendance-temp\">                <a href=\"#\">Other Analyses</a></li>

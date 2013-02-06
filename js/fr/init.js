@@ -173,6 +173,39 @@ function init_app(bDebugMode)  {
 		    });	
   
 		    
+		    $('.form-action').click(function (e) {
+  				if (bDebugMode) { alert("form-action object clicked."); };
+  				e.stopPropagation(); //Prevents double call after function from bubbling to li after a.
+    			var bIsObjectReturn = false		
+    			currentItem = $(this).attr("id"); //Note MUST be $(this) for jQuery, and not simply 'this'.
+  				currentItemClasses = $(this).attr("class");
+  				if ($(this).hasClass("actionBrowse")){alert('browser');}; //Probably best to build in type of object at this point?
+  				
+  				//Temp:
+  				//alert('clicked on ' + currentItem);
+  				currentTarget = currentItem.split("-")[1];
+  				currentTargetSpecifics = currentItem.split("-")[2];
+  				//currentGetURI = '/' + currentSection + '/' + currentSpecific; //Where '/developer/schoollist' --> split of currentItem.
+  				if (bDebugMode) { alert("" + currentGetURI); };
+  				
+  				//TODO: [d] Add Google Analytics *virtual pageview* here. Allows tracking of events.
+  				$('#loader').show();
+  				if (bIsObjectReturn === false) {
+    				$.get(currentGetURI, function(data) {
+      				$('#'+currentTarget).html(data); //Google Analytics event tracking should be within the item itself.
+      				
+    				});
+    				$('#loader').hide();
+          } else {
+           //Return the object.
+           //TODO: [e] This is just by redirecting?
+            if (bDebugMode) { alert("Redirecting to object.."); };
+            window.location.href = currentGetURI;
+          };				
+  			});
+  		    
+		    
+		    
 };
 
 function formButtonClick_Browse(e) {

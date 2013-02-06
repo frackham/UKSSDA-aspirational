@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>g·Raphaël Static Bar Charts</title>
+        <link rel="stylesheet" href="demo.css" media="screen">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
+        <script src="graphael/raphael.js"></script>   
+        <script src="graphael/g.raphael-min.js"></script>   
+        <script src="graphael/g.pie-min.js"></script>   
+        <script src="graphael/g.bar-min.js"></script>   
+        <script src="graphael/g.line-min.js"></script>   
+        <script src="graphael/g.dot-min.js"></script>  
+        <script>
+            window.onload = function () {
+                var r = Raphael("holder"),
+                    fin = function () {
+                        this.flag = r.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
+                    },
+                    fout = function () {
+                        this.flag.animate({opacity: 0}, 300, function () {this.remove();});
+                    },
+                    fin2 = function () {
+                        var y = [], res = [];
+                        for (var i = this.bars.length; i--;) {
+                            y.push(this.bars[i].y);
+                            res.push(this.bars[i].value || "0");
+                        }
+                        this.flag = r.popup(this.bars[0].x, Math.min.apply(Math, y), res.join(", ")).insertBefore(this);
+                    },
+                    fout2 = function () {
+                        this.flag.animate({opacity: 0}, 300, function () {this.remove();});
+                    },
+                    txtattr = { font: "12px sans-serif" };
+                //data1 = [[55, 20, 13, 32, 5, 1, 2, 10], [10, 2, 1, 5, 32, 13, 20, 55], [12, 20, 30]],
+                //    
+                r.text(160, 10, "Single Series Chart").attr(txtattr);
+                // http://jsfiddle.net/arosen/uz2Bw/
+                r.barchart(10, 10, 300, 220, [[55, 20, 13, 32, 5, 1, 2, 10]]).hover(fin, fout);
+            };
+        </script>
+    </head>
+    <body class="raphael" id="g.raphael.dmitry.baranovskiy.com">
+        <div id="holder"></div>
+        <p>
+            Demo of <a href="http://g.raphaeljs.com/">gRaphael</a> JavaScript library.
+        </p>
+        <h3>Yellow Tree Drive</h3>
+        <div id="dashboardchart">Yellow Tree Drive</div>
+        <script type="text/javascript">
+        var r = Raphael($("#dashboardchart"), 640, 480);
+        var max_val = 50;
+        r.barchart(40, 10, 320, 220, [[10,20,30,40]]);
+        axis = r.axis(85,230,310,null,null,4,2,["Today", "Yesterday", "Tomorrow", "Future"], "|", 0);
+        axis.text.attr({font:"12px Arial", "font-weight": "regular", "fill": "#333333"});
+        axis2 = r.axis(40,230,300,0,400,10,1);
+        </script>
+
+    </body>
+</html>

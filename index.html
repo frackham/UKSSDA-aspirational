@@ -82,19 +82,19 @@
       <ul id="nav">
         <li>{{ user_name }}  </li>
         <li>{{ user_debug_accessrights }}  </li>
-        
-          	  {{ nav_access_admin }}
-        <li id="buffernav"><a class="notlink">- - - - -</a></li>
-              {{ nav_access_school }}
-              {{ nav_access_student }}
-              {{ nav_access_attendance }}
-              {{ nav_access_behaviour }}
-              {{ nav_access_assessment }}
-              {{ nav_access_curriculum }}
               {{ nav_access_developer }}
               {{ nav_access_extension }}
               {{ nav_access_fragmentsinprogress }}
+          	  {{ nav_access_admin }}
+        <li id="buffernav"><a class="notlink">- - - - -</a></li>
+              {{ nav_access_school }}
               {{ nav_access_documents }}
+              {{ nav_access_student }}
+              {{ nav_access_assessment }}
+              {{ nav_access_attendance }}
+              {{ nav_access_behaviour }}
+              {{ nav_access_curriculum }}              
+              
      
         <!-- <li class="" id=""><i class="icon-adjust"></i>1</li>
         <li class="" id=""><i class="icon-adjust icon-white"></i>2</li>
@@ -106,33 +106,36 @@
     
     <div class="span9" id="mainwrapper">
       <div id="main">
-        <h2>Main content here</h2>
         <div id="alert debug alert-info"> <!-- Replace with Bootstrap alerts...-->
           <div class="alert debugmessage">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <p>User is {{user_name}} </p><p>User has access rights <span class="strategic">{{user_accessrightslevel}}</span> </p>
           </div>
-          <div class="alert debugmessage">
+          <div class="alert infomessage">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <p>User is {{user_name}} </p><p>User has access rights <span class="strategic">{{user_accessrightslevel}}</span> </p>
+            <p>Use the sections on the left hand side of your screen to explore the data.</p>
           </div>
         </div>
-        <div id="loader"><img src="/img/temp_hourglass.gif" alt="Loading..."/></div>
+        <!-- <div id="loader"><img src="/img/temp_hourglass.gif" alt="Loading..."/></div>
         <div class="progress">
-          <div class="bar" style="width: 60%;"></div> <!-- Set width using jQuery to set progress bar progress -->
+          <div class="bar" style="width: 60%;"></div> <!-- Set width using jQuery to set progress bar progress 
         </div>
+        -->
         <div id="notices">
           <!-- User notices (e.g. are loaded here. Can be 0+ subdivs.-->
         </div>
-        <div id="maincontent"><div id="chart1"></div>
-          
+        <div id="maincontent">
+          <div id="initialcontent">
+            <p>Use the sections on the left hand side of your screen to explore the data.</p>
+          </div>
+          <div id="chart1"></div>          
         </div>
-        <p>Lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum lips lipsum</p>
-        <div id="rating">Rating: 
+        
+        <!--<div id="rating">Rating: 
           <span id="ratingwrapper1"><i class="icon-star icon-large star1 startrue"></i><i class="icon-star star2 startrue"></i><i class="icon-star star3 startrue"></i><i class="icon-star star4 starfalse"></i><i class="icon-star star5 starfalse"></i>
           </span>
-        </div>
-        <div id="statusbar">statusbar</div>
+        </div>-->
+        <div id="statusbar"><p id="status"></p></div>
       </div>
     </div>  
  </div>
@@ -172,6 +175,7 @@
          <li><a href="http://www.jqplot.com/docs/files/usage-txt.html" target="_blank">jqPlot Docs</a></li>
          <li><a href="https://developers.google.com/appengine/" target="_blank">GAE Docs</a></li>
          <li><a href="https://developers.google.com/appengine/" target="_blank">GAE Developers Home</a></li>
+         <li><a href="/staticpages/MSc_Informatics.pptx" target="_blank">PPT for Demonstration</a></li>
         </ul>
       </div>
     </footer>
@@ -181,7 +185,10 @@
   <script src="js/fr/init.js"></script>
   <script src="graphael/raphael.js"></script>  
   <script src="graphael/g.raphael-min.js"></script>  
-  <script src="graphael/g.pie-min.js"></script>  
+  <script src="graphael/g.pie-min.js"></script>   
+  <script src="graphael/g.bar.js"></script>   <!-- Not using minified as not most recent -->
+  <script src="graphael/g.line-min.js"></script>   
+  <script src="graphael/g.dot-min.js"></script>  
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
   <script src="js/bootstrap/bootstrap.min.js"></script>
@@ -214,6 +221,8 @@
 		    var bDebug = false;
 		    init_app(bDebug);	 
 		    //alert(':)');	
+		    //var r = Raphael(document.getElementById('chart1'), 640, 480);
+		    //r.barchart(10, 10, 300, 220, [[55, 20, 13, 32, 5, 1, 2, 10]], 0, {type: "sharp"});
 		  });
 
 		// ]]></script>

@@ -97,13 +97,14 @@ def doUnitTests():
     
 
 #---Up to here.
-  
+
 class StudentColl(db.Model):
   """Models an collection of Student entities with appropriate property."""
   dateAdded = db.DateTimeProperty(auto_now_add=True)
   dateUpdated = db.DateTimeProperty(auto_now=True)
   name = db.StringProperty(default='Unnamed Student Collection')
   description = db.StringProperty(default='Empty Student Collection Description.',multiline=True)
+  students = []
 
 class Student(db.Model):
   """Models an individual Student entry with appropriate property."""
@@ -111,12 +112,31 @@ class Student(db.Model):
   dateUpdated = db.DateTimeProperty(auto_now=True)
   name = db.StringProperty(default='')
   year = db.IntegerProperty(default=0)
+  currentSchool = db.StringProperty(default='')
+  #TODO: [d] add other attendance values.
   attendance = db.FloatProperty(required = False) # Handled this way so that can have null attendance
+  attendance_lates = db.FloatProperty(required = False) 
+  attendance_AEA = db.FloatProperty(required = False) #AEA is approved educational absence.
+  attendance_authabsence = db.FloatProperty(required = False) 
+  attendance_unauthabsence = db.FloatProperty(required = False) 
+  
+  assessment_has5AA = db.BooleanProperty(default=False)
+  assessment_has5AC = db.BooleanProperty(default=False)
+  assessment_has5AG = db.BooleanProperty(default=False)
+  assessment_has1AG = db.BooleanProperty(default=False)
+  
+  group_isFSM  = db.BooleanProperty(default=False)
+  group_isEAL  = db.BooleanProperty(default=False)
+  group_SEN  = db.StringProperty(default='N')
+  
   #TODO: [e] add attendance, classes (arr)
   #TODO: [e] add summary assessment values for proof.
-  #TODO: [d] add proper assessment.
-  #TODO: [d] add other attendance values.
+  #TODO: [e] add proper assessment.
   
+class StudentCategory(db.Model):
+  categoryName = db.StringProperty(required = True)
+  categoryValue = db.StringProperty(default = 'False')
+ 
 class Staff(db.Model):
   """Models an individual Staff entry with appropriate property."""
   dateAdded = db.DateTimeProperty(auto_now_add=True)

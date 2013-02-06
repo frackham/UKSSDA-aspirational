@@ -21,9 +21,11 @@ import urllib
 import webapp2
 import jinja2
 import os
+import system
 from developer import *
 from fragmentrequester import *
 from system import *
+from registry import * 
 from authentication.authentication import *
 from data.persistence.filehandler import *
 
@@ -44,11 +46,18 @@ class Greeting(db.Model):
   content = db.StringProperty(multiline=True)
   date = db.DateTimeProperty(auto_now_add=True)
 
-
 def guestbook_key(guestbook_name=None):
   """Constructs a Datastore key for a Guestbook entity with guestbook_name."""
   return db.Key.from_path('Guestbook', guestbook_name or 'default_guestbook')
 
+  
+def SystemSettings():
+  logging.info("----SystemSettings accessed.----")
+  try: 
+    return app.registry['System']
+  except:
+    logging.info("Failed to access app registry for 'System' object.")
+    return "Failed to access app registry for 'System' object."
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
@@ -168,20 +177,15 @@ class Guestbook(webapp2.RequestHandler): #TODO: [i] Remove.
     self.redirect('/?' + urllib.urlencode({'guestbook_name': guestbook_name}))
 
 
-
 bAnonymisedMode = "True" #Get this from user settings. If usertype is admin or school user, then False. If not part of the school staff, should be anonymised...
 config = {'anonymisedmode': bAnonymisedMode} #Use this to pass global config values to the route handlers.
 	
-
-
-
-
 #Match dev routes manually, as these will often be routed to different handlers.
 app = webapp2.WSGIApplication([
       webapp2.Route('/', handler=MainPage, name = ''),
       #webapp2.Route('/login', handler=Login, name = 'Login'), #Comment this line out to skip login to anonymous. 
-      webapp2.Route('/upload', handler=UploadHandler, name = 'Upload'),
-      webapp2.Route('/serve/([^/]+)?', ServeHandler),
+      webapp2.Route('/upload/<:([^.]+)?>', handler=UploadHandler, name = 'Upload'),
+      webapp2.Route('/serve/<:([^.]+)?>', handler=ServeHandler, name = 'Serve'),
       webapp2.Route('/dev/ajaxtest', handler=DevSchoolList, name = 'DevSchoolList'),
       webapp2.Route('/dev/crudtest', handler=CRUDTest_GDS, name = 'CRUDTest_GDS'),
       webapp2.Route('/<:(admin)>/<:(scheduledtasks)>', handler=RedirectRequestHandler, name = 'admin-scheduledtasks'),
@@ -190,9 +194,15 @@ app = webapp2.WSGIApplication([
       webapp2.Route('/<:dev>/<:addschool>', handler=HTMLRequestHandler, name = 'addschool'),
       webapp2.Route('/<:(user)>/<:(authenticate)>', handler=AuthHandler, name = 'user-authenticate'),
       ], config=config, debug=True)
-System = EdSystem  #TODO: [i] Consider which aspects of this file need moving to the system object.
-
-
+TheSystem = EdSystem()  #TODO: [i] Consider which aspects of this file (main.py) need moving to the system object.
+logging.info(str(TheSystem))
+RegisterSystem(TheSystem, app)#Registers the new EdSystem object so it can be globally accessed. Actual access is handled through the System() call.
+try:
+  logging.info(str(System())) 
+except:
+  logging.info("System call failed")
+  
+  
 def main():  #TODO: [i] This is not being called - mainpage is doing all this, handled by the routing. Look at what should be part of this, and remove unnecessary parts [refactor].
     # Set the logging level in the main function
     # See the section on Requests and App Caching for information on how
@@ -200,13 +210,16 @@ def main():  #TODO: [i] This is not being called - mainpage is doing all this, h
     app_uri = os.environ.get('SERVER_NAME')
     logging.info("*******Main*******")
     if "localhost" in app_uri:
+      logging.info("*Local development detected*")
       app_referer_type = "Local development"
       logging.getLogger().setLevel(logging.DEBUG)
       logging.debug("*DEBUG Logging set*")
     else:
+      logging.info("*Live development detected*")
       app_referer_type = "Live environment"
     webapp.util.run_wsgi_app(application)
-
+    
 if __name__ == '__main__':
   logging.info("Start.")
   main()
+
